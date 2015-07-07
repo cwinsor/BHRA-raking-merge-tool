@@ -1,5 +1,5 @@
 <?php
-//readfile('navigation.html');
+readfile('navigation.tmpl.html');
 ?>
 
 <!DOCTYPE html>
@@ -24,18 +24,20 @@
 
 		foreach ($result as $row) {
 			printf("\n");
-			printf('<li> %d %s %s
-					<a href="roster_update_on_id.php?id=%s">update</a>
+			printf('
+				<li>
+				<a href="roster_update_id.php?id=%s">update</a>
 				<a href="roster_delete_id.php?id=%s">delete</a>
+				%d %s %s
 				</li>',
 				htmlspecialchars($row['id']),
-				htmlspecialchars($row['r_firstname']),
-				htmlspecialchars($row['r_lastname']),
 				htmlspecialchars($row['id']),
-				htmlspecialchars($row['id'])
+				htmlspecialchars($row['id']),
+				htmlspecialchars($row['r_firstname']),
+				htmlspecialchars($row['r_lastname'])
 				);
 		}
-	?>
-</ul>
+		?>
+	</ul>
 </body>
 </html>

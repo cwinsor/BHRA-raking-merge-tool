@@ -5,61 +5,22 @@ set_error_handler("my_error_handler");
 
 
 <?php
-function check_string_empty_string_ok($candidate, $msg, &$final, &$fail_string)
-{
-$final = $candidate;
-}
+require_once("roster_checking_functions.php");
 ?>
-
-
-<?php
-function check_string_empty_string_bad($candidate, $msg, &$final, &$fail_string)
-{
-	// can be any non-empty string
-	if ($candidate && ($candidate != ''))
-	{
-		$final = $candidate;
-	}
-	else {
-		$final = '';
-		$fail_string .= " " . $msg . "=" . $candidate;
-	}
-}
-?>
-
-
-<?php
-function check_string_against_list($candidate, $msg, &$final, &$fail_string, $choices)
-{
-	// can be any of the given choices
-	$found = false;
-	foreach($choices as $choice)
-	{
-		if ($candidate == $choice)
-		{
-			$final = $choice;
-			$found = true;
-		}
-	}
-	if (!$found)
-	{
-		$final = '';
-		$fail_string .= " " . $msg . "=" . $candidate;
-	}
-}
-?>
-
 
 
 <?php
 if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
 	$id = $_GET['id'];
 } else {
-	trigger_error("id was not set", E_USER_ERROR);
+		header('Location: roster_select.php');
 }
 ?>
 
 
+<?php
+readfile('navigation.tmpl.html');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +35,7 @@ if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
 	$r_lastname = '';
 	$r_gender = '';
 	$r_school = '';
-	$r_grade = 0;
+	$r_grade = '';
 	$r_email = '';
 	$r_cellphone = '';
 	$r_homephone = '';
@@ -194,53 +155,63 @@ if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
 				mysqli_real_escape_string($db, $p2_email),
 				mysqli_real_escape_string($db, $p2_cellphone),
 				$id);
-			mysqli_query($db, $sql);
-			mysqli_close($db);
+$rtn = mysqli_query($db, $sql);
+mysqli_close($db);
+
+if (!$rtn)
+{
+	trigger_error("database was not happy(1): $sql", E_USER_NOTICE);
+}
 // DEBUG
-trigger_error("to database: $sql", E_USER_NOTICE);
-		}
-	} else
+//trigger_error("to database: $sql", E_USER_NOTICE);
+}
+} else
 	// NO SUBMIT BUTTON
-	{
+{
 		// create the form.. pre-filling fields from the database
 		// prefill the fields using current values from database
-		$databasehost = "localhost"; 
-		$databasename = "bhra_raking_merge"; 
-		$databasetable = "roster_raw"; 
-		$databaseusername="root"; 
-		$databasepassword = ""; 
+	$databasehost = "localhost"; 
+	$databasename = "bhra_raking_merge"; 
+	$databasetable = "roster_raw"; 
+	$databaseusername="root"; 
+	$databasepassword = ""; 
 
-		$db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
-		$sql = sprintf('SELECT * FROM %s WHERE id=%d', $databasetable, $id);
-		$result = mysqli_query($db, $sql);
-		mysqli_close($db);
+	$db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
+	$sql = sprintf('SELECT * FROM %s WHERE id=%d', $databasetable, $id);
+	$result = mysqli_query($db, $sql);
+	mysqli_close($db);
+
+	if (!$result)
+	{
+		trigger_error("database was not happy(1): $sql", E_USER_NOTICE);
+	}
 // DEBUG
 //trigger_error("to database: $sql", E_USER_NOTICE);
 
-		foreach ($result as $row) {
-			$r_cox = $row['r_cox'];
+	foreach ($result as $row) {
+		$r_cox = $row['r_cox'];
 		$r_team = $row['r_team'];
 		$r_firstname = $row['r_firstname'];
 		$r_lastname = $row['r_lastname'];
 		$r_gender = $row['r_gender'];
 		$r_school = $row['r_school'];
-		$r_grade = $row['r_grade'];
-		$r_email = $row['r_email'];
-		$r_cellphone = $row['r_cellphone'];
-		$r_homephone = $row['r_homephone'];
-		$r_street = $row['r_street'];
-		$r_town = $row['r_town'];
-		$r_state = $row['r_state'];
-		$r_zip = $row['r_zip'];
-		$p1_firstname = $row['p1_firstname'];
-		$p1_lastname = $row['p1_lastname'];
-		$p1_email = $row['p1_email'];
-		$p1_cellphone = $row['p1_cellphone'];
-		$p2_firstname = $row['p2_firstname'];
-		$p2_lastname = $row['p2_lastname'];
-		$p2_email = $row['p2_email'];
-		$p2_cellphone = $row['p2_cellphone'];
-	}
+			$r_grade = $row['r_grade'];
+			$r_email = $row['r_email'];
+			$r_cellphone = $row['r_cellphone'];
+			$r_homephone = $row['r_homephone'];
+			$r_street = $row['r_street'];
+			$r_town = $row['r_town'];
+			$r_state = $row['r_state'];
+			$r_zip = $row['r_zip'];
+			$p1_firstname = $row['p1_firstname'];
+			$p1_lastname = $row['p1_lastname'];
+			$p1_email = $row['p1_email'];
+			$p1_cellphone = $row['p1_cellphone'];
+			$p2_firstname = $row['p2_firstname'];
+			$p2_lastname = $row['p2_lastname'];
+			$p2_email = $row['p2_email'];
+			$p2_cellphone = $row['p2_cellphone'];
+		}
 
 
 	}
