@@ -11,7 +11,7 @@ if (isset($_GET['filename']))
 	unlink("upload/$filename");
 }
 // delete is done - redirect
-header('Location: roster_file_select.php');
+header('Location: file_select.php');
 ?>
 
 

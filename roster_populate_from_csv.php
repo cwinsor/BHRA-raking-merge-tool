@@ -48,12 +48,12 @@ if (isset($_POST['submit']))
 	$databasepassword = ""; 
 
 // DEBUG
-	$message = sprintf("reading %s <br>\ninto %s %s %s<br>\n",
-		$csvfile,
-		$databasehost,
-		$databasename,
-		$databasetable);
-	echo $message;
+//	$message = sprintf("reading %s <br>\ninto %s %s %s<br>\n",
+//		$csvfile,
+//		$databasehost,
+//		$databasename,
+//		$databasetable);
+//	echo $message;
 
 	if(!file_exists($csvfile)) {
 		trigger_error("File not found. Make sure you specified the correct path.".$csvfile,E_USER_ERROR);
@@ -92,7 +92,7 @@ readfile('navigation.tmpl.html');
 </head>
 <body>
 
-	<form action="roster_file_read_csv_to_sql_using_pdo.php" method="post" enctype="multipart/form-data">
+	<form action="roster_populate_from_csv.php" method="post" enctype="multipart/form-data">
 		<label for="file">Filename:</label>
 		<input type="file" name="file" id="file"> 
 		<br>
