@@ -8,10 +8,10 @@ set_error_handler("my_error_handler");
 if (isset($_GET['filename']))
 {
 	$filename = $_GET['filename'];
-	unlink($filename);
+	unlink("upload/$filename");
 }
 // delete is done - redirect
-//header('Location: roster_file_select.php');
+header('Location: roster_file_select.php');
 ?>
 
 

@@ -17,7 +17,7 @@ while (false !== ($entry = $d->read())) {
 			printf("\n");
 			printf('
 				<li>
-				<a href="file_delete_name.php?name=\'%s\'">delete</a>
+				<a href="file_delete_name.php?filename=%s">delete</a>
 				%s
 				</li>',
 				$entry,
