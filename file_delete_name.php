@@ -16,7 +16,7 @@ header('Location: file_select.php');
 
 
 <?php
-readfile('navigation.tmpl.html');
+readfile('navigation.file.html');
 ?>
 
 <!DOCTYPE html>

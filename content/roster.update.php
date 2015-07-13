@@ -1,11 +1,20 @@
+
+<div  id="navigation">
+    <?php
+    include '../navigation/functions.php';
+    Navigation();
+    ?>
+</div>
+
+
 <?php
-require_once("my_error_handler.php");
+require_once("../my_error_handler.php");
 set_error_handler("my_error_handler");
 ?>
 
 
 <?php
-require_once("roster_checking_functions.php");
+require_once("roster.checking.functions.php");
 ?>
 
 
@@ -13,21 +22,29 @@ require_once("roster_checking_functions.php");
 if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
 	$id = $_GET['id'];
 } else {
-		header('Location: roster_select.php');
+		header('Location: roster.php');
+}
+?>
+
+<?php
+	if (isset($_POST['back'])) {
+		header('Location: roster.php');
 }
 ?>
 
 
-<?php
-readfile('navigation.roster.html');
-?>
-<!DOCTYPE html>
+
+<!DOCTYPE HTML PUBLIC  "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>BHRA Leaf Raking</title>
+    <meta http-equiv="content-type" content="text/html;  charset=utf-8">
+    <link href="../navigation/style.css" rel="stylesheet"  type="text/css" />
 </head>
 <body>
-	<p><?php
+    <div id="navigation"></div>
+
+    <div id="content">
+    <?php
 
 	$r_cox = '';
 	$r_team = '';
@@ -243,7 +260,8 @@ if (!$rtn)
 	p2_cellphone: <input type="text" name="p2_cellphone" value="<?php echo htmlspecialchars($p2_cellphone);?>"><br>
 
 	<input type="submit" name="submit" value="Submit">
-
+	<input type="submit" name="back" value="Back">
+</div>
 </form>
 </body>
 </html>

@@ -161,7 +161,7 @@ if (!$rtn)
 
 
 <?php
-readfile('navigation.tmpl.html');
+readfile('navigation.roster.html');
 ?>
 <!DOCTYPE html>
 <html>

@@ -5,7 +5,7 @@ set_error_handler("my_error_handler");
 
 
 <?php
-// reads team roster from .csv file into sql database
+// reads volunteer list from .csv file into sql database
 //
 // reference:
 // http://stackoverflow.com/questions/20876043/php-script-to-import-csv-data-into-mysql
@@ -14,7 +14,8 @@ set_error_handler("my_error_handler");
 // SUBMIT BUTTON
 $msg = '';
 
-if (isset($_POST['submit']))
+if (isset($_POST['submit_supervisors']) ||
+	isset($_POST['submit_rakers']))
 {
 
 // DEBUG
@@ -43,7 +44,13 @@ if (isset($_POST['submit']))
 	$lineseparator = "\n";
 	$databasehost = "localhost"; 
 	$databasename = "bhra_raking_merge"; 
-	$databasetable = "roster_raw"; 
+	if (isset($_POST['submit_supervisors'])) {
+			$databasetable = "volunteer_supervisors_raw"; 
+	}
+	if (isset($_POST['submit_rakers'])) {
+		$databasetable = "volunteer_rakers_raw"; 
+	}
+
 	$databaseusername="root"; 
 	$databasepassword = ""; 
 
@@ -83,7 +90,7 @@ if (isset($_POST['submit']))
 
 
 <?php
-readfile('navigation.roster.html');
+readfile('navigation.volunteer_supervisors.html');
 ?>
 <!DOCTYPE html>
 <html>
@@ -93,10 +100,11 @@ readfile('navigation.roster.html');
 <body>
 
 	<form action="roster_populate_from_csv.php" method="post" enctype="multipart/form-data">
-		<label for="file">Filename: (C:\xampp\htdocs\BHRA-raking-merge-tool\upload)</label>
+		<label for="file">Filename: (C:\xampp\htdocs\BHRA-raking-merge-tool\upload) </label>
 		<input type="file" name="file" id="file"> 
 		<br>
-		<input type="submit" name="submit" value="Submit">
+		<input type="submit" name="submit_supervisors" value="Submit">
+		<input type="submit" name="submit_rakers" value="Submit">
 	</form>
 
 	<p><?php echo $msg;?></p>
@@ -104,4 +112,6 @@ readfile('navigation.roster.html');
 </p>
 </body>
 </html>
+
+
 

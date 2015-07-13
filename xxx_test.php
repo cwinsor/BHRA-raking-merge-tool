@@ -5,6 +5,13 @@
 </head>
 <body>
 
+<h1> ---- Example Forms from W3C HTML 5 Specification ---</h1>
+<b>http://www.w3.org/TR/html5/forms.html#forms</b>
+
+<h3>4.10.1.1 Writing a form's user interface</h3>
+
+
+
 	<form method="post"
 	enctype="application/x-www-form-urlencoded"
 	action="http://localhost/BHRA-raking-merge-tool/xxx_test_yang.php">
@@ -45,11 +52,39 @@
 	</label>
 
 
+<h3>4.10.5 The input element</h3>
+<h4>4.10.5.1 States of the type attribute</h4>
+<h5>4.10.5.1.1 Hidden state (type=hidden)</h5>
+<h5>4.10.5.1.2 Text (type=text) state and Search state (type=search)</h5>
+<h5>4.10.5.1.3 Telephone state (type=tel)</h5>
+<h5>4.10.5.1.4 URL state (type=url)</h5>
+
 <br><label>Homepage: <input name=hp type=url list=hpurls></label>
 <datalist id=hpurls>
   <option value="http://www.reddit.com/" label="Reddit"></option>
   <option value="http://www.google.com/" label="Google"></option>
 </datalist>
+
+<h5>4.10.5.1.5 E-mail state (type=email)</h5>
+<h5>4.10.5.1.6 Password state (type=password)</h5>
+<h5>4.10.5.1.7 Date state (type=date)</h5>
+<h5>4.10.5.1.8 Time state (type=time)</h5>
+<h5>4.10.5.1.9 Number state (type=number)</h5>
+<h5>4.10.5.1.10 Range state (type=range)</h5>
+<h5>4.10.5.1.11 Color state (type=color)</h5>
+<br><label>Color: <input name=col type=color></label>
+
+<h5>4.10.5.1.12 Checkbox state (type=checkbox)</h5>
+<h5>4.10.5.1.13 Radio Button state (type=radio)</h5>
+<h5>4.10.5.1.14 File Upload state (type=file)</h5>
+
+
+<br><label>The File ( C:\Users\cwinsor\Documents\me\BHRA_2015\Leaf Raking ): 
+<input name=thefile type=file multiple></label>
+
+
+
+
 
 <p>
  <label>

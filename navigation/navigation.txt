@@ -1,0 +1,5 @@
+files:../content/file.php
+upload:../content/file_upload.php
+roster:../content/roster.php
+
+

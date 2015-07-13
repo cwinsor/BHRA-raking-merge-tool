@@ -57,7 +57,7 @@ if (isset($_POST['submit']))
 
 
 <?php
-readfile('navigation.tmpl.html');
+readfile('navigation.file.html');
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,7 +67,7 @@ readfile('navigation.tmpl.html');
 <body>
 	
 	<form action="file_upload.php" method="post" enctype="multipart/form-data">
-	<p><label>File: <input type="file" name="file_upload"></label></p>
+	<p><label>File: (C:\Users\cwinsor\Documents\me\BHRA_2015\Leaf Raking) <input type="file" name="file_upload" multiple></label></p>
 		<input type="submit" name="submit" value="Submit">
 	</form>
 

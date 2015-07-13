@@ -1,5 +1,14 @@
+
+<div  id="navigation">
+    <?php
+    include '../navigation/functions.php';
+    Navigation();
+    ?>
+</div>
+
+
 <?php
-require_once("my_error_handler.php");
+require_once("../my_error_handler.php");
 set_error_handler("my_error_handler");
 ?>
 
@@ -8,7 +17,7 @@ set_error_handler("my_error_handler");
 if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
 	$id = $_GET['id'];
 } else {
-	header('Location: roster_select.php');
+	header('Location: roster.php');
 }
 ?>
 
@@ -26,19 +35,6 @@ mysqli_query($db, $sql);
 mysqli_close($db);
 
 // delete is done - redirect
-header('Location: roster_select.php');
+header('Location: roster.php');
 ?>
 
-
-<?php
-readfile('navigation.roster.html');
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>BHRA Leaf Raking</title>
-</head>
-<body>
-</body>
-</html>
