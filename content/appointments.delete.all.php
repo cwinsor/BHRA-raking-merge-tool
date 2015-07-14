@@ -23,7 +23,7 @@ if (isset($_GET['DELETE_ALL']))
     
     $databasehost = "localhost";
     $databasename = "bhra_raking_merge";
-    $databasetable = "roster_raw";
+    $databasetable = "appointments";
     $databaseusername = "root";
     $databasepassword = "";
     
@@ -34,7 +34,7 @@ if (isset($_GET['DELETE_ALL']))
 }
 
 // delete is done - redirect
-header('Location: roster.php');
+header('Location: appointments.php');
 
 ?>
 

@@ -14,17 +14,17 @@ set_error_handler("my_error_handler");
 
 
 <?php
-if (isset($_POST['addSingle']))
-{
-    header('Location: roster.add.single.php');
-}
+// if (isset($_POST['addSingle']))
+// {
+// header('Location: appointments.add.single.php');
+// }
 if (isset($_POST['addFromFile']))
 {
-    header('Location: roster.add.from.file.php');
+    header('Location: appointments.add.from.file.php');
 }
 if (isset($_POST['deleteAll']))
 {
-    header('Location: roster.delete.all.php?DELETE_ALL');
+    header('Location: appointments.delete.all.php?DELETE_ALL');
 }
 ?>
 
@@ -42,13 +42,13 @@ if (isset($_POST['deleteAll']))
 	<div id="content">
 		<form method="post" actions="" action="">
 			<fieldset>
-				<legend> Roster: </legend>
+				<legend> Appointments: </legend>
 				<ul>
             <?php
             
             $databasehost = "localhost";
             $databasename = "bhra_raking_merge";
-            $databasetable = "roster_raw";
+            $databasetable = "appointments";
             $databaseusername = "root";
             $databasepassword = "";
             
@@ -62,10 +62,11 @@ if (isset($_POST['deleteAll']))
                 printf("\n");
                 printf('
                     <li>
-                    <a href="roster.update.php?id=%s">view/update</a>
-                    <a href="roster.delete.php?id=%s">delete</a>
-                    %d %s %s
-                    </li>', htmlspecialchars($row['id']), htmlspecialchars($row['id']), htmlspecialchars($row['id']), htmlspecialchars($row['r_firstname']), htmlspecialchars($row['r_lastname']));
+                    <a href="appointment.update.php?id=%s">view/update</a>
+                    <a href="appointment.delete.php?id=%s">delete</a>
+                    %s %s %s
+                    </li>', htmlspecialchars($row['id_appt']), htmlspecialchars($row['id_appt']),
+                    htmlspecialchars($row['ApptStart']), htmlspecialchars($row['CustName']), htmlspecialchars($row['CustStreet']));
             }
             ?>
         </ul>
@@ -78,3 +79,4 @@ if (isset($_POST['deleteAll']))
 	</div>
 </body>
 </html>
+

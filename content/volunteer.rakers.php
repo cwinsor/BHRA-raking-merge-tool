@@ -14,17 +14,17 @@ set_error_handler("my_error_handler");
 
 
 <?php
-if (isset($_POST['addSingle']))
-{
-    header('Location: roster.add.single.php');
-}
+//if (isset($_POST['addSingle']))
+//{
+//    header('Location: volunteer.rakers.add.single.php');
+//}
 if (isset($_POST['addFromFile']))
 {
-    header('Location: roster.add.from.file.php');
+    header('Location: volunteer.rakers.add.from.file.php');
 }
 if (isset($_POST['deleteAll']))
 {
-    header('Location: roster.delete.all.php?DELETE_ALL');
+    header('Location: volunteer.rakers.delete.all.php?DELETE_ALL');
 }
 ?>
 
@@ -42,13 +42,13 @@ if (isset($_POST['deleteAll']))
 	<div id="content">
 		<form method="post" actions="" action="">
 			<fieldset>
-				<legend> Roster: </legend>
+				<legend> Volunteer Rakers: </legend>
 				<ul>
             <?php
             
             $databasehost = "localhost";
             $databasename = "bhra_raking_merge";
-            $databasetable = "roster_raw";
+            $databasetable = "volunteer_raw_raker";
             $databaseusername = "root";
             $databasepassword = "";
             
@@ -62,10 +62,15 @@ if (isset($_POST['deleteAll']))
                 printf("\n");
                 printf('
                     <li>
-                    <a href="roster.update.php?id=%s">view/update</a>
-                    <a href="roster.delete.php?id=%s">delete</a>
+                    <a href="volunteer.raker.update.php?id=%s">view/update</a>
+                    <a href="volunteer.raker.delete.php?id=%s">delete</a>
                     %d %s %s
-                    </li>', htmlspecialchars($row['id']), htmlspecialchars($row['id']), htmlspecialchars($row['id']), htmlspecialchars($row['r_firstname']), htmlspecialchars($row['r_lastname']));
+                    </li>',
+                     htmlspecialchars($row['id_volunteer']),
+                     htmlspecialchars($row['id_volunteer']),
+                     htmlspecialchars($row['id_volunteer']),
+                     htmlspecialchars($row['Email']),
+                     htmlspecialchars($row['Who']));
             }
             ?>
         </ul>
@@ -78,3 +83,4 @@ if (isset($_POST['deleteAll']))
 	</div>
 </body>
 </html>
+
