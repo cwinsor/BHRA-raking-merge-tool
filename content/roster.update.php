@@ -132,13 +132,9 @@ if (isset($_POST['back']))
         } else
         // if contents of the form are good - send to database
         {
-            
-            $databasehost = "localhost";
-            $databasename = "bhra_raking_merge";
+            include '../.env_database_password';
             $databasetable = "roster_raw";
-            $databaseusername = "root";
-            $databasepassword = "";
-            
+        
             $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
             $sql = sprintf("UPDATE $databasetable SET 
 				r_cox='%s',
@@ -194,12 +190,9 @@ if (isset($_POST['back']))
     {
         // create the form.. pre-filling fields from the database
         // prefill the fields using current values from database
-        $databasehost = "localhost";
-        $databasename = "bhra_raking_merge";
+        include '../.env_database_password';
         $databasetable = "roster_raw";
-        $databaseusername = "root";
-        $databasepassword = "";
-        
+     
         $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
         $sql = sprintf('SELECT * FROM %s WHERE id=%d', $databasetable, $id);
         $result = mysqli_query($db, $sql);

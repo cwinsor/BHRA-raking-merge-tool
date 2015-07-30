@@ -45,12 +45,8 @@ if (isset($_POST['deleteAll']))
 				<legend> Appointments: </legend>
 				<ul>
             <?php
-            
-            $databasehost = "localhost";
-            $databasename = "bhra_raking_merge";
+            include '../.env_database_password';
             $databasetable = "appointments";
-            $databaseusername = "root";
-            $databasepassword = "";
             
             $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
             $sql = "SELECT * FROM $databasetable";

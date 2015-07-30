@@ -19,20 +19,17 @@ if (isset($_GET['id']) && ctype_digit($_GET['id']))
     $id = $_GET['id'];
 } else
 {
-    header('Location: appointments.php');
+   header('Location: appointments.php');
 }
 ?>
 
 
 <?php
-$databasehost = "localhost";
-$databasename = "bhra_raking_merge";
-$databasetable = "volunteer_raw_supervisor";
-$databaseusername = "root";
-$databasepassword = "";
+include '../.env_database_password';
+$databasetable = "appointments";
 
 $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
-$sql = "DELETE FROM $databasetable WHERE id_volunteer=$id";
+$sql = "DELETE FROM $databasetable WHERE id_appt=$id";
 mysqli_query($db, $sql);
 mysqli_close($db);
 

@@ -25,11 +25,8 @@ if (isset($_GET['id']) && ctype_digit($_GET['id']))
 
 
 <?php
-$databasehost = "localhost";
-$databasename = "bhra_raking_merge";
+include '../.env_database_password';
 $databasetable = "volunteer_raw_supervisor";
-$databaseusername = "root";
-$databasepassword = "";
 
 $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
 $sql = "DELETE FROM $databasetable WHERE id_volunteer=$id";

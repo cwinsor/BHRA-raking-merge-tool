@@ -38,12 +38,9 @@ if (! array_key_exists('fileName', $_POST))
     {
 	$fieldseparator = ","; 
 	$lineseparator = "\n";
-	$databasehost = "localhost"; 
-	$databasename = "bhra_raking_merge"; 
-	$databasetable = "volunteer_raw_raker";
-	$databaseusername="root"; 
-	$databasepassword = ""; 
 
+	include '../.env_database_password';
+	$databasetable = "volunteer_raw_raker";
 
 	try
 	{

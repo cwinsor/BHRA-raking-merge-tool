@@ -44,14 +44,11 @@ if (isset($_POST['deleteAll']))
 			<fieldset>
 				<legend> Roster: </legend>
 				<ul>
-            <?php
-            
-            $databasehost = "localhost";
-            $databasename = "bhra_raking_merge";
+
+				<?php
+            include '../.env_database_password';
             $databasetable = "roster_raw";
-            $databaseusername = "root";
-            $databasepassword = "";
-            
+                        
             $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
             $sql = "SELECT * FROM $databasetable";
             $result = mysqli_query($db, $sql);

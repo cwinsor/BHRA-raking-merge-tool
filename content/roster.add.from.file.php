@@ -38,12 +38,10 @@ if (! array_key_exists('fileName', $_POST))
     {
         $fieldseparator = ",";
         $lineseparator = "\n";
-        $databasehost = "localhost";
-        $databasename = "bhra_raking_merge";
+
+        include '../.env_database_password';
         $databasetable = "roster_raw";
-        $databaseusername = "root";
-        $databasepassword = "";
-        
+
         try
         {
             $pdo = new PDO("mysql:host=$databasehost;dbname=$databasename", $databaseusername, $databasepassword, array(

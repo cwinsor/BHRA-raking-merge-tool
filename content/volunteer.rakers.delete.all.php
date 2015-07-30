@@ -20,13 +20,10 @@ var_dump($_POST);
 // SUBMIT BUTTON
 if (isset($_GET['DELETE_ALL']))
 {
-    
-    $databasehost = "localhost";
-    $databasename = "bhra_raking_merge";
+
+    include '../.env_database_password';
     $databasetable = "volunteer_raw_raker";
-    $databaseusername = "root";
-    $databasepassword = "";
-    
+ 
     $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
     $sql = "DELETE FROM $databasetable";
     mysqli_query($db, $sql);

@@ -45,13 +45,9 @@ if (isset($_POST['deleteAll']))
 				<legend> Volunteer Rakers: </legend>
 				<ul>
             <?php
-            
-            $databasehost = "localhost";
-            $databasename = "bhra_raking_merge";
+            include '../.env_database_password';
             $databasetable = "volunteer_raw_raker";
-            $databaseusername = "root";
-            $databasepassword = "";
-            
+                              
             $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
             $sql = "SELECT * FROM $databasetable";
             $result = mysqli_query($db, $sql);
