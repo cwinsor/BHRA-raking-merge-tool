@@ -31,7 +31,7 @@ if (isset($_GET['DELETE_ALL']))
 }
 
 // delete is done - redirect
-header('Location: volunteer.rakers.php');
+header('Location: volunteer.rakers.c.php');
 
 ?>
 

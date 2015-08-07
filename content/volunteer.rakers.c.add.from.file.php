@@ -22,7 +22,7 @@ $msg = '';
 // back to roster
 if (isset($_POST['back']))
 {
-    header('Location: volunteer.rakers.php');
+    header('Location: volunteer.rakers.c.php');
 }
 
 if (! array_key_exists('fileName', $_POST))
@@ -75,7 +75,7 @@ if (! array_key_exists('fileName', $_POST))
 		<div id="navigation"></div>
 	
 		<div id="content">
-			<form action="volunteer.rakers.add.from.file.php" method="post">
+			<form action="volunteer.rakers.c.add.from.file.php" method="post">
 				<fieldset>
 					<legend> Files: </legend>
 					<?php

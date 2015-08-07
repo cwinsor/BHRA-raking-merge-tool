@@ -1,6 +1,6 @@
 files:../content/file.php
 upload:../content/file_upload.php
 roster:../content/roster.php
-rakers:../content/volunteer.rakers.php
+rakers:../content/volunteer.rakers.c.php
 supervisors:../content/volunteer.supervisors.php
 appointments:../content/appointments.php

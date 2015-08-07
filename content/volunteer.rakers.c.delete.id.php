@@ -19,7 +19,7 @@ if (isset($_GET['id']) && ctype_digit($_GET['id']))
     $id = $_GET['id'];
 } else
 {
-    header('Location: volunteer.rakers.php');
+    header('Location: volunteer.rakers.c.php');
 }
 ?>
 
@@ -35,6 +35,6 @@ mysqli_query($db, $sql);
 mysqli_close($db);
 
 // delete is done - redirect
-header('Location: volunteer.rakers.php');
+header('Location: volunteer.rakers.c.php');
 ?>
 

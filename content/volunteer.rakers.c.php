@@ -16,15 +16,15 @@ set_error_handler("my_error_handler");
 <?php
 //if (isset($_POST['addSingle']))
 //{
-//    header('Location: volunteer.rakers.add.single.php');
+//    header('Location: volunteer.rakers.c.add.single.php');
 //}
 if (isset($_POST['addFromFile']))
 {
-    header('Location: volunteer.rakers.add.from.file.php');
+    header('Location: volunteer.rakers.c.add.from.file.php');
 }
 if (isset($_POST['deleteAll']))
 {
-    header('Location: volunteer.rakers.delete.all.php?DELETE_ALL');
+    header('Location: volunteer.rakers.c.delete.all.php?DELETE_ALL');
 }
 ?>
 
@@ -58,8 +58,8 @@ if (isset($_POST['deleteAll']))
                 printf("\n");
                 printf('
                     <li>
-                    <a href="volunteer.raker.update.php?id=%s">view/update</a>
-                    <a href="volunteer.raker.delete.php?id=%s">delete</a>
+                    <a href="volunteer.rakers.c.update.php?id=%s">view/update</a>
+                    <a href="volunteer.rakers.c.delete.php?id=%s">delete</a>
                     %d %s %s
                     </li>',
                      htmlspecialchars($row['id_volunteer']),
