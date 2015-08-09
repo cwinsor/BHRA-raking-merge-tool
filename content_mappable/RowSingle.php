@@ -17,6 +17,11 @@ abstract class RowSingle
         $this->slug = $slug;
     }
 
+    public function slug()
+    {
+        return $this->slug;
+    }
+    
     abstract protected function getColumn($index);
 }
 ?>

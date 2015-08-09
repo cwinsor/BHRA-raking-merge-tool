@@ -18,8 +18,8 @@ class MappingTool
 
 	public function __construct($rowList1, $rowList2)
 	{
-		$this->$rowList1 = $rowList1;
-		$this->$rowList2 = $rowList2;
+		$this->rowList1 = $rowList1;
+		$this->rowList2 = $rowList2;
 	}
 }
 ?>

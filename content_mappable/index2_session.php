@@ -149,51 +149,29 @@ echo '<br>';
 var_dump($_SESSION);
 
 ?>
-  <br>
-        -------------------------------------------------------
-        <br>
-        <br>
-        --- VIEW (GET FORM)---
-        <form
-            method="get"
-            action=""
-        ><br> <input
-            type="submit"
-            name="showCars"
-            value="showCars"
-        > <br> <input
-            type="submit"
-            name="showBikes"
-            value="showBikes"
-        > <br> <input
-            type="submit"
-            name="showSkateboards"
-            value="showSkateboards"
-        > <br> Show drivers of: <select name="toShow">
-                <option value="volvo drivers">Volvo</option>
-                <option value="saab drivers">Saab</option>
-                <option value="fiat drivers">Fiat></option>
-                <option value="audi drivers">Audi</option>
-        </select> <br> <input
-            type="checkbox"
-            name="vehicleBike"
-        > Show bikes <br> <input
-            type="checkbox"
-            name="vehicleSkateboard"
-            checked
-        > Show skateboards <br> <input
-            type="submit"
-            name="submit"
-            value="submit"
-        ></form>
-
-
+    
+    
+     <br>
         <br>
         ---POST FORM---
         <form
             method="post"
             action=""
-        ><br> My Car Is A: <select name="cars">
+        ><br> <input
+            type="submit"
+            name="killSession"
+            value="Kill Session"
+        > Make a Session using "POST" <br> <input
+            type="submit"
+            name="incrementSessionId"
+            value="Increment Session ID"
+        > <br> <input
+            type="submit"
+            name="back"
+            value="Back"
+        
+        
+        <br> <select name="cars">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="fiat">Fiat</option>
@@ -203,15 +181,48 @@ var_dump($_SESSION);
             name="vehicleBike"
         > I have a bike <br> <input
             type="checkbox"
-            name="vehicleSkateboard"
+            name="vehicleCar"
             checked
-        > I have a skateboard <br> <input
+        > I have a car</form>
+
+        <br>
+        ---GET FORM---
+        <form
+            method="get"
+            action=""
+        ><br> <input
             type="submit"
-            name="submit"
-            value="submit"
-        ></form>
+            name="makeSession"
+            value="Make Session"
+        > Make a session using "GET" <br> <input
+            type="submit"
+            name="back"
+            value="Back"
+        > <br> <select name="cars">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+
+                <br>
+                <input
+                type="checkbox"
+                name="vehicleBike"
+            > I have a bike
+
+                <br>
+                <input
+                type="checkbox"
+                name="vehicleCar"
+                checked
+            > I have a car ></form> </select>
+        </form>
 
 
+        <button
+            type="button"
+            onclick="alert('Hello World!')"
+        >Click Me!</button>
 
     </div>
 </body>

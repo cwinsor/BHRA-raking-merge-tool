@@ -7,7 +7,7 @@ set_error_handler("my_error_handler");
 
 <?php
 
-class RowSingleStudent extends MappableThing
+class RowSingleStudent extends RowSingle
 {
 
     public $firstname;
@@ -18,10 +18,10 @@ class RowSingleStudent extends MappableThing
 
     public function __construct($firstname, $lastname, $grade)
     {
-        $this->firstname = $firsttname;
+        $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->grade = $grade;
-        super__construct(trim($firsttname . $lastname));
+        parent::__construct(trim($firstname . $lastname));
     }
 
     public function getColumn($index)
