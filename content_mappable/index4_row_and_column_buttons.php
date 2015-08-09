@@ -1,5 +1,3 @@
-<!-- used to make table sort-able -->
-<script src="sorttable.js"></script>
 
 <div id="navigation">
 <?php
@@ -141,11 +139,6 @@ pickupGetIfSetWithVal("vehicleCar", "checked", $getVehicleCar);
     <div id="navigation"></div>
     <div id="content">
 
- 
-
-
-
-
     
 	<?php
 // print everything out...
@@ -174,10 +167,7 @@ echo '<br>';
 var_dump($_SESSION);
 
 ?>
-
-
-  
-<br>
+  <br>
         -------------------------------------------------------
         <br>
         <br>
@@ -285,58 +275,8 @@ var_dump($_SESSION);
     <br>';
         echo '</form>';
         ?>
-
-       
-<br>
-
-        <style>
-table#t01 th, td {
-	border: 1px solid black;
-}
-</style>
-        <table
-            id="t01"
-            class="sortable"
-        >
-            <caption>Monthly savings</caption>
-            <thead>
-                <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td>
-                    <td>94</td>
-                </tr>
-            
-            
-            <tfoot>
-                <tr>
-                    <td>TOTAL</td>
-                     <td></td>
-                    <td>45,000</td>
-                </tr>
-            </tfoot>
-
-
-
-            </tbody>
-
-
-        </table>
-        <br>
-
-
-
+        
+        
 
     </div>
 </body>
