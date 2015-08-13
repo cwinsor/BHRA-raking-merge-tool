@@ -1,6 +1,6 @@
 <?php
 
-interface InterfaceToDatabaseTable
+interface InterfaceTableDatabase
 {
     
     // populate from database

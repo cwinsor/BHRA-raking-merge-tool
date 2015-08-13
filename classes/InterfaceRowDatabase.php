@@ -1,6 +1,6 @@
 <?php
 
-interface InterfaceToDatabaseRow
+interface InterfaceRowDatabase
 {
     
     public function databasePopulateFromAssociativeArray($rowAssociativeArray);

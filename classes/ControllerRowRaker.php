@@ -1,13 +1,13 @@
 <?php
-require_once ("../my_error_handler.php");
+require_once("../my_error_handler.php");
 set_error_handler("my_error_handler");
 ?>
 
 <?php
 
-class DatabaseRowRaker extends DatabaseRow
+class ControllerRowRaker extends ControllerRow
 {
-    
+
     // //////////////
     // interacting with the database
     // (methods required by the database interface)
@@ -16,6 +16,8 @@ class DatabaseRowRaker extends DatabaseRow
         // map local fields from database fields
         // local field [name] <= database field [name]
         $this->fields = array();
+
+
         $this->fields['id'] = $rowAssociativeArray['id'];
         $this->fields['rosterFirstname'] = $rowAssociativeArray['rosterFirstname'];
         $this->fields['rosterLastname'] = $rowAssociativeArray['rosterLastname'];
@@ -35,11 +37,10 @@ class DatabaseRowRaker extends DatabaseRow
             (firstName, lastName, workShift, teamNumber)
             (rosterFirstname, rosterLastname, volunteerSiteFirstname, volunteerSiteLastname, cellphone, gender, volunteerSlots)
             VALUES (%s, %s, %s, %s, %s, %s, %s);", $this->fields['rosterFirstname'], $this->fields['rosterLastname'], $this->fields['volunteerSiteFirstname'], $this->fields['volunteerSiteLastname'], $this->fields['cellphone'], $this->fields['gender'], $this->fields['volunteerSlots']);
-        
+
         $rtn = mysqli_query($db, $sql);
         mysqli_close($db);
-        if (! $rtn)
-        {
+        if (!$rtn) {
             trigger_error("database was not happy(1): $sql", E_USER_NOTICE);
         }
     }
@@ -62,11 +63,10 @@ class DatabaseRowRaker extends DatabaseRow
  gender='%s',
  volunteerSlots='%s'
  WHERE id=%d;", $this->fields['rosterFirstname'], $this->fields['rosterLastname'], $this->fields['volunteerSiteFirstname'], $this->fields['volunteerSiteLastname'], $this->fields['cellphone'], $this->fields['gender'], $this->fields['volunteerSlots'], $this->fields['id']);
-        
+
         $rtn = mysqli_query($db, $sql);
         mysqli_close($db);
-        if (! $rtn)
-        {
+        if (!$rtn) {
             trigger_error("database was not happy(2): $sql", E_USER_NOTICE);
         }
         // DEBUG

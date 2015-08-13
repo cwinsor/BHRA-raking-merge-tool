@@ -4,13 +4,26 @@ body{
 }
  
 #navigation{
-    width: 50px;
-    height: 6000px;
-    padding: 20px;
+    max-width: 200px;
+    margin: 0px;
+        border:  0px;
+        padding: 0px;
+     /* padding: 20px; */
+    /*  height: 600px; */
     float: left;
-    padding-top: 100px;
+    background-color: rgb(200,255,255);
 }
- 
+
+#content{
+    max-width: 600px;
+    margin: auto;
+  /*  style="background-color:blue;padding:5px;display:table; */
+    float: left;
+/*    border: 3px solid #8AC107; */
+    background-color: rgb(255,200,255);
+}
+
+
 a:link,a:visited{
     text-decoration: none;
 }

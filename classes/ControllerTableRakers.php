@@ -5,7 +5,7 @@ set_error_handler("my_error_handler");
 
 <?php
 
-class DatabaseTableRakers extends DatabaseTable
+class ControllerTableRakers extends ControllerTable
 {
 
 

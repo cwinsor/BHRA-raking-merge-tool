@@ -5,7 +5,7 @@ set_error_handler("my_error_handler");
 
 <?php
 
-class RowersDatabaseTable implements InterfaceMappableFromCsv, InterfaceToDatabaseTable
+class RowersDatabaseTable implements InterfaceMappableFromCsv, InterfaceTableDatabase
 {
 
     public $arrayOfRowers;
