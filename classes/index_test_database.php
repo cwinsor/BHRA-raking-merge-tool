@@ -1,6 +1,3 @@
-<!-- used to make table sort-able -->
-<script src="sorttable.js"></script>
-
 
 <?php
 include_once "aaaStandardIncludes.php";
@@ -54,7 +51,7 @@ $sessionRestarted = 1;
         href="../navigation/style.css"
         rel="stylesheet"
         type="text/css"
-        />
+        >
 
 </head>
 <body>

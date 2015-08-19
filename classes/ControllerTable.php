@@ -19,16 +19,32 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
 
     /////////////
     // methods required by the view interface
+    //
+    // reference relating to "table" - laying out / wrapping, etc
+    // http://stackoverflow.com/questions/6253963/table-with-table-layout-fixed-and-how-to-make-one-column-wider
+    //
     public function viewAsHtmlTable()
     {
-echo '<br>';
+        echo '<br>';
+        echo '
+<!-- used to make table sort-able -->
+<script src="../content_mappable/sorttable.js"></script>
+';
 
         echo '
-<style> table#t01 th, td
-{
+<style> table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black;
+    font-size: 0.9em;
+    word-wrap: break-word;
+}
+td {
     border: 1px solid black;
 }
-</style>';
+</style>
+';
 
 
         echo '<table class=sortable>';
@@ -36,7 +52,7 @@ echo '<br>';
         $headPrinted = false;
 
         foreach ($this->localTable as $row) {
-echo '<br>here1<br>';
+            echo '<br>here1<br>';
             // print header
             if (!$headPrinted) {
                 $headPrinted = true;
@@ -51,7 +67,7 @@ echo '<br>here1<br>';
             // print row of data
             echo '<tr>';
             foreach ($row->asArray() as $rowValue) {
-                echo "<td>q</td>";
+                echo "<td>$rowValue</td>";
             }
             echo '</tr>';
         }

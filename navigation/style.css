@@ -1,39 +1,40 @@
-body{
-    font-family: Verdana, Geneva,  Arial, Helvetica, sans-serif;
+body {
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
- 
-#navigation{
-    max-width: 200px;
-    margin: 0px;
-        border:  0px;
-        padding: 0px;
+
+#navigation {
+    /*   max-width: 200px;*/
+       max-width: 20%;
+     /*   margin: 0px;*/
+    /*   border: 0px;*/
+     /*  padding: 0px;*/
      /* padding: 20px; */
     /*  height: 600px; */
     float: left;
-    background-color: rgb(200,255,255);
+    background-color: rgb(200, 255, 255);
 }
 
-#content{
-    max-width: 600px;
-    margin: auto;
-  /*  style="background-color:blue;padding:5px;display:table; */
+#content {
+    /*  max-width: 600px; */
+       max-width: 80%;
+     /*   margin: auto;*/
+     /*  style="background-color:blue;padding:5px;display:table; */
     float: left;
-/*    border: 3px solid #8AC107; */
-    background-color: rgb(255,200,255);
+    /*    border: 3px solid #8AC107; */
+    background-color: rgb(255, 200, 255);
 }
 
-
-a:link,a:visited{
+a:link, a:visited {
     text-decoration: none;
 }
- 
-li{
+
+li {
     list-style-type: none;
     margin-bottom: 5px;
 }
- 
-li.active{
-    color:gray;
+
+li.active {
+    color: gray;
     list-style-type: disc;
 }
