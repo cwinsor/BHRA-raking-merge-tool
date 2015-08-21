@@ -267,8 +267,8 @@ class MatchUppableClass
             foreach ($this->a->columnsDataslug() as $colId) {
                 echo "<td>" . $this->a->getDataElement($rowNumberA, $colId) . "</td>";
             }
+            echo "<th><---></th>";
         }
-        echo "<th><---></th>";
         foreach ($rowNumbersAB as $rowNumberA => $rowNumberB) {
             foreach ($this->b->columnsNameslug() as $colId) {
                 echo "<td>" . $this->b->getDataElement($rowNumberB, $colId) . "</td>";
@@ -276,9 +276,10 @@ class MatchUppableClass
             foreach ($this->b->columnsDataslug() as $colId) {
                 echo "<td>" . $this->b->getDataElement($rowNumberB, $colId) . "</td>";
             }
+            echo "<th></th>";
+            echo "<td>blah</td>";
+            echo "\n</tr>";
         }
-        echo "<th></th>";
-        echo "<td>blah</td>";
         echo "\n</tbody>";
         echo "\n</table>";
         echo "\n<br>";
@@ -340,7 +341,6 @@ class MatchUppableClass
         if ($act2) {
             echo "<th>action2</th>";
         }
-
         echo "\n</tr>";
         echo "\n</thead>";
 
@@ -349,21 +349,22 @@ class MatchUppableClass
         // print data rows
 
         echo "\n<tbody>";
-        echo "\n<tr>";
         foreach ($rowNumbers as $rowNumber) {
+            echo "\n<tr>";
             foreach ($theTable->columnsNameslug() as $colId) {
                 echo "<td>" . $theTable->getDataElement($rowNumber, $colId) . "</td>";
             }
 
-        }
-        echo "<th></th>";
-        if ($act1) {
-            echo "<td>do 1</td>";
-        }
-        if ($act2) {
-            echo "<td>do 2</td>";
-        }
 
+            echo "<th></th>";
+            if ($act1) {
+                echo "<td>do 1</td>";
+            }
+            if ($act2) {
+                echo "<td>do 2</td>";
+            }
+            echo "\n</tr>";
+        }
         echo "\n</tbody>";
         echo "\n</table>";
         echo "\n<br>";

@@ -11,11 +11,23 @@ set_error_handler("my_error_handler");
 class ControllerRowRaker extends ControllerRow
 {
 
+    //////////////////////////////////////////////////
+    // Methods required by the CSV interface
+    public function populateFromRosterFile($rowAssociativeArray)
+        {
+            // map local fields from csv file
+            $this->fields = array();
 
-    /******************************************************
-     * Interacting with the database
-     * (methods required by the database interface)
-     ******************************************************/
+            $this->fields['id'] = 1234;;
+            $this->fields['rosterFirstname'] = $rowAssociativeArray[2];
+            $this->fields['rosterLastname'] = $rowAssociativeArray[3];
+            $this->fields['cellphone'] = $rowAssociativeArray[8];
+            $this->fields['gender'] = $rowAssociativeArray[4];
+        }
+
+
+    /////////////////////////////////////////////////
+    // Methods required by the database interface
 
     /**
      * @param $rowAssociativeArray
@@ -25,7 +37,6 @@ class ControllerRowRaker extends ControllerRow
         // map local fields from database fields
         // local field [name] <= database field [name]
         $this->fields = array();
-
 
         $this->fields['id'] = $rowAssociativeArray['id'];
         $this->fields['rosterFirstname'] = $rowAssociativeArray['rosterFirstname'];

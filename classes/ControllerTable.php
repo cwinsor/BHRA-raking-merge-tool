@@ -8,7 +8,7 @@ set_error_handler("my_error_handler");
 /**
  * Class ControllerTable
  */
-abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTableView
+abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, InterfaceTableView
 {
 
     private $databaseTableName;
@@ -20,9 +20,64 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
         $this->databaseTableName = $databaseTableName;
     }
 
-    function getName() {
+    function getName()
+    {
         return $this->databaseTableName;
     }
+
+    //////////////////////////////////////////
+    // METHODS REQUIRED BY THE DATABASE INTERFACE
+
+    public function databaseRead($itemToClone)
+    {
+        include "../.env_database_password";
+        $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
+        $sql = "SELECT * FROM $this->databaseTableName";
+        $result = mysqli_query($db, $sql);
+        mysqli_close($db);
+        if (!$result) {
+            trigger_error("database query failed: ", E_USER_ERROR);
+        }
+
+        $this->localTable = array();
+        while ($rowAssociativeArray = $result->fetch_assoc()) {
+            $rowEntity = clone $itemToClone;
+            $rowEntity->databasePopulateFromAssociativeArray($rowAssociativeArray);
+            array_push($this->localTable, $rowEntity);
+        }
+
+//        echo "<br>---- here having read from database ---<br>";
+//        foreach ($this->localTable as $assocRow) {
+//            echo "<br>";
+//            var_dump($assocRow);
+//            echo "<br>";
+//        }
+    }
+
+    public function databaseUpdateById($id)
+    {
+        exit("not coded!");
+    }
+
+
+    //////////////////////////////////////////
+    // METHODS REQUIRED BY THE CSV INTERFACE
+
+    public function csvRead($itemToClone, $filename)
+    {
+        $this->localTable = array();
+
+        // reference:
+        // http://php.net/manual/en/function.str-getcsv.php
+        $csvAsArray = array_map('str_getcsv', file($filename));
+
+        foreach ($csvAsArray as $row) {
+            $rowEntity = clone $itemToClone;
+            $rowEntity->populateFromRosterFile($row);
+            array_push($this->localTable, $rowEntity);
+        }
+    }
+
 
     //////////////////////////////////
     // METHODS REQUIRED BY THE VIEW INTERFACE
@@ -83,40 +138,6 @@ td {
     }
 
 
-    ////////////////
-    // METHODS REQUIRED BY THE DATABASE INTERFACE
-    public
-    function databaseRead($itemToClone)
-    {
-        include "../.env_database_password";
-        $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
-        $sql = "SELECT * FROM $this->databaseTableName";
-        $result = mysqli_query($db, $sql);
-        mysqli_close($db);
-        if (!$result) {
-            trigger_error("database query failed: ", E_USER_ERROR);
-        }
-
-        $this->localTable = array();
-        while ($rowAssociativeArray = $result->fetch_assoc()) {
-            $rowEntity = clone $itemToClone;
-            $rowEntity->databasePopulateFromAssociativeArray($rowAssociativeArray);
-            array_push($this->localTable, $rowEntity);
-        }
-
-//        echo "<br>---- here having read from database ---<br>";
-//        foreach ($this->localTable as $assocRow) {
-//            echo "<br>";
-//            var_dump($assocRow);
-//            echo "<br>";
-//        }
-    }
-
-    public
-    function databaseUpdateById($id)
-    {
-        return $this->localTable[$id];
-    }
 
 
     ///////////////////////////////////////
@@ -132,5 +153,6 @@ td {
     {
         return $this->localTable[$rowNum];
     }
+
 }
 

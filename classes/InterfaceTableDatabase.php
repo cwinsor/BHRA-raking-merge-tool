@@ -2,11 +2,20 @@
 
 interface InterfaceTableDatabase
 {
-    
-    // populate from database
+
+
+    /**
+     * Populate from database
+     * @param $itemToClone - when populating the table, entities of this class are used (copy)
+     * @return mixed
+     */
     public function databaseRead($itemToClone);
-   
-    // populate from database
+
+    /**
+     * Write to database
+     * @param $id
+     * @return mixed
+     */
     public function databaseUpdateById($id);
-     
+
 }

@@ -5,7 +5,7 @@ set_error_handler("my_error_handler");
 
 <?php
 
-abstract class ControllerRow implements InterfaceRowDatabase
+abstract class ControllerRow implements InterfaceRowDatabase, InterfaceRowCsv
 {
 
     protected $fields;
