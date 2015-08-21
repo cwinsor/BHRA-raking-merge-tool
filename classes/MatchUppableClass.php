@@ -241,7 +241,7 @@ class MatchUppableClass
         foreach ($this->a->columnsDataslug() as $colId) {
             echo "<th>$colId</th>";
         }
-        echo "<th></th>";
+        echo "<th><---></th>";
         foreach ($this->b->columnsNameslug() as $colId) {
             echo "<th>$colId</th>";
         }
@@ -356,7 +356,7 @@ class MatchUppableClass
             }
 
 
-            echo "<th></th>";
+            echo "<td></td>";
             if ($act1) {
                 echo "<td>do 1</td>";
             }

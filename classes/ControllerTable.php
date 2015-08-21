@@ -104,6 +104,9 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
 td {
     border: 1px solid black;
 }
+th {
+    border: 1px solid black;
+}
 </style>
 ';
 
