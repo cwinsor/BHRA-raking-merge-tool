@@ -5,12 +5,21 @@ set_error_handler("my_error_handler");
 
 <?php
 
+/**
+ * Class ControllerRowRaker
+ */
 class ControllerRowRaker extends ControllerRow
 {
 
-    // //////////////
-    // interacting with the database
-    // (methods required by the database interface)
+
+    /******************************************************
+     * Interacting with the database
+     * (methods required by the database interface)
+     ******************************************************/
+
+    /**
+     * @param $rowAssociativeArray
+     */
     public function databasePopulateFromAssociativeArray($rowAssociativeArray)
     {
         // map local fields from database fields
@@ -26,14 +35,16 @@ class ControllerRowRaker extends ControllerRow
         $this->fields['cellphone'] = $rowAssociativeArray['cellphone'];
         $this->fields['gender'] = $rowAssociativeArray['gender'];
         $this->fields['volunteerSlots'] = $rowAssociativeArray['volunteerSlots'];
-        echo '<br> ====== HERE!!! <br>';
     }
 
+    /**
+     * @param $tablename
+     */
     public function databaseNewRow($tablename)
     {
         include '../.env_database_password';
         $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
-        $sql = sprintf("INSERT INTO $databasetable
+        $sql = sprintf("INSERT INTO $tablename
             (firstName, lastName, workShift, teamNumber)
             (rosterFirstname, rosterLastname, volunteerSiteFirstname, volunteerSiteLastname, cellphone, gender, volunteerSlots)
             VALUES (%s, %s, %s, %s, %s, %s, %s);", $this->fields['rosterFirstname'], $this->fields['rosterLastname'], $this->fields['volunteerSiteFirstname'], $this->fields['volunteerSiteLastname'], $this->fields['cellphone'], $this->fields['gender'], $this->fields['volunteerSlots']);
@@ -45,11 +56,18 @@ class ControllerRowRaker extends ControllerRow
         }
     }
 
+    /**
+     * @param $tablename
+     * @param $fieldlist
+     */
     public function databaseUpdateRowSelectedFields($tablename, $fieldlist)
     {
         die('not implemented');
     }
 
+    /**
+     * @param $tablename
+     */
     public function databaseUpdateRowAllfields($tablename)
     {
         include '../.env_database_password';

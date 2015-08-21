@@ -17,13 +17,32 @@ body {
 
 #content {
     /*  max-width: 600px; */
-       max-width: 80%;
-     /*   margin: auto;*/
-     /*  style="background-color:blue;padding:5px;display:table; */
+    max-width: 80%;
+    /*   margin: auto;*/
+    /*  style="background-color:blue;padding:5px;display:table; */
     float: left;
     /*    border: 3px solid #8AC107; */
     background-color: rgb(255, 200, 255);
 }
+
+#content_table_left {
+    max-width: 30%;
+    float: left;
+    background-color: rgb(255, 200, 255);
+}
+#content_table_middle {
+    max-width: 30%;
+    float: left;
+    background-color: rgb(254, 255, 221);
+}
+#content_table_right {
+    max-width: 30%;
+    float: left;
+    background-color: rgb(177, 255, 231);
+}
+
+
+
 
 a:link, a:visited {
     text-decoration: none;
@@ -38,3 +57,14 @@ li.active {
     color: gray;
     list-style-type: disc;
 }
+
+#content {
+    /*  max-width: 600px; */
+       max-width: 80%;
+     /*   margin: auto;*/
+     /*  style="background-color:blue;padding:5px;display:table; */
+    float: left;
+    /*    border: 3px solid #8AC107; */
+    background-color: rgb(255, 200, 255);
+}
+

@@ -5,24 +5,30 @@ set_error_handler("my_error_handler");
 
 <?php
 
+/**
+ * Class ControllerTable
+ */
 abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTableView
 {
 
     private $databaseTableName;
 
-    private $localTable;
+    protected $localTable;
 
     function __construct($databaseTableName)
     {
         $this->databaseTableName = $databaseTableName;
     }
 
-    /////////////
-    // methods required by the view interface
-    //
+    function getName() {
+        return $this->databaseTableName;
+    }
+
+    //////////////////////////////////
+    // METHODS REQUIRED BY THE VIEW INTERFACE
     // reference relating to "table" - laying out / wrapping, etc
     // http://stackoverflow.com/questions/6253963/table-with-table-layout-fixed-and-how-to-make-one-column-wider
-    //
+
     public function viewAsHtmlTable()
     {
         echo '<br>';
@@ -51,23 +57,25 @@ td {
         echo "<caption>$this->databaseTableName</caption>";
         $headPrinted = false;
 
-        foreach ($this->localTable as $row) {
-            echo '<br>here1<br>';
+        foreach ($this->localTable as $rowNum => $rowData) {
+
             // print header
             if (!$headPrinted) {
                 $headPrinted = true;
                 echo '<thead><tr>';
-                foreach ($row->asArray() as $rowKey => $rowValue) {
-                    echo "<th>$rowKey</th>";
+                echo "<th>num</th>";
+                foreach ($rowData->asArray() as $colKey => $colValue) {
+                    echo "<th>$colKey</th>";
                 }
                 echo '</tr></thead>';
                 echo '<tbody>';
             }
-            echo '<br>here2<br>';
+
             // print row of data
             echo '<tr>';
-            foreach ($row->asArray() as $rowValue) {
-                echo "<td>$rowValue</td>";
+            echo "<td>$rowNum</td>";
+            foreach ($rowData->asArray() as $colValue) {
+                echo "<td>$colValue</td>";
             }
             echo '</tr>';
         }
@@ -75,8 +83,8 @@ td {
     }
 
 
-////////////////
-// methods required by the database interface)
+    ////////////////
+    // METHODS REQUIRED BY THE DATABASE INTERFACE
     public
     function databaseRead($itemToClone)
     {
@@ -96,13 +104,12 @@ td {
             array_push($this->localTable, $rowEntity);
         }
 
-        echo "<br>---- here having read from database ---<br>";
-        foreach ($this->localTable as $assocRow) {
-            echo "<br>";
-            var_dump($assocRow);
-            echo "<br>";
-            // echo "<br>------ here ... ID= " . $row['id'];
-        }
+//        echo "<br>---- here having read from database ---<br>";
+//        foreach ($this->localTable as $assocRow) {
+//            echo "<br>";
+//            var_dump($assocRow);
+//            echo "<br>";
+//        }
     }
 
     public
@@ -111,12 +118,19 @@ td {
         return $this->localTable[$id];
     }
 
-// ////////////////////////////////
-// interacting with this model
+
+    ///////////////////////////////////////
+    // METHODS SPECIFIC TO THIS CLASS
+
+    /**
+     * Get a row by row number
+     * @param $rowNum
+     * @return mixed
+     */
     public
-    function modelGetById($id)
+    function modelGetRow($rowNum)
     {
-        return $this->localTable[$id];
+        return $this->localTable[$rowNum];
     }
 }
 

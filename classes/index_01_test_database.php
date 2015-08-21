@@ -21,7 +21,7 @@ session_start();
 // a session has an ID and a database table
 if ((isset($_POST["restartSession"])) || (!isset($_SESSION['id']))) {
 $sessionRestarted = 1;
-    // kill the sesson
+    // kill the session
     session_unset();
     session_destroy();
 
@@ -147,7 +147,7 @@ $sessionRestarted = 1;
         // modify an entry and post to database
         if ($postModifyEntry) {
             $id = 1;
-            $myRaker = $controllerTableRakers->modelGetById($id);
+            $myRaker = $controllerTableRakers->modelGetRow($id);
             echo "<br> before... <br>";
             echo $myRaker->modelGetField('cellphone');
             $myRaker->modelSetField('cellphone', "Barr");

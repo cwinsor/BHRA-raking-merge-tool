@@ -9,8 +9,8 @@ class Rower
 {
 
    // InterfaceDatabaseEnabled
-    public getId();
-    public function updateDatabase()
+//    public function getId();
+//    public function updateDatabase()
     
     
     public getFieldValue($fieldNumber);
