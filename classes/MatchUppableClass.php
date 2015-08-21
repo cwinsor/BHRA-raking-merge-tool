@@ -201,49 +201,28 @@ class MatchUppableClass
         echo '<br>';
     }
 
+
     /*
      * Get a html view of the matchups (A<->B where data DOES match)
      */
-    public function viewAsHtmlIndividualRowsInABwithDataMatch()
+    public function viewAsHtmlInABwithDataMatch()
     {
-        $this->viewAsHtmlIndividualRowsGivenRowList($this->inAandBwithDataMatch, "The following are in both A and B with matching data");
+        $this->viewAsHtmlInABgivenRowList($this->inAandBwithDataMatch, "The following are in both A and B with matching data");
     }
 
     /*
-     * Get a html view of the matchups (A<->B where data does NOT match)
-     */
-    public function viewAsHtmlIndividualRowsInABnoDataMatch()
+    * Get a html view of the matchups (A<->B where data does NOT match)
+    */
+    public function viewAsHtmlInABwithDataMismatch()
     {
-        $this->viewAsHtmlIndividualRowsGivenRowList($this->inAandBnoDataMatch, "The following are in both A and B but data does not match");
+        $this->viewAsHtmlInABgivenRowList($this->inAandBnoDataMatch, "The following are in both A and B but data does not match");
     }
 
     /*
      * Common function to display (A<->B) matchup
      */
-    public function viewAsHtmlIndividualRowsGivenRowList($theABrowList, $msg)
+    public function viewAsHtmlInABgivenRowList($rowNumbersAB, $msg)
     {
-        foreach ($theABrowList as $rowNumberA => $rowNumberB) {
-
-            $rowA = $this->a->modelGetRow($rowNumberA);
-            $rowB = $this->b->modelGetRow($rowNumberB);
-
-            $thisRowAsArray = [];
-            foreach ($this->a->columnsNameslug() as $colId) {
-                array_push($thisRowAsArray, $this->a->getDataElement($rowNumberA, $colId));
-            }
-
-            foreach ($this->a->columnsDataslug() as $colId) {
-                array_push($thisRowAsArray, $this->a->getDataElement($rowNumberA, $colId));
-            }
-            array_push($thisRowAsArray, "-->");
-            foreach ($this->b->columnsNameslug() as $colId) {
-                array_push($thisRowAsArray, $this->b->getDataElement($rowNumberA, $colId));
-            }
-
-            foreach ($this->b->columnsDataslug() as $colId) {
-                array_push($thisRowAsArray, $this->b->getDataElement($rowNumberA, $colId));
-            }
-        }
 
         // generate html
         echo "\n<br>" . $msg;
@@ -256,22 +235,18 @@ class MatchUppableClass
 
         echo "\n<thead>";
         echo "\n<tr>";
-        foreach ($this->inAandBwithDataMatch as $rowNumberA => $rowNumberB) {
-            foreach ($this->a->columnsNameslug() as $colId) {
-                echo "<th>$colId</th>";
-            }
-            foreach ($this->a->columnsDataslug() as $colId) {
-                echo "<th>$colId</th>";
-            }
+        foreach ($this->a->columnsNameslug() as $colId) {
+            echo "<th>$colId</th>";
+        }
+        foreach ($this->a->columnsDataslug() as $colId) {
+            echo "<th>$colId</th>";
         }
         echo "<th></th>";
-        foreach ($this->inAandBwithDataMatch as $rowNumberA => $rowNumberB) {
-            foreach ($this->b->columnsNameslug() as $colId) {
-                echo "<th>$colId</th>";
-            }
-            foreach ($this->b->columnsDataslug() as $colId) {
-                echo "<th>$colId</th>";
-            }
+        foreach ($this->b->columnsNameslug() as $colId) {
+            echo "<th>$colId</th>";
+        }
+        foreach ($this->b->columnsDataslug() as $colId) {
+            echo "<th>$colId</th>";
         }
         echo "<th></th>";
         echo "<th>action</th>";
@@ -285,7 +260,7 @@ class MatchUppableClass
 
         echo "\n<tbody>";
         echo "\n<tr>";
-        foreach ($this->inAandBwithDataMatch as $rowNumberA => $rowNumberB) {
+        foreach ($rowNumbersAB as $rowNumberA => $rowNumberB) {
             foreach ($this->a->columnsNameslug() as $colId) {
                 echo "<td>" . $this->a->getDataElement($rowNumberA, $colId) . "</td>";
             }
@@ -294,7 +269,7 @@ class MatchUppableClass
             }
         }
         echo "<th><---></th>";
-        foreach ($this->inAandBwithDataMatch as $rowNumberA => $rowNumberB) {
+        foreach ($rowNumbersAB as $rowNumberA => $rowNumberB) {
             foreach ($this->b->columnsNameslug() as $colId) {
                 echo "<td>" . $this->b->getDataElement($rowNumberB, $colId) . "</td>";
             }
@@ -309,6 +284,91 @@ class MatchUppableClass
         echo "\n<br>";
     }
 
+
+    /*
+     * Get a html view of table items that are in A only
+     * Present options assuming this is a CSV file
+     */
+    public function viewAsHtmlInAonly()
+    {
+        $this->viewAsHtmlSingleTableGivenRowList(
+            $this->a,
+            $this->inAOnly,
+            "The following are only in A",
+            true, true);
+    }
+
+
+    /*
+     * Get a html view of table items that are in B only
+     * Present options assuming this is a DATABASE
+     */
+    public function viewAsHtmlInBonly()
+    {
+        $this->viewAsHtmlSingleTableGivenRowList(
+            $this->b,
+            $this->inBOnly,
+            "The following are only in B",
+            false, true);
+    }
+
+    /*
+     * Common function to display (A<->B) matchup
+     */
+    public function viewAsHtmlSingleTableGivenRowList($theTable, $rowNumbers, $msg, $act1, $act2)
+    {
+
+        // generate html
+        echo "\n<br>" . $msg;
+        echo "\n<table class=sortable>";
+        echo "\n<caption>" . $theTable->getName() . "</caption>";
+
+
+        /////////////////
+        // print header
+
+        echo "\n<thead>";
+        echo "\n<tr>";
+        foreach ($theTable->columnsNameslug() as $colId) {
+            echo "<th>$colId</th>";
+        }
+
+        echo "<th></th>";
+        if ($act1) {
+            echo "<th>action1</th>";
+        }
+        if ($act2) {
+            echo "<th>action2</th>";
+        }
+
+        echo "\n</tr>";
+        echo "\n</thead>";
+
+
+        //////////////////////
+        // print data rows
+
+        echo "\n<tbody>";
+        echo "\n<tr>";
+        foreach ($rowNumbers as $rowNumber) {
+            foreach ($theTable->columnsNameslug() as $colId) {
+                echo "<td>" . $theTable->getDataElement($rowNumber, $colId) . "</td>";
+            }
+
+        }
+        echo "<th></th>";
+        if ($act1) {
+            echo "<td>do 1</td>";
+        }
+        if ($act2) {
+            echo "<td>do 2</td>";
+        }
+
+        echo "\n</tbody>";
+        echo "\n</table>";
+        echo "\n<br>";
+
+    }
 
 
 }

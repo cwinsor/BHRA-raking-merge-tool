@@ -48,9 +48,17 @@ set_error_handler("my_error_handler");
     $matchUppableClass = new MatchUppableClass();
     $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
     $matchUppableClass->performMatching();
+
     $matchUppableClass->viewAsHtmlBasicSummary();
-    $matchUppableClass->viewAsHtmlIndividualRowsInABwithDataMatch();
-    $matchUppableClass->viewAsHtmlIndividualRowsInABnoDataMatch();
+
+    $matchUppableClass->viewAsHtmlInABwithDataMatch();
+    $matchUppableClass->viewAsHtmlInABwithDataMismatch();
+    $matchUppableClass-> viewAsHtmlInAonly();
+     $matchUppableClass->viewAsHtmlInBonly();
+
+
+
+
 
     ?>
 
