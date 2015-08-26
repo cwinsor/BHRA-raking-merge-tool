@@ -3,7 +3,7 @@
 interface InterfaceRowDatabase
 {
     
-    public function databasePopulateFromAssociativeArray($rowAssociativeArray);
+    public function populateFromDatabaseTableAssociativeArray($rowAssociativeArray);
     
     public function databaseNewRow($tablename);
     public function databaseUpdateRowSelectedFields($tablename, $fieldlist);

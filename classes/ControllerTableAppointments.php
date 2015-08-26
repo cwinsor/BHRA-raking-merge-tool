@@ -5,7 +5,7 @@ set_error_handler("my_error_handler");
 
 <?php
 
-class ControllerTableRakers extends ControllerTable implements MatchUppableInterface
+class ControllerTableAppointments extends ControllerTable implements MatchUppableInterface
 {
 
     //////////////////////////////////////////////
@@ -24,7 +24,9 @@ class ControllerTableRakers extends ControllerTable implements MatchUppableInter
      */
     public function columnsNameslug()
     {
-        return array('rosterFirstname', 'rosterLastname');
+        return array(
+            'CustName',
+            'ApptStart');
     }
 
     /**
@@ -32,7 +34,20 @@ class ControllerTableRakers extends ControllerTable implements MatchUppableInter
      */
     public function columnsDataslug()
     {
-        return array('cellphone', 'gender');
+        return array(
+            'ApptStart',
+            'ApptEnd',
+            'ApptDescription',
+            'Foo',
+            'CustName',
+            'CustPhone',
+            'CustStreet',
+            'CustDescription',
+            'Team',
+            'CustEmail',
+            'ReservedBy',
+            'DTme1',
+            'DTme2');
     }
 
     /**

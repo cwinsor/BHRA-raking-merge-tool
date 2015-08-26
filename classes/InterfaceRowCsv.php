@@ -3,6 +3,6 @@
 interface InterfaceRowCsv
 {
     
-    public function populateFromRosterFile($rowAssociativeArray);
+    public function populateFromAssociativeArrayCsvFile($rowAssociativeArray);
 
 }

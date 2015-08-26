@@ -42,7 +42,7 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
         $this->localTable = array();
         while ($rowAssociativeArray = $result->fetch_assoc()) {
             $rowEntity = clone $itemToClone;
-            $rowEntity->databasePopulateFromAssociativeArray($rowAssociativeArray);
+            $rowEntity->populateFromDatabaseTableAssociativeArray($rowAssociativeArray);
             array_push($this->localTable, $rowEntity);
         }
 
@@ -54,11 +54,23 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
 //        }
     }
 
-    public function databaseUpdateById($id)
-    {
-        exit("not coded!");
+    public function databaseAdd($row) {
+        echo "<br> not implemented - databaseAdd <br>";
     }
 
+
+    public function databaseDeleteById($idHdr, $idVal)
+    {
+        include "../.env_database_password";
+        $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
+    $sql = "DELETE FROM $this->databaseTableName WHERE $idHdr=$idVal";
+        echo "<br>here1 sql=$sql<br>";
+        $result = mysqli_query($db, $sql);
+        mysqli_close($db);
+        if (!$result) {
+            trigger_error("database query failed: ", E_USER_ERROR);
+        }
+    }
 
     //////////////////////////////////////////
     // METHODS REQUIRED BY THE CSV INTERFACE
@@ -73,7 +85,7 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
 
         foreach ($csvAsArray as $row) {
             $rowEntity = clone $itemToClone;
-            $rowEntity->populateFromRosterFile($row);
+            $rowEntity->populateFromAssociativeArrayCsvFile($row);
             array_push($this->localTable, $rowEntity);
         }
     }
@@ -156,6 +168,7 @@ th {
     {
         return $this->localTable[$rowNum];
     }
+
 
 }
 

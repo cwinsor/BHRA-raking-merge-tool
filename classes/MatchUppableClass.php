@@ -85,15 +85,15 @@ class MatchUppableClass
         $comparableDataB = $this->getComparableDataslugList($this->b);
 
         // debug...
-        echo "\n<br>---- comparableSlugA/B ------------<br>";
-        var_dump($comparableSlugA);
-        echo "\n<br>";
-        var_dump($comparableSlugB);
-        echo "\n<br>---- comparableDataA/B ------------<br>";
-        var_dump($comparableDataA);
-        echo "\n<br>";
-        var_dump($comparableDataB);
-        echo "\n<br>-----------------------------------<br>";
+        // echo "\n<br>---- comparableSlugA/B ------------<br>";
+        // var_dump($comparableSlugA);
+        // echo "\n<br>";
+        // var_dump($comparableSlugB);
+        // echo "\n<br>---- comparableDataA/B ------------<br>";
+        // var_dump($comparableDataA);
+        // echo "\n<br>";
+        // var_dump($comparableDataB);
+        // echo "\n<br>-----------------------------------<br>";
 
         // what is in both A and B
         // what slugs are in both A and B (intersection)
@@ -176,11 +176,66 @@ class MatchUppableClass
         return $comparableTable;
     }
 
+
+
+
+////xxxxx        echo '<input type=submit name=delete_row_' . $button_delete . ' value=' . $rowNumber . '>';
+//
+////  $rtn = isset($_POST[$attribute]) ? $_POST[$attribute] : "";
+//foreach ()
+//$this->$foo = "barr";
+//
+//
+//
+//pickupPostIfSet("killSession", $postKillSession);
+//pickupPostIfSet("incrementSessionId", $postIncrementSessionId);
+//echo "<br> postIncrementSessionId = $postIncrementSessionId";
+//pickupPostIfSet('back', $postBack);
+//pickupPostIfSet('cars', $postCars);
+//pickupPostIfSetWithVal("vehicleBike", "checked", $postVehicleBike);
+//pickupPostIfSetWithVal("vehicleCar", "checked", $postVehicleCar);
+//
+//pickupGetIfSet("makeSession", $getMakeSession);
+//pickupGetIfSet('back', $getBack);
+//pickupGetIfSet('cars', $getCars);
+//pickupGetIfSetWithVal("vehicleBike", "checked", $getVehicleBike);
+//pickupGetIfSetWithVal("vehicleCar", "checked", $getVehicleCar);
+
+    /**
+     * perform functions from POST
+     */
+    public function performGetAndPostFunctions()
+    {
+        if (isset($_POST["delete_row"])) {
+            $this->deleteRowFromB( $_POST["delete_row"]);
+        }
+
+        if (isset($_POST["add_row"])) {
+            $this->addRowFromA( $_POST["add_row"]);
+        }
+    }
+
+    public function deleteRowFromB($rowNum) {
+        $row = $this->b->modelGetRow($rowNum);
+        $rowIdKeyname = $row->modelGetIdFieldName();
+        $rowIdKeyval = $row->modelGetField($rowIdKeyname);
+        echo "<br>rowIdKeyname = $rowIdKeyname  rowIdKeyval = $rowIdKeyval <br>";
+        $this->b->databaseDeleteById($rowIdKeyname, $rowIdKeyval);
+    }
+
+    public function addRowUsingA($rowNum) {
+             $row = $this->a->modelGetRow($rowNum);
+        $this->b->databaseAdd($row);
+    }
+
+
     /**
      *
      */
     public function viewAsHtmlBasicSummary()
     {
+
+
         echo "\n<br>the following are in both A and B with data match";
         foreach ($this->inAandBwithDataMatch as $rowNumberA => $rowNumberB) {
             echo "\n<br> (a)row $rowNumberA maps to (b)row $rowNumberB";
@@ -296,7 +351,7 @@ class MatchUppableClass
             $this->a,
             $this->inAOnly,
             "The following are only in A",
-            true, true);
+            true, false);
     }
 
 
@@ -316,10 +371,15 @@ class MatchUppableClass
     /*
      * Common function to display (A<->B) matchup
      */
-    public function viewAsHtmlSingleTableGivenRowList($theTable, $rowNumbers, $msg, $act1, $act2)
+    public
+    function viewAsHtmlSingleTableGivenRowList($theTable, $rowNumbers, $msg, $button_add, $button_delete)
     {
 
+
+        ///////////////////////////////////////////
         // generate html
+        echo "\n<form method=post>";
+
         echo "\n<br>" . $msg;
         echo "\n<table class=sortable>";
         echo "\n<caption>" . $theTable->getName() . "</caption>";
@@ -335,8 +395,8 @@ class MatchUppableClass
         }
 
         echo "<th></th>";
-        if ($act1) {
-            echo "<th>action1</th>";
+        if ($button_delete) {
+            echo "<th>delete</th>";
         }
         if ($act2) {
             echo "<th>action2</th>";
@@ -357,18 +417,22 @@ class MatchUppableClass
 
 
             echo "<td></td>";
-            if ($act1) {
-                echo "<td>do 1</td>";
+            if ($button_delete) {
+                echo '<th>';
+                echo '<input type=submit name=delete_row value=' . $rowNumber . '>';
+                echo '</th>';
             }
-            if ($act2) {
-                echo "<td>do 2</td>";
+            if ($button_add) {
+                echo '<th>';
+                echo '<input type=submit name=add_row value=' . $rowNumber . '>';
+                echo '</th>';
             }
             echo "\n</tr>";
         }
         echo "\n</tbody>";
         echo "\n</table>";
         echo "\n<br>";
-
+        echo "\n</form>";
     }
 
 
