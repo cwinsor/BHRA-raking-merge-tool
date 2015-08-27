@@ -262,7 +262,12 @@ class MatchUppableClass
      */
     public function viewAsHtmlInABwithDataMatch()
     {
-        $this->viewAsHtmlInABgivenRowList($this->inAandBwithDataMatch, "The following are in both A and B with matching data");
+        $this->viewAsHtmlInABgivenRowList($this->inAandBwithDataMatch,
+            "The following are in both " .
+            $this->a->getCommonName() .
+            " and " .
+            $this->b->getCommonName() .
+            " with matching data");
     }
 
     /*
@@ -270,7 +275,12 @@ class MatchUppableClass
     */
     public function viewAsHtmlInABwithDataMismatch()
     {
-        $this->viewAsHtmlInABgivenRowList($this->inAandBnoDataMatch, "The following are in both A and B but data does not match");
+        $this->viewAsHtmlInABgivenRowList($this->inAandBnoDataMatch,
+            "The following are in both " .
+            $this->a->getCommonName() .
+            " and " .
+            $this->b->getCommonName() .
+            " with data that does NOT match");
     }
 
     /*
@@ -281,7 +291,7 @@ class MatchUppableClass
 
         // generate html
         echo "\n<table class=sortable>";
-        echo "\n<caption>" . $msg . "</caption>";
+        echo "\n<caption><b>" . $msg . "</b></caption>";
 
         /////////////////
         // print header
@@ -338,7 +348,7 @@ class MatchUppableClass
         $this->viewAsHtmlSingleTableGivenRowList(
             $this->a,
             $this->inAOnly,
-            "The following are only in A",
+            "The following are only in " . $this->a->getCommonName(),
             true, false);
     }
 
@@ -352,7 +362,7 @@ class MatchUppableClass
         $this->viewAsHtmlSingleTableGivenRowList(
             $this->b,
             $this->inBOnly,
-            "The following are only in B",
+            "The following are only in " . $this->b->getCommonName(),
             false, true);
     }
 
@@ -369,7 +379,7 @@ class MatchUppableClass
         echo "\n<form method=post>";
 
         echo "\n<table class=sortable>";
-        echo "\n<caption>" . $msg . "</caption>";
+        echo "\n<caption><b>" . $msg . "</b></caption>";
 
         /////////////////
         // print header
