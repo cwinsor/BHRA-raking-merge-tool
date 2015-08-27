@@ -280,16 +280,15 @@ class MatchUppableClass
     {
 
         // generate html
-        echo "\n<br>" . $msg;
         echo "\n<table class=sortable>";
-        echo "\n<caption>" . $this->a->getCommonName() . " <---> " . $this->b->getCommonName() . "</caption>";
-
+        echo "\n<caption>" . $msg . "</caption>";
 
         /////////////////
         // print header
 
         echo "\n<thead>";
         echo "\n<tr>";
+        echo "<th>source</th>";
         foreach ($this->a->columnsDataslug() as $colId) {
             echo "<th>$colId</th>";
         }
@@ -307,12 +306,16 @@ class MatchUppableClass
 
         foreach ($rowNumbersAB as $rowNumberA => $rowNumberB) {
             echo "\n<tr>";
+            echo "<th>" . $this->a->getCommonName() . "</th>";
             foreach ($this->a->columnsDataslug() as $colId) {
                 echo "<td>" . $this->a->getDataElement($rowNumberA, $colId) . "</td>";
             }
             echo "<th></th>";
             echo "<th>-</th>";
             echo "\n</tr>";
+
+            echo "\n<tr>";
+            echo "<th>" . $this->b->getCommonName() . "</th>";
             foreach ($this->b->columnsDataslug() as $colId) {
                 echo "<td>" . $this->b->getDataElement($rowNumberB, $colId) . "</td>";
             }
@@ -365,10 +368,8 @@ class MatchUppableClass
         // generate html
         echo "\n<form method=post>";
 
-        echo "\n<br>" . $msg;
         echo "\n<table class=sortable>";
-        echo "\n<caption>" . $theTable->getCommonName() . "</caption>";
-
+        echo "\n<caption>" . $msg . "</caption>";
 
         /////////////////
         // print header

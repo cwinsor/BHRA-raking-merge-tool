@@ -22,11 +22,11 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
         $this->databaseCommonName = $commonName;
     }
 
-    function getDatabaseTableOrFileName()
+    public function getDatabaseTableOrFileName()
     {
         return $this->databaseTableOrFileName;
     }
-    function getCommonName()
+    public function getCommonName()
     {
         return $this->databaseCommonName;
     }
