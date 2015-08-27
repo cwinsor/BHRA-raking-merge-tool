@@ -58,11 +58,11 @@ pickupGetIfSet("filename", $getFilename);
     echo "<br>";
     if ($getFilename) {
         // get rakers from .csv
-        $controllerTableAppointments1 = new ControllerTableAppointments("appointments (csv file)");
-        $controllerTableAppointments1->csvRead(new ControllerRowAppointment(), $getFilename);
+        $controllerTableAppointments1 = new ControllerTableAppointments($getFilename, "CSV");
+        $controllerTableAppointments1->csvRead(new ControllerRowAppointment());
 
-        // get rakers from database
-        $controllerTableAppointments2 = new ControllerTableAppointments("appointments");
+        // get from database
+        $controllerTableAppointments2 = new ControllerTableAppointments("appointments", "DB");
         $controllerTableAppointments2->databaseRead(new ControllerRowAppointment());
 
         // prepare to update database based on posts
@@ -82,6 +82,9 @@ pickupGetIfSet("filename", $getFilename);
         $matchUppableClass->performMatching();
         echo "<br> here6 <br>";
 
+        $matchUppableClass->viewAsHtmlBasicSummary();
+
+        echo "<br> here7 <br>";
         $matchUppableClass->viewAsHtmlInABwithDataMatch();
         $matchUppableClass->viewAsHtmlInABwithDataMismatch();
         $matchUppableClass->viewAsHtmlInAonly();

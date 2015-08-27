@@ -84,16 +84,17 @@ class MatchUppableClass
         $comparableDataA = $this->getComparableDataslugList($this->a);
         $comparableDataB = $this->getComparableDataslugList($this->b);
 
+        /////////////////
         // debug...
-        // echo "\n<br>---- comparableSlugA/B ------------<br>";
-        // var_dump($comparableSlugA);
-        // echo "\n<br>";
-        // var_dump($comparableSlugB);
-        // echo "\n<br>---- comparableDataA/B ------------<br>";
-        // var_dump($comparableDataA);
-        // echo "\n<br>";
-        // var_dump($comparableDataB);
-        // echo "\n<br>-----------------------------------<br>";
+        echo "\n<br>---- comparableSlugA/B ------------<br>";
+        var_dump($comparableSlugA);
+        echo "\n<br>";
+        var_dump($comparableSlugB);
+        echo "\n<br>---- comparableDataA/B ------------<br>";
+        var_dump($comparableDataA);
+        echo "\n<br>";
+        var_dump($comparableDataB);
+        echo "\n<br>-----------------------------------<br>";
 
         // what is in both A and B
         // what slugs are in both A and B (intersection)
@@ -207,25 +208,24 @@ class MatchUppableClass
     public function performGetAndPostFunctions()
     {
         if (isset($_POST["delete_row"])) {
-            $this->deleteRowFromB( $_POST["delete_row"]);
+            $this->deleteRowFromB($_POST["delete_row"]);
         }
 
         if (isset($_POST["add_row"])) {
-            $this->addRowFromA( $_POST["add_row"]);
+            $this->addRowUsingA($_POST["add_row"]);
         }
     }
 
-    public function deleteRowFromB($rowNum) {
+    public function deleteRowFromB($rowNum)
+    {
         $row = $this->b->modelGetRow($rowNum);
-        $rowIdKeyname = $row->modelGetIdFieldName();
-        $rowIdKeyval = $row->modelGetField($rowIdKeyname);
-        echo "<br>rowIdKeyname = $rowIdKeyname  rowIdKeyval = $rowIdKeyval <br>";
-        $this->b->databaseDeleteById($rowIdKeyname, $rowIdKeyval);
+        $this->b->databaseDeleteItem($row);
     }
 
-    public function addRowUsingA($rowNum) {
-             $row = $this->a->modelGetRow($rowNum);
-        $this->b->databaseAdd($row);
+    public function addRowUsingA($rowNum)
+    {
+        $row = $this->a->modelGetRow($rowNum);
+        $this->b->databaseAddItem($row);
     }
 
 
@@ -282,7 +282,7 @@ class MatchUppableClass
         // generate html
         echo "\n<br>" . $msg;
         echo "\n<table class=sortable>";
-        echo "\n<caption>" . $this->a->getName() . " <---> " . $this->b->getname() . "</caption>";
+        echo "\n<caption>" . $this->a->getCommonName() . " <---> " . $this->b->getCommonName() . "</caption>";
 
 
         /////////////////
@@ -290,17 +290,7 @@ class MatchUppableClass
 
         echo "\n<thead>";
         echo "\n<tr>";
-        foreach ($this->a->columnsNameslug() as $colId) {
-            echo "<th>$colId</th>";
-        }
         foreach ($this->a->columnsDataslug() as $colId) {
-            echo "<th>$colId</th>";
-        }
-        echo "<th><---></th>";
-        foreach ($this->b->columnsNameslug() as $colId) {
-            echo "<th>$colId</th>";
-        }
-        foreach ($this->b->columnsDataslug() as $colId) {
             echo "<th>$colId</th>";
         }
         echo "<th></th>";
@@ -314,25 +304,20 @@ class MatchUppableClass
         // print data rows
 
         echo "\n<tbody>";
-        echo "\n<tr>";
+
         foreach ($rowNumbersAB as $rowNumberA => $rowNumberB) {
-            foreach ($this->a->columnsNameslug() as $colId) {
-                echo "<td>" . $this->a->getDataElement($rowNumberA, $colId) . "</td>";
-            }
+            echo "\n<tr>";
             foreach ($this->a->columnsDataslug() as $colId) {
                 echo "<td>" . $this->a->getDataElement($rowNumberA, $colId) . "</td>";
             }
-            echo "<th><---></th>";
-        }
-        foreach ($rowNumbersAB as $rowNumberA => $rowNumberB) {
-            foreach ($this->b->columnsNameslug() as $colId) {
-                echo "<td>" . $this->b->getDataElement($rowNumberB, $colId) . "</td>";
-            }
+            echo "<th></th>";
+            echo "<th>-</th>";
+            echo "\n</tr>";
             foreach ($this->b->columnsDataslug() as $colId) {
                 echo "<td>" . $this->b->getDataElement($rowNumberB, $colId) . "</td>";
             }
             echo "<th></th>";
-            echo "<td>blah</td>";
+            echo "<td>(action)</td>";
             echo "\n</tr>";
         }
         echo "\n</tbody>";
@@ -382,7 +367,7 @@ class MatchUppableClass
 
         echo "\n<br>" . $msg;
         echo "\n<table class=sortable>";
-        echo "\n<caption>" . $theTable->getName() . "</caption>";
+        echo "\n<caption>" . $theTable->getCommonName() . "</caption>";
 
 
         /////////////////
@@ -390,17 +375,19 @@ class MatchUppableClass
 
         echo "\n<thead>";
         echo "\n<tr>";
-        foreach ($theTable->columnsNameslug() as $colId) {
+        foreach ($theTable->columnsDataslug() as $colId) {
             echo "<th>$colId</th>";
         }
 
         echo "<th></th>";
+
+        if ($button_add) {
+            echo "<th>add</th>";
+        }
         if ($button_delete) {
             echo "<th>delete</th>";
         }
-        if ($act2) {
-            echo "<th>action2</th>";
-        }
+
         echo "\n</tr>";
         echo "\n</thead>";
 
@@ -411,7 +398,7 @@ class MatchUppableClass
         echo "\n<tbody>";
         foreach ($rowNumbers as $rowNumber) {
             echo "\n<tr>";
-            foreach ($theTable->columnsNameslug() as $colId) {
+            foreach ($theTable->columnsDataslug() as $colId) {
                 echo "<td>" . $theTable->getDataElement($rowNumber, $colId) . "</td>";
             }
 

@@ -49,8 +49,25 @@ class ControllerRowRaker extends ControllerRow
     }
 
     /**
+     *
+     */
+    public function getAsAssociativeArrayForDatabaseTable() {
+        $array = [];
+        $array['rosterFirstname'] =   $this->fields['rosterFirstname'];
+        $array['rosterLastname'] =   $this->fields['rosterLastname'];
+        $array['volunteerSiteFirstname'] =    $this->fields['volunteerSiteFirstname'];
+        $array['volunteerSiteLastname'] =    $this->fields['volunteerSiteLastname'];
+        $array['cellphone'] =   $this->fields['cellphone'];
+        $array['gender'] =   $this->fields['gender'];
+        $array['volunteerSlots'] =   $this->fields['volunteerSlots'];
+        return $array;
+    }
+
+
+    /**
      * @param $tablename
      */
+/*
     public function databaseNewRow($tablename)
     {
         include '../.env_database_password';
@@ -73,19 +90,23 @@ class ControllerRowRaker extends ControllerRow
             trigger_error("database was not happy(1): $sql", E_USER_NOTICE);
         }
     }
+*/
 
     /**
      * @param $tablename
      * @param $fieldlist
      */
+/*
     public function databaseUpdateRowSelectedFields($tablename, $fieldlist)
     {
         die('not implemented');
     }
+*/
 
     /**
      * @param $tablename
      */
+    /*
     public function databaseUpdateRowAllfields($tablename)
     {
         include '../.env_database_password';
@@ -116,7 +137,7 @@ class ControllerRowRaker extends ControllerRow
         // DEBUG
         // trigger_error("to database: $sql", E_USER_NOTICE);
     }
-
+*/
 
 
     /////////////////////////////////////////////////

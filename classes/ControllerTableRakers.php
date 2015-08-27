@@ -24,7 +24,9 @@ class ControllerTableRakers extends ControllerTable implements MatchUppableInter
      */
     public function columnsNameslug()
     {
-        return array('rosterFirstname', 'rosterLastname');
+        return array(
+            'rosterFirstname',
+            'rosterLastname');
     }
 
     /**
@@ -32,7 +34,9 @@ class ControllerTableRakers extends ControllerTable implements MatchUppableInter
      */
     public function columnsDataslug()
     {
-        return array('cellphone', 'gender');
+        return $this->columnsNameslug() + array(
+            'cellphone',
+            'gender');
     }
 
     /**

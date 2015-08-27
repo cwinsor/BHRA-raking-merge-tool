@@ -11,20 +11,25 @@ set_error_handler("my_error_handler");
 abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, InterfaceTableView
 {
 
-    private $databaseTableName;
+    private $databaseTableOrFileName;
+    private $databaseCommonName;
 
     protected $localTable;
 
-    function __construct($databaseTableName)
+    function __construct($databaseTableName, $commonName)
     {
-        $this->databaseTableName = $databaseTableName;
+        $this->databaseTableOrFileName = $databaseTableName;
+        $this->databaseCommonName = $commonName;
     }
 
-    function getName()
+    function getDatabaseTableOrFileName()
     {
-        return $this->databaseTableName;
+        return $this->databaseTableOrFileName;
     }
-
+    function getCommonName()
+    {
+        return $this->databaseCommonName;
+    }
     //////////////////////////////////////////
     // METHODS REQUIRED BY THE DATABASE INTERFACE
 
@@ -32,7 +37,7 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
     {
         include "../.env_database_password";
         $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
-        $sql = "SELECT * FROM $this->databaseTableName";
+        $sql = "SELECT * FROM $this->databaseTableOrFileName";
         $result = mysqli_query($db, $sql);
         mysqli_close($db);
         if (!$result) {
@@ -54,16 +59,15 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
 //        }
     }
 
-    public function databaseAdd($row) {
-        echo "<br> not implemented - databaseAdd <br>";
-    }
 
-
-    public function databaseDeleteById($idHdr, $idVal)
+    public function databaseDeleteItem($itemToDelete)
     {
+        $rowIdKeyname = $itemToDelete->modelGetIdFieldName();
+        $rowIdKeyval = $itemToDelete->modelGetField($rowIdKeyname);
+
         include "../.env_database_password";
         $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
-    $sql = "DELETE FROM $this->databaseTableName WHERE $idHdr=$idVal";
+        $sql = "DELETE FROM $this->databaseTableOrFileName WHERE $rowIdKeyname=$rowIdKeyval";
         echo "<br>here1 sql=$sql<br>";
         $result = mysqli_query($db, $sql);
         mysqli_close($db);
@@ -72,17 +76,43 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
         }
     }
 
+    public function databaseAddItem($itemToAdd)
+    {
+        $tableArray = $itemToAdd->getAsAssociativeArrayForDatabaseTable();
+
+        include '../.env_database_password';
+        $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
+        $sql = "INSERT INTO $this->databaseTableOrFileName (";
+        $first = true;
+        foreach ($tableArray as $key => $value) {
+            $sql .= (($first) ? (' ') : (', ')) . $key;
+            $first = false;
+        }
+        $sql .= ") VALUES (";
+        $first = true;
+        foreach ($tableArray as $key => $value) {
+            $sql .= (($first) ? (' "') : (', "')) . $value . '"';
+            $first = false;
+        }
+        $sql .= ");";
+        $rtn = mysqli_query($db, $sql);
+        mysqli_close($db);
+        if (!$rtn) {
+            trigger_error("database was not happy(1): $sql", E_USER_NOTICE);
+        }
+    }
+
+
     //////////////////////////////////////////
     // METHODS REQUIRED BY THE CSV INTERFACE
 
-    public function csvRead($itemToClone, $filename)
+    public function csvRead($itemToClone)
     {
         $this->localTable = array();
 
         // reference:
         // http://php.net/manual/en/function.str-getcsv.php
-        $csvAsArray = array_map('str_getcsv', file($filename));
-
+        $csvAsArray = array_map('str_getcsv', file($this->databaseTableOrFileName));
         foreach ($csvAsArray as $row) {
             $rowEntity = clone $itemToClone;
             $rowEntity->populateFromAssociativeArrayCsvFile($row);
@@ -124,7 +154,7 @@ th {
 
 
         echo '<table class=sortable>';
-        echo "<caption>$this->databaseTableName</caption>";
+        echo "<caption>$this->databaseTableOrFileName</caption>";
         $headPrinted = false;
 
         foreach ($this->localTable as $rowNum => $rowData) {

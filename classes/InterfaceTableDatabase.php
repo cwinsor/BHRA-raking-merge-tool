@@ -12,17 +12,18 @@ interface InterfaceTableDatabase
     public function databaseRead($itemToClone);
 
     /**
-     * Add to database
-     * @param $row
-     * @return mixed
-     */
-    public function databaseAdd($row);
-
-    /**
      * Delete from database
      * @param $id
      * @return mixed
      */
-    public function databaseDeleteById($idHdr, $idVal);
+    public function databaseDeleteItem($itemToDelete);
+
+    /**
+     * Add to database
+     * @param $row
+     * @return mixed
+     */
+    public function databaseAddItem($itemToAdd);
+
 
 }
