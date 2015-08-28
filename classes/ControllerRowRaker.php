@@ -8,26 +8,8 @@ set_error_handler("my_error_handler");
 /**
  * Class ControllerRowRaker
  */
-class ControllerRowRaker extends ControllerRow
+abstract class ControllerRowRaker extends ControllerRow
 {
-
-    //////////////////////////////////////////////////
-    // Methods required by the CSV interface
-    public function populateFromAssociativeArrayCsvFile($rowAssociativeArray)
-    {
-        // map local fields from csv file
-        $this->fields = array();
-
-        $this->fields['id'] = -1;
-        $this->fields['volunteerSiteFirstname'] = -1;
-        $this->fields['volunteerSiteLastname'] = -1;
-        $this->fields['volunteerSlots'] = -1;
-
-        $this->fields['rosterFirstname'] = $rowAssociativeArray[2];
-        $this->fields['rosterLastname'] = $rowAssociativeArray[3];
-        $this->fields['cellphone'] = $rowAssociativeArray[8];
-        $this->fields['gender'] = $rowAssociativeArray[4];
-    }
 
 
     /////////////////////////////////////////////////
@@ -45,8 +27,8 @@ class ControllerRowRaker extends ControllerRow
         $this->fields['id'] = $rowAssociativeArray['id'];
         $this->fields['rosterFirstname'] = $rowAssociativeArray['rosterFirstname'];
         $this->fields['rosterLastname'] = $rowAssociativeArray['rosterLastname'];
-        $this->fields['volunteerSiteFirstname'] = $rowAssociativeArray['volunteerSiteFirstname'];
-        $this->fields['volunteerSiteLastname'] = $rowAssociativeArray['volunteerSiteLastname'];
+        $this->fields['volunteerSpotFirstname'] = $rowAssociativeArray['volunteerSpotFirstname'];
+        $this->fields['volunteerSpotLastname'] = $rowAssociativeArray['volunteerSpotLastname'];
         $this->fields['cellphone'] = $rowAssociativeArray['cellphone'];
         $this->fields['gender'] = $rowAssociativeArray['gender'];
         $this->fields['volunteerSlots'] = $rowAssociativeArray['volunteerSlots'];
@@ -60,8 +42,8 @@ class ControllerRowRaker extends ControllerRow
         $array = [];
         $array['rosterFirstname'] = $this->fields['rosterFirstname'];
         $array['rosterLastname'] = $this->fields['rosterLastname'];
-        $array['volunteerSiteFirstname'] = $this->fields['volunteerSiteFirstname'];
-        $array['volunteerSiteLastname'] = $this->fields['volunteerSiteLastname'];
+        $array['volunteerSpotFirstname'] = $this->fields['volunteerSpotFirstname'];
+        $array['volunteerSpotLastname'] = $this->fields['volunteerSpotLastname'];
         $array['cellphone'] = $this->fields['cellphone'];
         $array['gender'] = $this->fields['gender'];
         $array['volunteerSlots'] = $this->fields['volunteerSlots'];
@@ -78,25 +60,11 @@ class ControllerRowRaker extends ControllerRow
             'id',
             'rosterFirstname',
             'rosterLastname',
-            'volunteerSiteFirstname',
-            'volunteerSiteLastname',
+            'volunteerSpotFirstname',
+            'volunteerSpotLastname',
             'cellphone',
             'gender',
             'volunteerSlots');
-    }
-
-    public function modelGetColumnsNameslug()
-    {
-        return array(
-            'rosterFirstname',
-            'rosterLastname');
-    }
-
-    public function modelGetColumnsDataslug()
-    {
-        return array_merge(
-            $this->modelGetColumnsNameslug(),
-            array('cellphone', 'gender'));
     }
 
     public function modelGetIdFieldName()

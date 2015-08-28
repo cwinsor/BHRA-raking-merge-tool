@@ -41,7 +41,7 @@ pickupGetIfSet("filename", $getFilename);
 <div id="content">
 
 
-    <h3>Volunteer Rakers</h3>
+    <h3>Volunteer Rakers (from VolunteerSpot)</h3>
 
     <?php
     // DEBUG ...
@@ -61,12 +61,12 @@ pickupGetIfSet("filename", $getFilename);
     if ($getFilename) {
         // get rakers from .csv
         $controllerTableRakers1 = new ControllerTableRakers($getFilename, "CSV");
-        $controllerTableRakers1->csvRead(new ControllerRowRaker());
+        $controllerTableRakers1->csvRead(new ControllerRowRakerRoster());
         // DEBUG       $controllerTableRakers1->viewAsHtmlTable();
 
         // get rakers from database
         $controllerTableRakers2 = new ControllerTableRakers("rakers", "DB");
-        $controllerTableRakers2->databaseRead(new ControllerRowRaker());
+        $controllerTableRakers2->databaseRead(new ControllerRowRakerRoster());
         // DEBUG        $controllerTableRakers2->viewAsHtmlTable();
 
         // prepare to update database based on posts
@@ -75,7 +75,7 @@ pickupGetIfSet("filename", $getFilename);
         $matchUppableClass->performGetAndPostFunctions();
 
         // re-acquire from database (may have changed as a result of the posts)
-        $controllerTableRakers2->databaseRead(new ControllerRowRaker());
+        $controllerTableRakers2->databaseRead(new ControllerRowRakerRoster());
         $matchUppableClass = new MatchUppableClass();
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performMatching();
@@ -90,10 +90,11 @@ pickupGetIfSet("filename", $getFilename);
     } else {
         echo "\n<form method=get>";
 
-        $d = dir('../upload/roster');
+        $dirName = '../upload/VolunteerSpot/';
+        $d = dir($dirName);
         while (false !== ($entry = $d->read())) {
             if ($entry != "." && $entry != "..") {
-                echo "\n <br><label> <input type=radio name=filename value=\"../upload/roster/" . $entry . "\">" . $entry . "</label>";
+                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\">" . $entry . "</label>";
             }
         }
         $d->close();

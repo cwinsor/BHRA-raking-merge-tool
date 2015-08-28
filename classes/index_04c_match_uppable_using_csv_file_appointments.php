@@ -87,10 +87,11 @@ pickupGetIfSet("filename", $getFilename);
     } else {
         echo "\n<form method=get>";
 
-        $d = dir('../upload/SuperSAAS');
+        $dirName = '../upload/SuperSAAS/';
+        $d = dir($dirName);
         while (false !== ($entry = $d->read())) {
             if ($entry != "." && $entry != "..") {
-                echo "\n <br><label> <input type=radio name=filename value=\"../upload/SuperSAAS/" . $entry . "\">" . $entry . "</label>";
+                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\">" . $entry . "</label>";
             }
         }
         $d->close();
