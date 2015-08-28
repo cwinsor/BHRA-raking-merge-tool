@@ -34,9 +34,9 @@ class ControllerTableRakers extends ControllerTable implements MatchUppableInter
      */
     public function columnsDataslug()
     {
-        return $this->columnsNameslug() + array(
-            'cellphone',
-            'gender');
+        return array_merge(
+            $this->columnsNameslug(),
+            array('cellphone', 'gender'));
     }
 
     /**

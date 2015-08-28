@@ -13,13 +13,6 @@ abstract class ControllerRow implements InterfaceRowDatabase, InterfaceRowCsv
 
     public function modelGetField($key)
     {
-//        if (!$this->fields[$key]) {
-//            return "";
-//            echo '<br>about to error with fields of: <br>';
-//            var_dump($this->fields);
-//            echo '<br>';
-//            trigger_error("unable to retrieve based on key $key", E_USER_ERROR);
-//        }
         return $this->fields[$key];
     }
 

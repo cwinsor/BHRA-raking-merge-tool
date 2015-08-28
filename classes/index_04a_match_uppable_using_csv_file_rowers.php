@@ -40,50 +40,60 @@ pickupGetIfSet("filename", $getFilename);
 
 <div id="content">
 
+
+    <h3>Volunteer Rakers</h3>
+
     <?php
-    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
-    echo '<br>' . var_dump($_GET);
-    echo '<br>';
-    ?>
+    // DEBUG ...
+    //    echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
+    //    echo '<br>' . var_dump($_POST);
+    //    echo '<br>';
+    //    ?>
+    <?php
+    //    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
+    //    echo '<br>' . var_dump($_GET);
+    //    echo '<br>';
+    //    ?>
 
 
     <?php
     // if a file has been chosen ...
-    var_dump($getFilename);
-    echo "<br>";
     if ($getFilename) {
         // get rakers from .csv
-        $controllerTableRakers1 = new ControllerTableRakers("rakers_roster(csv file)");
-        $controllerTableRakers1->csvRead(new ControllerRowRaker(), $getFilename);
-        $controllerTableRakers1->viewAsHtmlTable();
+        $controllerTableRakers1 = new ControllerTableRakers($getFilename, "CSV");
+        $controllerTableRakers1->csvRead(new ControllerRowRaker());
+        // DEBUG       $controllerTableRakers1->viewAsHtmlTable();
 
         // get rakers from database
-        $controllerTableRakers2 = new ControllerTableRakers("rakers");
+        $controllerTableRakers2 = new ControllerTableRakers("rakers", "DB");
         $controllerTableRakers2->databaseRead(new ControllerRowRaker());
-        $controllerTableRakers2->viewAsHtmlTable();
+        // DEBUG        $controllerTableRakers2->viewAsHtmlTable();
 
+        // prepare to update database based on posts
+        $matchUppableClass = new MatchUppableClass();
+        $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
+        $matchUppableClass->performGetAndPostFunctions();
+
+        // re-acquire from database (may have changed as a result of the posts)
+        $controllerTableRakers2->databaseRead(new ControllerRowRaker());
         $matchUppableClass = new MatchUppableClass();
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performMatching();
 
-        //    $matchUppableClass->viewAsHtmlBasicSummary();
+//        $matchUppableClass->viewAsHtmlBasicSummary();
 
-        $matchUppableClass->viewAsHtmlInABwithDataMatch();
-        $matchUppableClass->viewAsHtmlInABwithDataMismatch();
         $matchUppableClass->viewAsHtmlInAonly();
         $matchUppableClass->viewAsHtmlInBonly();
-    } else {
+        $matchUppableClass->viewAsHtmlInABwithDataMismatch();
+        $matchUppableClass->viewAsHtmlInABwithDataMatch();
 
+    } else {
         echo "\n<form method=get>";
+
         $d = dir('../upload/roster');
-        // DEBUG
-        // echo "Handle: " . $d->handle . "<br>";
-        // echo "Path: " . $d->path . "<br>";
         while (false !== ($entry = $d->read())) {
             if ($entry != "." && $entry != "..") {
                 echo "\n <br><label> <input type=radio name=filename value=\"../upload/roster/" . $entry . "\">" . $entry . "</label>";
-              //                   printf("
-              //  			<br><label> <input type=radio name=fileName value=\"%s\"> %s  </label> \n", $entry, $entry);
             }
         }
         $d->close();

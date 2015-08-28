@@ -77,19 +77,12 @@ class ControllerRowAppointment extends ControllerRow
      */
     private function volunteerSiteProprietaryDateTimeToStandard($data)
     {
-        echo "<br> =====>  $data <br>";
         list($date, $time) = explode(" ", $data);
         list($hour, $minute) = explode(":", $time);
         list($year, $month, $day) = explode("/", $date);
 
         // make "15" into "2015"
         $year = '20' . $year;
-
-
-//        $dateTime = new DateTime();
-//        $dateTime->setDate($year, $month, $day);
-//        $dateTime->setTime($hour, $minute);
-//        return $dateTime->format(DateTime::RFC1123);
 
         return $year . '-' . $month . '-' . $day . ' ' . $hour . ':' . $minute . ':' . '00';
     }
@@ -117,89 +110,6 @@ class ControllerRowAppointment extends ControllerRow
         $array['DTme2'] = $this->fields['DTme2'];
         return $array;
     }
-
-    /**
-     * @param $tablename
-     */
-    /*
-    public function databaseNewRow($tablename)
-    {
-        include '../.env_database_password';
-        $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
-        $sql = sprintf("INSERT INTO $tablename
-            (firstName, lastName, workShift, teamNumber)
-            (rosterFirstname, rosterLastname, volunteerSiteFirstname, volunteerSiteLastname, cellphone, gender, volunteerSlots)
-            VALUES (%s, %s, %s, %s, %s, %s, %s);",
-
-            $this->fields['id_appt'],
-            $this->fields['ApptStart'],
-            $this->fields['ApptEnd'],
-            $this->fields['ApptDescription'],
-            $this->fields['Foo'],
-            $this->fields['CustName'],
-            $this->fields['CustPhone'],
-            $this->fields['CustStreet'],
-            $this->fields['CustDescription'],
-            $this->fields['Team'],
-            $this->fields['CustEmail'],
-            $this->fields['ReservedBy'],
-            $this->fields['DTme1'],
-            $this->fields['DTme2']);
-
-        $rtn = mysqli_query($db, $sql);
-        mysqli_close($db);
-        if (!$rtn) {
-            trigger_error("database was not happy(1): $sql", E_USER_NOTICE);
-        }
-    }
-*/
-
-    /**
-     * @param $tablename
-     * @param $fieldlist
-     */
-    /*
-        public function databaseUpdateRowSelectedFields($tablename, $fieldlist)
-        {
-            die('not implemented');
-        }
-    */
-
-    /**
-     * @param $tablename
-     */
-    /*
-        public function databaseUpdateRowAllfields($tablename)
-        {
-            include '../.env_database_password';
-            $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
-            $sql = sprintf("UPDATE $tablename SET
-     rosterFirstname='%s',
-     rosterLastname='%s',
-     volunteerSiteFirstname='%s',
-     volunteerSiteLastname='%s',
-     cellphone='%s',
-     gender='%s',
-     volunteerSlots='%s'
-     WHERE id=%d;",
-                $this->fields['rosterFirstname'],
-                $this->fields['rosterLastname'],
-                $this->fields['volunteerSiteFirstname'],
-                $this->fields['volunteerSiteLastname'],
-                $this->fields['cellphone'],
-                $this->fields['gender'],
-                $this->fields['volunteerSlots'],
-                $this->fields['id']);
-
-            $rtn = mysqli_query($db, $sql);
-            mysqli_close($db);
-            if (!$rtn) {
-                trigger_error("database was not happy(2): $sql", E_USER_NOTICE);
-            }
-            // DEBUG
-            // trigger_error("to database: $sql", E_USER_NOTICE);
-        }
-    */
 
     /////////////////////////////////////////////////
     // Methods required by the base class

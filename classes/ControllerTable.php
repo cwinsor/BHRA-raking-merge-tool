@@ -68,7 +68,6 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
         include "../.env_database_password";
         $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
         $sql = "DELETE FROM $this->databaseTableOrFileName WHERE $rowIdKeyname=$rowIdKeyval";
-        echo "<br>here1 sql=$sql<br>";
         $result = mysqli_query($db, $sql);
         mysqli_close($db);
         if (!$result) {

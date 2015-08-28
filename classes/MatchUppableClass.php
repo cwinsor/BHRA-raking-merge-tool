@@ -86,15 +86,15 @@ class MatchUppableClass
 
         /////////////////
         // debug...
-        echo "\n<br>---- comparableSlugA/B ------------<br>";
-        var_dump($comparableSlugA);
-        echo "\n<br>";
-        var_dump($comparableSlugB);
-        echo "\n<br>---- comparableDataA/B ------------<br>";
-        var_dump($comparableDataA);
-        echo "\n<br>";
-        var_dump($comparableDataB);
-        echo "\n<br>-----------------------------------<br>";
+//        echo "\n<br>---- comparableSlugA/B ------------<br>";
+//        var_dump($comparableSlugA);
+//        echo "\n<br>";
+//        var_dump($comparableSlugB);
+//        echo "\n<br>---- comparableDataA/B ------------<br>";
+//        var_dump($comparableDataA);
+//        echo "\n<br>";
+//        var_dump($comparableDataB);
+//        echo "\n<br>-----------------------------------<br>";
 
         // what is in both A and B
         // what slugs are in both A and B (intersection)
@@ -178,30 +178,6 @@ class MatchUppableClass
     }
 
 
-
-
-////xxxxx        echo '<input type=submit name=delete_row_' . $button_delete . ' value=' . $rowNumber . '>';
-//
-////  $rtn = isset($_POST[$attribute]) ? $_POST[$attribute] : "";
-//foreach ()
-//$this->$foo = "barr";
-//
-//
-//
-//pickupPostIfSet("killSession", $postKillSession);
-//pickupPostIfSet("incrementSessionId", $postIncrementSessionId);
-//echo "<br> postIncrementSessionId = $postIncrementSessionId";
-//pickupPostIfSet('back', $postBack);
-//pickupPostIfSet('cars', $postCars);
-//pickupPostIfSetWithVal("vehicleBike", "checked", $postVehicleBike);
-//pickupPostIfSetWithVal("vehicleCar", "checked", $postVehicleCar);
-//
-//pickupGetIfSet("makeSession", $getMakeSession);
-//pickupGetIfSet('back', $getBack);
-//pickupGetIfSet('cars', $getCars);
-//pickupGetIfSetWithVal("vehicleBike", "checked", $getVehicleBike);
-//pickupGetIfSetWithVal("vehicleCar", "checked", $getVehicleCar);
-
     /**
      * perform functions from POST
      */
@@ -235,7 +211,6 @@ class MatchUppableClass
     public function viewAsHtmlBasicSummary()
     {
 
-
         echo "\n<br>the following are in both A and B with data match";
         foreach ($this->inAandBwithDataMatch as $rowNumberA => $rowNumberB) {
             echo "\n<br> (a)row $rowNumberA maps to (b)row $rowNumberB";
@@ -267,7 +242,8 @@ class MatchUppableClass
             $this->a->getCommonName() .
             " and " .
             $this->b->getCommonName() .
-            " with matching data");
+            " with matching data",
+            true);
     }
 
     /*
@@ -280,18 +256,26 @@ class MatchUppableClass
             $this->a->getCommonName() .
             " and " .
             $this->b->getCommonName() .
-            " with data that does NOT match");
+            " with data that does NOT match",
+            true);
     }
 
     /*
      * Common function to display (A<->B) matchup
      */
-    public function viewAsHtmlInABgivenRowList($rowNumbersAB, $msg)
+    public function viewAsHtmlInABgivenRowList($rowNumbersAB, $msg, $button_delete)
     {
+        echo "\n<b>" . $msg . "</b>";
+        if (count($rowNumbersAB) == 0) {
+            echo "<br>(none)<br><br>";
+            return;
+        }
 
+        ///////////////////////////////////////////
         // generate html
+        echo "\n<form method=post>";
+
         echo "\n<table class=sortable>";
-        echo "\n<caption><b>" . $msg . "</b></caption>";
 
         /////////////////
         // print header
@@ -303,8 +287,9 @@ class MatchUppableClass
             echo "<th>$colId</th>";
         }
         echo "<th></th>";
-        echo "<th>action</th>";
-
+        if ($button_delete) {
+            echo "<th>delete</th>";
+        }
         echo "\n</tr>";
         echo "\n</thead>";
 
@@ -321,7 +306,10 @@ class MatchUppableClass
                 echo "<td>" . $this->a->getDataElement($rowNumberA, $colId) . "</td>";
             }
             echo "<th></th>";
-            echo "<th>-</th>";
+
+            if ($button_delete) {
+                echo "<th>-</th>";
+            }
             echo "\n</tr>";
 
             echo "\n<tr>";
@@ -330,11 +318,20 @@ class MatchUppableClass
                 echo "<td>" . $this->b->getDataElement($rowNumberB, $colId) . "</td>";
             }
             echo "<th></th>";
-            echo "<td>(action)</td>";
+
+            if ($button_delete) {
+                echo '<th>';
+                echo '<input type=submit name=delete_row value=' . $rowNumberB . '>';
+                echo '</th>';
+            }
+
+
             echo "\n</tr>";
         }
         echo "\n</tbody>";
         echo "\n</table>";
+        echo "\n</form>";
+        echo "\n<br>";
         echo "\n<br>";
     }
 
@@ -372,20 +369,24 @@ class MatchUppableClass
     public
     function viewAsHtmlSingleTableGivenRowList($theTable, $rowNumbers, $msg, $button_add, $button_delete)
     {
-
+        echo "\n<b>" . $msg . "</b>";
+        if (count($rowNumbers) == 0) {
+            echo "<br>(none)<br><br>";
+            return;
+        }
 
         ///////////////////////////////////////////
         // generate html
         echo "\n<form method=post>";
 
         echo "\n<table class=sortable>";
-        echo "\n<caption><b>" . $msg . "</b></caption>";
 
         /////////////////
         // print header
 
         echo "\n<thead>";
         echo "\n<tr>";
+        echo "<th>source</th>";
         foreach ($theTable->columnsDataslug() as $colId) {
             echo "<th>$colId</th>";
         }
@@ -409,12 +410,14 @@ class MatchUppableClass
         echo "\n<tbody>";
         foreach ($rowNumbers as $rowNumber) {
             echo "\n<tr>";
+            echo "<th>" . $theTable->getCommonName() . "</th>";
             foreach ($theTable->columnsDataslug() as $colId) {
                 echo "<td>" . $theTable->getDataElement($rowNumber, $colId) . "</td>";
             }
 
 
-            echo "<td></td>";
+            echo "<th></th>";
+
             if ($button_delete) {
                 echo '<th>';
                 echo '<input type=submit name=delete_row value=' . $rowNumber . '>';
@@ -429,8 +432,9 @@ class MatchUppableClass
         }
         echo "\n</tbody>";
         echo "\n</table>";
-        echo "\n<br>";
         echo "\n</form>";
+        echo "\n<br>";
+        echo "\n<br>";
     }
 
 

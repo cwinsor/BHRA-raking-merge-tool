@@ -34,19 +34,19 @@ class ControllerTableAppointments extends ControllerTable implements MatchUppabl
      */
     public function columnsDataslug()
     {
-        return $this->columnsNameslug() + array(
+        return array_merge(
+            $this->columnsNameslug(),
+            array(
 //            'ApptStart',
-            'ApptEnd',
-            'ApptDescription',
+                'ApptEnd',
+                'ApptDescription',
 //            'CustName',
-            'CustPhone',
-            'CustStreet',
-            'CustDescription',
-            'CustNotes',
-            'CustEmail',
-            'ReservedBy');
-
-
+                'CustPhone',
+                'CustStreet',
+                'CustDescription',
+                'CustNotes',
+                'CustEmail',
+                'ReservedBy'));
     }
 
     /**

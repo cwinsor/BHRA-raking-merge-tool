@@ -40,22 +40,23 @@ pickupGetIfSet("filename", $getFilename);
 
 <div id="content">
 
+    <h3>Customer Appointments</h3>
+
     <?php
-    echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
-    echo '<br>' . var_dump($_POST);
-    echo '<br>';
-    ?>
+    // DEBUG ...
+    //    echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
+    //    echo '<br>' . var_dump($_POST);
+    //    echo '<br>';
+    //    ?>
     <?php
-    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
-    echo '<br>' . var_dump($_GET);
-    echo '<br>';
-    ?>
+    //    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
+    //    echo '<br>' . var_dump($_GET);
+    //    echo '<br>';
+    //    ?>
 
 
     <?php
     // if a file has been chosen ...
-    var_dump($getFilename);
-    echo "<br>";
     if ($getFilename) {
         // get rakers from .csv
         $controllerTableAppointments1 = new ControllerTableAppointments($getFilename, "CSV");
@@ -66,41 +67,30 @@ pickupGetIfSet("filename", $getFilename);
         $controllerTableAppointments2->databaseRead(new ControllerRowAppointment());
 
         // prepare to update database based on posts
-        echo "<br> here1 <br>";
         $matchUppableClass = new MatchUppableClass();
-        echo "<br> here2 <br>";
         $matchUppableClass->setAB($controllerTableAppointments1, $controllerTableAppointments2);
-        echo "<br> here3 <br>";
         $matchUppableClass->performGetAndPostFunctions();
 
         // re-acquire from database (may have changed as a result of the posts)
         $controllerTableAppointments2->databaseRead(new ControllerRowAppointment());
         $matchUppableClass = new MatchUppableClass();
-        echo "<br> here4 <br>";
         $matchUppableClass->setAB($controllerTableAppointments1, $controllerTableAppointments2);
-        echo "<br> here5 <br>";
         $matchUppableClass->performMatching();
-        echo "<br> here6 <br>";
 
-        $matchUppableClass->viewAsHtmlBasicSummary();
+//        $matchUppableClass->viewAsHtmlBasicSummary();
 
-        echo "<br> here7 <br>";
-        $matchUppableClass->viewAsHtmlInABwithDataMatch();
-        $matchUppableClass->viewAsHtmlInABwithDataMismatch();
         $matchUppableClass->viewAsHtmlInAonly();
         $matchUppableClass->viewAsHtmlInBonly();
-    } else {
+        $matchUppableClass->viewAsHtmlInABwithDataMismatch();
+        $matchUppableClass->viewAsHtmlInABwithDataMatch();
 
+    } else {
         echo "\n<form method=get>";
+
         $d = dir('../upload/SuperSAAS');
-        // DEBUG
-        // echo "Handle: " . $d->handle . "<br>";
-        // echo "Path: " . $d->path . "<br>";
         while (false !== ($entry = $d->read())) {
             if ($entry != "." && $entry != "..") {
                 echo "\n <br><label> <input type=radio name=filename value=\"../upload/SuperSAAS/" . $entry . "\">" . $entry . "</label>";
-              //                   printf("
-              //  			<br><label> <input type=radio name=fileName value=\"%s\"> %s  </label> \n", $entry, $entry);
             }
         }
         $d->close();
