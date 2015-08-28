@@ -8,7 +8,7 @@ set_error_handler("my_error_handler");
 /**
  * Class ControllerTable
  */
-abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, InterfaceTableView
+abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, InterfaceTableView, MatchUppableInterface
 {
 
     private $databaseTableOrFileName;
@@ -26,6 +26,7 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
     {
         return $this->databaseTableOrFileName;
     }
+
     public function getCommonName()
     {
         return $this->databaseCommonName;
@@ -182,6 +183,52 @@ th {
     }
 
 
+
+    //////////////////////////////////////////////
+    // METHODS REQUIRED BY MatchUppableInterface
+
+    public function rowNumbers()
+    {
+        return array_keys($this->localTable);
+    }
+
+    public function columnsAll()
+    {
+        $aRow = reset($this->localTable);
+        if (!$aRow) {
+            return array();
+        }
+        return $aRow->modelGetColumnsAll();
+    }
+
+    public function columnsNameslug()
+    {
+        $aRow = reset($this->localTable);
+        if (!$aRow) {
+            return array();
+        }
+        return $aRow->modelGetColumnsNameslug();
+    }
+
+    public function columnsDataslug()
+    {
+        $aRow = reset($this->localTable);
+        if (!$aRow) {
+            return array();
+        }
+        return $aRow->modelGetColumnsDataslug();
+    }
+
+    public function columnIsDataslug($colId)
+    {
+        return in_array($colId, $this->columnsDataslug());
+    }
+
+    public function getDataElement($rowId, $colId)
+    {
+        $myRow = $this->localTable[$rowId];
+        return $myRow->modelGetField($colId);
+    }
 
 
     ///////////////////////////////////////

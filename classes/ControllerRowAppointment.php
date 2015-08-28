@@ -37,8 +37,6 @@ class ControllerRowAppointment extends ControllerRow
         $this->fields['DTme2'] = $this->volunteerSiteProprietaryDateTimeToStandard($rowAssociativeArray[14]);
 
 
-
-
     }
 
     /////////////////////////////////////////////////
@@ -113,6 +111,52 @@ class ControllerRowAppointment extends ControllerRow
 
     /////////////////////////////////////////////////
     // Methods required by the base class
+
+    public function modelGetColumnsAll()
+    {
+        return array(
+            'id_appt',
+            'ApptStart',
+            'ApptEnd',
+            'ApptDescription',
+            'Foo',
+            'ANumber',
+            'BNumber',
+            'CustName',
+            'CustPhone',
+            'CustStreet',
+            'CustDescription',
+            'CustNotes',
+            'CustEmail',
+            'ReservedBy',
+            'DTme1',
+            'DTme2');
+    }
+
+    public function modelGetColumnsNameslug()
+    {
+        return array(
+            'CustName',
+            'ApptStart');
+    }
+
+    public function modelGetColumnsDataslug()
+    {
+        return array_merge(
+            $this->modelGetColumnsNameslug(),
+            array(
+//            'ApptStart',
+                'ApptEnd',
+                'ApptDescription',
+//            'CustName',
+                'CustPhone',
+                'CustStreet',
+                'CustDescription',
+                'CustNotes',
+                'CustEmail',
+                'ReservedBy'));
+    }
+
     public function modelGetIdFieldName()
     {
         return 'id_appt';

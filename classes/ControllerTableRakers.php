@@ -5,50 +5,9 @@ set_error_handler("my_error_handler");
 
 <?php
 
-class ControllerTableRakers extends ControllerTable implements MatchUppableInterface
+class ControllerTableRakers extends ControllerTable
 {
 
-    //////////////////////////////////////////////
-    // METHODS REQUIRED BY MatchUppableInterface
-
-    /**
-     * @return array
-     */
-    public function rowNumbers()
-    {
-        return array_keys($this->localTable);
-    }
-
-    /**
-     * @return array
-     */
-    public function columnsNameslug()
-    {
-        return array(
-            'rosterFirstname',
-            'rosterLastname');
-    }
-
-    /**
-     * @return array
-     */
-    public function columnsDataslug()
-    {
-        return array_merge(
-            $this->columnsNameslug(),
-            array('cellphone', 'gender'));
-    }
-
-    /**
-     * @param $rowId
-     * @param $colId
-     * @return mixed
-     */
-    public function getDataElement($rowId, $colId)
-    {
-        $myRow = $this->localTable[$rowId];
-        return $myRow->modelGetField($colId);
-    }
 }
 
 ?>

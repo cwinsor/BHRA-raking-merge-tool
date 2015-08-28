@@ -283,7 +283,7 @@ class MatchUppableClass
         echo "\n<thead>";
         echo "\n<tr>";
         echo "<th>source</th>";
-        foreach ($this->a->columnsDataslug() as $colId) {
+        foreach ($this->a->columnsAll() as $colId) {
             echo "<th>$colId</th>";
         }
         echo "<th></th>";
@@ -302,8 +302,12 @@ class MatchUppableClass
         foreach ($rowNumbersAB as $rowNumberA => $rowNumberB) {
             echo "\n<tr>";
             echo "<th>" . $this->a->getCommonName() . "</th>";
-            foreach ($this->a->columnsDataslug() as $colId) {
-                echo "<td>" . $this->a->getDataElement($rowNumberA, $colId) . "</td>";
+            foreach ($this->a->columnsAll() as $colId) {
+                if ($this->a->columnIsDataslug($colId)) {
+                    echo "<td><i>" . $this->a->getDataElement($rowNumberA, $colId) . "</i></td>";
+                } else {
+                    echo "<td>" . $this->a->getDataElement($rowNumberA, $colId) . "</td>";
+                }
             }
             echo "<th></th>";
 
@@ -314,8 +318,12 @@ class MatchUppableClass
 
             echo "\n<tr>";
             echo "<th>" . $this->b->getCommonName() . "</th>";
-            foreach ($this->b->columnsDataslug() as $colId) {
-                echo "<td>" . $this->b->getDataElement($rowNumberB, $colId) . "</td>";
+            foreach ($this->b->columnsAll() as $colId) {
+                if ($this->a->columnIsDataslug($colId)) {
+                    echo "<td><i>" . $this->b->getDataElement($rowNumberB, $colId) . "</i></td>";
+                } else {
+                    echo "<td>" . $this->b->getDataElement($rowNumberB, $colId) . "</td>";
+                }
             }
             echo "<th></th>";
 
@@ -387,7 +395,7 @@ class MatchUppableClass
         echo "\n<thead>";
         echo "\n<tr>";
         echo "<th>source</th>";
-        foreach ($theTable->columnsDataslug() as $colId) {
+        foreach ($theTable->columnsAll() as $colId) {
             echo "<th>$colId</th>";
         }
 
@@ -396,6 +404,7 @@ class MatchUppableClass
         if ($button_add) {
             echo "<th>add</th>";
         }
+
         if ($button_delete) {
             echo "<th>delete</th>";
         }
@@ -404,15 +413,20 @@ class MatchUppableClass
         echo "\n</thead>";
 
 
-        //////////////////////
-        // print data rows
+//////////////////////
+// print data rows
 
         echo "\n<tbody>";
         foreach ($rowNumbers as $rowNumber) {
             echo "\n<tr>";
             echo "<th>" . $theTable->getCommonName() . "</th>";
-            foreach ($theTable->columnsDataslug() as $colId) {
-                echo "<td>" . $theTable->getDataElement($rowNumber, $colId) . "</td>";
+
+            foreach ($theTable->columnsAll() as $colId) {
+                if ($theTable->columnIsDataslug($colId)) {
+                    echo "<td><i>" . $theTable->getDataElement($rowNumber, $colId) . "</i></td>";
+                } else {
+                    echo "<td>" . $theTable->getDataElement($rowNumber, $colId) . "</td>";
+                }
             }
 
 

@@ -10,13 +10,20 @@ abstract class ControllerRow implements InterfaceRowDatabase, InterfaceRowCsv
 
     protected $fields;
 
+    abstract public function modelGetColumnsAll();
+
+    abstract public function modelGetColumnsNameslug();
+
+    abstract public function modelGetColumnsDataslug();
+
+    abstract public function modelGetIdFieldName();
+
 
     public function modelGetField($key)
     {
         return $this->fields[$key];
     }
 
-    abstract public function modelGetIdFieldName();
 
     public function asArray()
     {

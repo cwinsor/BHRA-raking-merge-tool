@@ -55,22 +55,50 @@ class ControllerRowRaker extends ControllerRow
     /**
      *
      */
-    public function getAsAssociativeArrayForDatabaseTable() {
+    public function getAsAssociativeArrayForDatabaseTable()
+    {
         $array = [];
-        $array['rosterFirstname'] =   $this->fields['rosterFirstname'];
-        $array['rosterLastname'] =   $this->fields['rosterLastname'];
-        $array['volunteerSiteFirstname'] =    $this->fields['volunteerSiteFirstname'];
-        $array['volunteerSiteLastname'] =    $this->fields['volunteerSiteLastname'];
-        $array['cellphone'] =   $this->fields['cellphone'];
-        $array['gender'] =   $this->fields['gender'];
-        $array['volunteerSlots'] =   $this->fields['volunteerSlots'];
+        $array['rosterFirstname'] = $this->fields['rosterFirstname'];
+        $array['rosterLastname'] = $this->fields['rosterLastname'];
+        $array['volunteerSiteFirstname'] = $this->fields['volunteerSiteFirstname'];
+        $array['volunteerSiteLastname'] = $this->fields['volunteerSiteLastname'];
+        $array['cellphone'] = $this->fields['cellphone'];
+        $array['gender'] = $this->fields['gender'];
+        $array['volunteerSlots'] = $this->fields['volunteerSlots'];
         return $array;
     }
 
 
-
     /////////////////////////////////////////////////
     // Methods required by the base class
+
+    public function modelGetColumnsAll()
+    {
+        return array(
+            'id',
+            'rosterFirstname',
+            'rosterLastname',
+            'volunteerSiteFirstname',
+            'volunteerSiteLastname',
+            'cellphone',
+            'gender',
+            'volunteerSlots');
+    }
+
+    public function modelGetColumnsNameslug()
+    {
+        return array(
+            'rosterFirstname',
+            'rosterLastname');
+    }
+
+    public function modelGetColumnsDataslug()
+    {
+        return array_merge(
+            $this->modelGetColumnsNameslug(),
+            array('cellphone', 'gender'));
+    }
+
     public function modelGetIdFieldName()
     {
         return 'id';
