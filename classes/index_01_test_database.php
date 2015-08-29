@@ -141,7 +141,7 @@ $sessionRestarted = 1;
     // rakers
     if ($getContextRakers) {
         // get rakers from database
-        $controllerTableRakers = new ControllerTableRakers("rakers");
+        $controllerTableRakers = new ControllerTableRosterRakers("rakers");
         $controllerTableRakers->databaseRead(new ControllerRowRaker()); // give example to clone
 
         // modify an entry and post to database
@@ -158,7 +158,7 @@ $sessionRestarted = 1;
         }
 
         // get resulting data from database for display
-        $controllerTableRakers = new ControllerTableRakers("rakers");
+        $controllerTableRakers = new ControllerTableRosterRakers("rakers");
         $controllerTableRakers->databaseRead(new ControllerRowRaker());
         echo '<br>' . '--- RAKERS ---' . '<br>';
         $controllerTableRakers->viewAsHtmlTable();

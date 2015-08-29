@@ -36,12 +36,12 @@ set_error_handler("my_error_handler");
 <div id="content">
     <?php
     // get rakers from database
-    $controllerTableRakers1 = new ControllerTableRakers("rakers_test_1");
+    $controllerTableRakers1 = new ControllerTableRosterRakers("rakers_test_1");
     $controllerTableRakers1->databaseRead(new ControllerRowRaker());
     $controllerTableRakers1->viewAsHtmlTable();
 
     // get rakers from database
-    $controllerTableRakers2 = new ControllerTableRakers("rakers_test_2");
+    $controllerTableRakers2 = new ControllerTableRosterRakers("rakers_test_2");
     $controllerTableRakers2->databaseRead(new ControllerRowRaker());
     $controllerTableRakers2->viewAsHtmlTable();
 

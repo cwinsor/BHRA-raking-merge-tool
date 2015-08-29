@@ -60,22 +60,26 @@ pickupGetIfSet("filename", $getFilename);
     // if a file has been chosen ...
     if ($getFilename) {
         // get rakers from .csv
-        $controllerTableRakers1 = new ControllerTableRakers($getFilename, "CSV");
-        $controllerTableRakers1->csvRead(new ControllerRowRakerRoster());
+        $controllerTableRakers1 = new ControllerTableRosterRakers($getFilename, "CSV");
+        $controllerTableRakers1->csvRead(new ControllerRowVolunteerspotRaker());
         // DEBUG       $controllerTableRakers1->viewAsHtmlTable();
 
         // get rakers from database
-        $controllerTableRakers2 = new ControllerTableRakers("rakers", "DB");
-        $controllerTableRakers2->databaseRead(new ControllerRowRakerRoster());
+        $controllerTableRakers2 = new ControllerTableRosterRakers("volunteerspot_rakers", "DB");
+        $controllerTableRakers2->databaseRead(new ControllerRowVolunteerspotRaker());
         // DEBUG        $controllerTableRakers2->viewAsHtmlTable();
 
         // prepare to update database based on posts
+echo "<br> here2 <br>";
         $matchUppableClass = new MatchUppableClass();
+        echo "<br> here3 <br>";
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
+        echo "<br> here4 <br>";
         $matchUppableClass->performGetAndPostFunctions();
+        echo "<br> here5 <br>";
 
         // re-acquire from database (may have changed as a result of the posts)
-        $controllerTableRakers2->databaseRead(new ControllerRowRakerRoster());
+        $controllerTableRakers2->databaseRead(new ControllerRowVolunteerspotRaker());
         $matchUppableClass = new MatchUppableClass();
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performMatching();

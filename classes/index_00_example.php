@@ -32,7 +32,7 @@ if ((isset($_POST["restartSession"])) || (!isset($_SESSION['id']))) {
     session_destroy();
 
     // create an instance
-    $databaseTableRakers = new ControllerTableRakers("rakers");
+    $databaseTableRakers = new ControllerTableRosterRakers("rakers");
 
     // start a proper session
     session_start();

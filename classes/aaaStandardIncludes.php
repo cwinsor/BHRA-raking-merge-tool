@@ -8,11 +8,10 @@ include_once "InterfaceTableView.php";
 include_once "MatchUppableInterface.php";
 include_once "MatchUppableClass.php";
 include_once "ControllerRow.php";
-include_once "ControllerRowRaker.php";
-include_once "ControllerRowRakerRoster.php";
-include_once "ControllerRowRakerVolunteerSpot.php";
+include_once "ControllerRowRosterRaker.php";
+include_once "ControllerRowVolunteerspotRaker.php";
 include_once "ControllerRowAppointment.php";
 include_once "ControllerTable.php";
-include_once "ControllerTableRakers.php";
+include_once "ControllerTableRosterRakers.php";
 include_once "ControllerTableAppointments.php";
 ?>

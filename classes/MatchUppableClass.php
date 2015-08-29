@@ -55,12 +55,24 @@ class MatchUppableClass
         $this->a = $a;
         $this->b = $b;
 
-        // sanity check
-        if (count($a->columnsNameslug()) != count($b->columnsNameslug())) {
-            exit('in MatchUppableClass - the number of matchable slug elements in A and B do not match');
-        }
-        if (count($a->columnsDataslug()) != count($b->columnsDataslug())) {
-            exit('in MatchUppableClass - the number of matchable data elements in A and B do not match');
+        // sanity check - if there is
+        if ((count($a->columnsNameslug()) !=0) && (count($b->columnsNameslug()) != 0)) {
+            if (count($a->columnsNameslug()) != count($b->columnsNameslug())) {
+                echo '<br>a<br>';
+                var_dump($a->columnsNameslug());
+                echo '<br>b<br>';
+                var_dump($b->columnsNameslug());
+                echo '<br>';
+                exit('in MatchUppableClass - the number of matchable slug elements in A and B do not match (above)');
+            }
+            if (count($a->columnsDataslug()) != count($b->columnsDataslug())) {
+                echo '<br>a<br>';
+                var_dump($a->columnsDataslug());
+                echo '<br>b<br>';
+                var_dump($b->columnsDataslug());
+                echo '<br>';
+                exit('in MatchUppableClass - the number of matchable data elements in A and B do not match');
+            }
         }
     }
 

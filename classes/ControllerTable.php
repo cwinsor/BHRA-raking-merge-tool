@@ -16,9 +16,13 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
 
     protected $localTable;
 
-    function __construct($databaseTableName, $commonName)
+
+    ///////////////////////////////////////
+    // METHODS SPECIFIC TO THIS CLASS
+
+    function __construct($databaseTableOrFileName, $commonName)
     {
-        $this->databaseTableOrFileName = $databaseTableName;
+        $this->databaseTableOrFileName = $databaseTableOrFileName;
         $this->databaseCommonName = $commonName;
     }
 
@@ -31,6 +35,14 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
     {
         return $this->databaseCommonName;
     }
+
+    public function modelGetRow($rowNum)
+    {
+        return $this->localTable[$rowNum];
+    }
+
+
+
     //////////////////////////////////////////
     // METHODS REQUIRED BY THE DATABASE INTERFACE
 
@@ -228,21 +240,6 @@ th {
     {
         $myRow = $this->localTable[$rowId];
         return $myRow->modelGetField($colId);
-    }
-
-
-    ///////////////////////////////////////
-    // METHODS SPECIFIC TO THIS CLASS
-
-    /**
-     * Get a row by row number
-     * @param $rowNum
-     * @return mixed
-     */
-    public
-    function modelGetRow($rowNum)
-    {
-        return $this->localTable[$rowNum];
     }
 
 

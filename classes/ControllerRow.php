@@ -5,7 +5,7 @@ set_error_handler("my_error_handler");
 
 <?php
 
-abstract class ControllerRow implements InterfaceRowDatabase, InterfaceRowCsv
+abstract class ControllerRow implements InterfaceRowCsv, InterfaceRowDatabase
 {
 
     protected $fields;
@@ -23,7 +23,6 @@ abstract class ControllerRow implements InterfaceRowDatabase, InterfaceRowCsv
     {
         return $this->fields[$key];
     }
-
 
     public function asArray()
     {
