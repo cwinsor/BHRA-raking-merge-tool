@@ -8,7 +8,7 @@ set_error_handler("my_error_handler");
 /**
  * Class ControllerRowItinerary
  */
-class ControllerRowItinerary extends ControllerRow
+class ControllerRowAssignment extends ControllerRow
 {
 
     /////////////////////////////////////////////////

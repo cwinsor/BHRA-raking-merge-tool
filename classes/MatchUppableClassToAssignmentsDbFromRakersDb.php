@@ -3,16 +3,16 @@
 /*
  * map rowers from the roster csv file to rakers in the rakers table
  */
-class MatchUppableClassAssignmentsDbToSupervisorsDb extends MatchUppableClass
+class MatchUppableClassToAssignmentsDbFromRakersDb extends MatchUppableClass
 {
     public function getNameslugMapAB()
     {
-        exit ('zona not implementee 33456');
+        exit ('zona not implementee 23456');
     }
 
     public function getDataslugMapAB()
     {
-        exit ('zona not implementee 33457');
+        exit ('zona not implementee 23457');
     }
 
 

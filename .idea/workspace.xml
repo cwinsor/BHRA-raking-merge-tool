@@ -25,50 +25,19 @@
       <file leaf-file-name="MatchUppableClass.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/MatchUppableClass.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-30.928572">
-              <caret line="298" column="24" selection-start-line="298" selection-start-column="24" selection-end-line="298" selection-end-column="24" />
-              <folding>
-                <marker date="1440951920082" expanded="true" signature="12564:13562" placeholder="..." />
-                <marker date="1440951920082" expanded="true" signature="12612:13562" placeholder="..." />
-                <marker date="1440951920082" expanded="true" signature="12691:13091" placeholder="..." />
-                <marker date="1440951920082" expanded="true" signature="12714:13062" placeholder="..." />
-                <marker date="1440951920082" expanded="true" signature="13164:13562" placeholder="..." />
-                <marker date="1440951920082" expanded="true" signature="13237:13562" placeholder="..." />
-                <marker date="1440951920082" expanded="true" signature="13567:13682" placeholder="..." />
-                <marker date="1440951920082" expanded="true" signature="13756:13868" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index_05a_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/classes/index_05a_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43771428">
-              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state vertical-scroll-proportion="-7.309091">
+              <caret line="237" column="25" selection-start-line="237" selection-start-column="25" selection-end-line="237" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="aaaStandardIncludes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/aaaStandardIncludes.php">
+      <file leaf-file-name="index_06_match_uppable_supersaas_csv_to_appointments_db.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classes/index_06_match_uppable_supersaas_csv_to_appointments_db.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3076923">
-              <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+            <state vertical-scroll-proportion="7.6538463">
+              <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="e#7#82#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -76,29 +45,47 @@
       <file leaf-file-name="ControllerTable.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/ControllerTable.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.692307">
-              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+            <state vertical-scroll-proportion="-2.6727273">
+              <caret line="95" column="10" selection-start-line="95" selection-start-column="10" selection-end-line="95" selection-end-column="10" />
               <folding>
-                <marker date="1440945115760" expanded="true" signature="1316:1330" placeholder="SELECT * FRO..." />
-                <marker date="1440945115760" expanded="true" signature="2194:2257" placeholder="DELETE FROM ..." />
-                <marker date="1440945115760" expanded="true" signature="2740:2784" placeholder="INSERT INTO ..." />
-                <marker date="1440945115760" expanded="true" signature="4402:4644" placeholder="..." />
-                <marker date="1440945115760" expanded="true" signature="4410:4564" placeholder="{...}" />
-                <marker date="1440945115760" expanded="true" signature="4568:4600" placeholder="{...}" />
-                <marker date="1440945115760" expanded="true" signature="4604:4636" placeholder="{...}" />
+                <marker date="1440954243903" expanded="true" signature="1316:1330" placeholder="SELECT * FRO..." />
+                <marker date="1440954243903" expanded="true" signature="2194:2257" placeholder="DELETE FROM ..." />
+                <marker date="1440954243903" expanded="true" signature="2740:2784" placeholder="INSERT INTO ..." />
+                <marker date="1440954243903" expanded="true" signature="4502:4744" placeholder="..." />
+                <marker date="1440954243903" expanded="true" signature="4510:4664" placeholder="{...}" />
+                <marker date="1440954243903" expanded="true" signature="4668:4700" placeholder="{...}" />
+                <marker date="1440954243903" expanded="true" signature="4704:4736" placeholder="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatchUppableClassSupersaasCsvToAppointmentsDb.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassSupersaasCsvToAppointmentsDb.php">
+      <file leaf-file-name="index_07_itinerary.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/classes/index_07_itinerary.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.153847">
-              <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
-              <folding>
-                <element signature="e#7#82#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.344">
+              <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ControllerRowAppointment.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classes/ControllerRowAppointment.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.6">
+              <caret line="71" column="39" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ControllerRow.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classes/ControllerRow.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.1636364">
+              <caret line="7" column="77" selection-start-line="7" selection-start-column="69" selection-end-line="7" selection-end-column="77" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -118,11 +105,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/classes/index_03_test_match_uppable_consolidated_view.php" />
-        <option value="$PROJECT_DIR$/common_functions/pickup_post_pickup_get.php" />
-        <option value="$PROJECT_DIR$/classes/InterfaceRowCsv.php" />
-        <option value="$PROJECT_DIR$/classes/index_04_match_uppable_using_csv_file.php" />
-        <option value="$PROJECT_DIR$/classes/ControllerTableAppointmentss.php" />
         <option value="$PROJECT_DIR$/classes/InterfaceTableDatabase.php" />
         <option value="$PROJECT_DIR$/classes/InterfaceRowDatabase.php" />
         <option value="$PROJECT_DIR$/classes/InterfaceTableCsv.php" />
@@ -165,10 +147,15 @@
         <option value="$PROJECT_DIR$/classes/index_03_show_php_ini.php" />
         <option value="$PROJECT_DIR$/classes/index_06_match_uppable_supersaas_csv_to_appointments_db.php" />
         <option value="$PROJECT_DIR$/classes/MatchUppableClassSupersaasCsvToAppointmentsDb.php" />
-        <option value="$PROJECT_DIR$/classes/ControllerTable.php" />
-        <option value="$PROJECT_DIR$/classes/aaaStandardIncludes.php" />
-        <option value="$PROJECT_DIR$/classes/MatchUppableClass.php" />
         <option value="$PROJECT_DIR$/classes/index_05a_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php" />
+        <option value="$PROJECT_DIR$/classes/ControllerTable.php" />
+        <option value="$PROJECT_DIR$/classes/ControllerRowAssignment.php" />
+        <option value="$PROJECT_DIR$/classes/MatchUppableClassToAssignmentsDbFromRakersDb.php" />
+        <option value="$PROJECT_DIR$/classes/MatchUppableClassToAssignmentsDbFromSupervisorsDb.php" />
+        <option value="$PROJECT_DIR$/classes/aaaStandardIncludes.php" />
+        <option value="$PROJECT_DIR$/classes/MatchUppableClassToAssignmentsDbFromAppointmentsDb.php" />
+        <option value="$PROJECT_DIR$/classes/MatchUppableClass.php" />
+        <option value="$PROJECT_DIR$/classes/index_07_itinerary.php" />
       </list>
     </option>
   </component>
@@ -184,10 +171,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="33" />
-    <option name="y" value="73" />
-    <option name="width" value="1775" />
-    <option name="height" value="1063" />
+    <option name="x" value="11" />
+    <option name="y" value="305" />
+    <option name="width" value="1718" />
+    <option name="height" value="813" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -328,6 +315,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VolunteerSpot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="classes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -346,8 +365,11 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\BHRA-raking-merge-tool\classes" />
+      <recent name="C:\xampp\htdocs\BHRA-raking-merge-tool\upload\VolunteerSpot\supervisors" />
+      <recent name="C:\xampp\htdocs\BHRA-raking-merge-tool\upload\VolunteerSpot\rakers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\BHRA-raking-merge-tool\upload\VolunteerSpot\rakers" />
       <recent name="C:\xampp\htdocs\BHRA-raking-merge-tool" />
     </key>
   </component>
@@ -393,10 +415,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="33" y="73" width="1775" height="1063" extended-state="0" />
+    <frame x="11" y="305" width="1718" height="813" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29675952" sideWeight="0.4960091" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.306698" sideWeight="0.4960091" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -454,27 +476,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/classes/RowersCsvFileRoster.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/RowersCsvFile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6539409">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/RowersCsvFileVolunteerSite.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/content_mappable/MappingTool.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -656,60 +657,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/index_07_itinerary.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52072966">
-          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-          <folding>
-            <element signature="e#1032#1060#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/InterfaceRowDatabase.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.5384617">
           <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/InterfaceRowCsv.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/ControllerRowAppointment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="49.115383">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/ControllerRowItinerary.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9230769">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassAssignmentsDbToRakersDb.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassAssignmentsDbToSupervisorsDb.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538">
-          <caret line="16" column="0" selection-start-line="7" selection-start-column="2" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -722,40 +673,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/ControllerRowRosterRaker.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0822511">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/index_04a_match_uppable_roster_csv_to_rakers_db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.384615">
-          <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
-          <folding>
-            <element signature="e#726#738#0#PHP" expanded="true" />
-            <element signature="e#896#955#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/index_03_show_php_ini.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.038462">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassAssignmentsDbToAppointmentsDb.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22185971">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="e#7#82#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -777,14 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/ControllerRow.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.115385">
@@ -795,69 +709,167 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/classes/index_05a_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.730769">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload/VolunteerSpot/rakers/Leaf Raking (Rower-Rakers).csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload/VolunteerSpot/supervisors/Leaf Raking (Supervisors).csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/InterfaceRowCsv.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2692308">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/ControllerRowRosterRaker.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.509091">
+          <caret line="69" column="43" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/index_04a_match_uppable_roster_csv_to_rakers_db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.807693">
+          <caret line="66" column="3" selection-start-line="66" selection-start-column="3" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="e#726#738#0#PHP" expanded="true" />
+            <element signature="e#896#955#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassSupersaasCsvToAppointmentsDb.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.153847">
-          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.56797236">
+          <caret line="29" column="5" selection-start-line="8" selection-start-column="0" selection-end-line="29" selection-end-column="5" />
           <folding>
             <element signature="e#7#82#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/ControllerTable.php">
+    <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassToAssignmentsDbFromRakersDb.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.692307">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-          <folding>
-            <marker date="1440945115760" expanded="true" signature="1316:1330" placeholder="SELECT * FRO..." />
-            <marker date="1440945115760" expanded="true" signature="2194:2257" placeholder="DELETE FROM ..." />
-            <marker date="1440945115760" expanded="true" signature="2740:2784" placeholder="INSERT INTO ..." />
-            <marker date="1440945115760" expanded="true" signature="4402:4644" placeholder="..." />
-            <marker date="1440945115760" expanded="true" signature="4410:4564" placeholder="{...}" />
-            <marker date="1440945115760" expanded="true" signature="4568:4600" placeholder="{...}" />
-            <marker date="1440945115760" expanded="true" signature="4604:4636" placeholder="{...}" />
-          </folding>
+        <state vertical-scroll-proportion="-3.2692308">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassToAssignmentsDbFromSupervisorsDb.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19585253">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/ControllerRowAssignment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/aaaStandardIncludes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923">
+        <state vertical-scroll-proportion="0.039170507">
           <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassToAssignmentsDbFromAppointmentsDb.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6528">
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <folding>
+            <element signature="e#7#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/classes/index_06_match_uppable_supersaas_csv_to_appointments_db.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5817143">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        <state vertical-scroll-proportion="7.6538463">
+          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/MatchUppableClass.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-30.928572">
-          <caret line="298" column="24" selection-start-line="298" selection-start-column="24" selection-end-line="298" selection-end-column="24" />
+        <state vertical-scroll-proportion="-7.309091">
+          <caret line="237" column="25" selection-start-line="237" selection-start-column="25" selection-end-line="237" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/ControllerRowAppointment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.6">
+          <caret line="71" column="39" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/ControllerRow.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.1636364">
+          <caret line="7" column="77" selection-start-line="7" selection-start-column="69" selection-end-line="7" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/ControllerTable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6727273">
+          <caret line="95" column="10" selection-start-line="95" selection-start-column="10" selection-end-line="95" selection-end-column="10" />
           <folding>
-            <marker date="1440951920082" expanded="true" signature="12564:13562" placeholder="..." />
-            <marker date="1440951920082" expanded="true" signature="12612:13562" placeholder="..." />
-            <marker date="1440951920082" expanded="true" signature="12691:13091" placeholder="..." />
-            <marker date="1440951920082" expanded="true" signature="12714:13062" placeholder="..." />
-            <marker date="1440951920082" expanded="true" signature="13164:13562" placeholder="..." />
-            <marker date="1440951920082" expanded="true" signature="13237:13562" placeholder="..." />
-            <marker date="1440951920082" expanded="true" signature="13567:13682" placeholder="..." />
-            <marker date="1440951920082" expanded="true" signature="13756:13868" placeholder="..." />
+            <marker date="1440954243903" expanded="true" signature="1316:1330" placeholder="SELECT * FRO..." />
+            <marker date="1440954243903" expanded="true" signature="2194:2257" placeholder="DELETE FROM ..." />
+            <marker date="1440954243903" expanded="true" signature="2740:2784" placeholder="INSERT INTO ..." />
+            <marker date="1440954243903" expanded="true" signature="4502:4744" placeholder="..." />
+            <marker date="1440954243903" expanded="true" signature="4510:4664" placeholder="{...}" />
+            <marker date="1440954243903" expanded="true" signature="4668:4700" placeholder="{...}" />
+            <marker date="1440954243903" expanded="true" signature="4704:4736" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/index_05a_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php">
+    <entry file="file://$PROJECT_DIR$/classes/index_07_itinerary.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43771428">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.344">
+          <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
           <folding />
         </state>
       </provider>

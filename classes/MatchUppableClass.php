@@ -82,13 +82,13 @@ abstract class MatchUppableClass
         $nameslugMapAB = $this->getNameslugMapAB();
         $dataslugMapAB = $this->getDataslugMapAB();
 
-//        if ($GLOBALS['debug']) {
-//            echo "<br> (nameslugMapAB)<br>";
-//            var_dump($nameslugMapAB);
-//            echo "<br> (dataslugMapAB)<br>";
-//            var_dump($dataslugMapAB);
-//            echo "<br>";
-//        }
+        if ($GLOBALS['debug']) {
+            echo "<br> (nameslugMapAB)<br>";
+            var_dump($nameslugMapAB);
+            echo "<br> (dataslugMapAB)<br>";
+            var_dump($dataslugMapAB);
+            echo "<br>";
+        }
 
         // generate array   rowNumber->nameslug
         $nameslugArrayA = $this->generateSlugArray($this->a, array_keys($nameslugMapAB));
@@ -101,20 +101,20 @@ abstract class MatchUppableClass
 
         /////////////////
         // debug...
-//        if ($GLOBALS['debug']) {
-//            echo "\n<br>---- nameslugArrayA ------------<br>";
-//            var_dump($nameslugArrayA);
-//            echo "\n<br>";
-//            echo "\n<br>---- nameslugArrayB ------------<br>";
-//            var_dump($nameslugArrayB);
-//            echo "\n<br>";
-//            echo "\n<br>---- dataslugArrayA ------------<br>";
-//            var_dump($dataslugArrayA);
-//            echo "\n<br>";
-//            echo "\n<br>---- dataslugArrayB ------------<br>";
-//            var_dump($dataslugArrayB);
-//            echo "\n<br>";
-//        }
+        if ($GLOBALS['debug']) {
+            echo "\n<br>---- nameslugArrayA ------------<br>";
+            var_dump($nameslugArrayA);
+            echo "\n<br>";
+            echo "\n<br>---- nameslugArrayB ------------<br>";
+            var_dump($nameslugArrayB);
+            echo "\n<br>";
+            echo "\n<br>---- dataslugArrayA ------------<br>";
+            var_dump($dataslugArrayA);
+            echo "\n<br>";
+            echo "\n<br>---- dataslugArrayB ------------<br>";
+            var_dump($dataslugArrayB);
+            echo "\n<br>";
+        }
 
         // what is in both A and B
         // what slugs are in both A and B (intersection)
@@ -151,7 +151,29 @@ abstract class MatchUppableClass
                 array_push($this->inBOnly, $rowNumB);
             }
         }
-}
+
+        /////////////////
+        // debug...
+        if ($GLOBALS['debug']) {
+            echo "\n<br>---- inAandBwithDataMatch ------------<br>";
+            var_dump($this->inAandBwithDataMatch);
+            echo "\n<br>";
+
+            echo "\n<br>---- inAandBnoDataMatch ------------<br>";
+            var_dump($this->inAandBnoDataMatch);
+            echo "\n<br>";
+
+            echo "\n<br>---- inAOnly ------------<br>";
+            var_dump($this->inAOnly);
+            echo "\n<br>";
+
+            echo "\n<br>---- inBOnly ------------<br>";
+            var_dump($this->inBOnly);
+            echo "\n<br>";
+        }
+
+
+    }
 
 
     /**
@@ -185,11 +207,6 @@ abstract class MatchUppableClass
         }
         return $comparableTable;
     }
-
-
-
-
-
 
 
     /**
@@ -299,7 +316,7 @@ abstract class MatchUppableClass
         // generate html
         echo "\n <form method = post > ";
 
-      //  echo "\n <table class=sortable > ";
+        //  echo "\n <table class=sortable > ";
         echo "\n <table> ";
 
         /////////////////

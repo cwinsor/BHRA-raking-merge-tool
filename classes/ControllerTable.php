@@ -123,7 +123,9 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
 
         // reference:
         // http://php.net/manual/en/function.str-getcsv.php
+        fopen($this->databaseTableOrFileName, "r");
         $csvAsArray = array_map('str_getcsv', file($this->databaseTableOrFileName));
+        fclose($this->databaseTableOrFileName);
         foreach ($csvAsArray as $row) {
             $rowEntity = clone $itemToClone;
             $rowEntity->populateFromAssociativeArrayCsvFile($row);

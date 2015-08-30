@@ -43,33 +43,46 @@ pickupGetIfSet("filename", $getFilename);
     <h3>Itinerary</h3>
 
     <?php
-    // DEBUG ...
-    //    echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
-    //    echo '<br>' . var_dump($_POST);
-    //    echo '<br>';
-    //    ?>
+    if ($GLOBALS['debug']) {
+        echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
+        echo '<br>' . var_dump($_POST);
+        echo '<br>';
+
+        echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
+        echo '<br>' . var_dump($_GET);
+        echo '<br>';
+    }
+    ?>
+
     <?php
-    //    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
-    //    echo '<br>' . var_dump($_GET);
-    //    echo '<br>';
-    //    ?>
 
 
-    <?php
+    // get customer appointments from database
+    $tableAppointments = new ControllerTable("appointments", "APPOINTMENTS");
+    $tableAppointments->databaseRead(new ControllerRowAppointment());
+    $tableAppointments->viewAsHtmlTable();
 
-        // get data from database...
-        //  roster raker
-        //  roster supervisor
-        //  volunteer raker
-        //  volunteer supervisor
+    // get assignments from database
+    $tableAssignments = new ControllerTable("assignments", "ASSIGNMENTS");
+    $tableAssignments->databaseRead(new ControllerRowAssignment());
+    $tableAssignments->viewAsHtmlTable();
 
-        $controllerTableRosterRaker = new ControllerTableAppointments("roster_rakers", "Roster Rakers");
-        $controllerTableAppointments2->databaseRead(new ControllerRakerRoster());
+    // prepare to update database based on posts
+    $matchUppableClass = new MatchUppableClassToAssignmentsDbFromAppointmentsDb();
+    $matchUppableClass->setAB($tableAppointments, $tableAssignments);
+    $matchUppableClass->performGetAndPostFunctions();
 
-        $controllerTableRosterRaker = new ControllerTableAppointments("volunteerspot_rakers", "Roster Rakers");
-        $controllerTableAppointments2->databaseRead(new ControllerrakerVolunteerSpot());
+    // re-acquire from database (may have changed as a result of the posts)
+    $tableAssignments->databaseRead(new ControllerRowAssignment());
+    $matchUppableClass = new MatchUppableClassToAssignmentsDbFromAppointmentsDb();
+    $matchUppableClass->setAB($tableAppointments, $tableAssignments);
+    $matchUppableClass->performMatching();
 
-exit ("not implemented.. in progress 0896");
+    $matchUppableClass->viewAsHtmlInAonly();
+    $matchUppableClass->viewAsHtmlInBonly();
+    $matchUppableClass->viewAsHtmlInABwithDataMismatch();
+    $matchUppableClass->viewAsHtmlInABwithDataMatch();
+
 
     ?>
 
