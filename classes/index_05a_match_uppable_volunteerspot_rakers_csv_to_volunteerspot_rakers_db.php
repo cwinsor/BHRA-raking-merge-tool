@@ -41,7 +41,7 @@ pickupGetIfSet("filename", $getFilename);
 <div id="content">
 
 
-    <h3>Volunteer Rakers (from roster)</h3>
+    <h3>Volunteer Rakers (from VolunteerSpot)</h3>
 
     <?php
     // DEBUG ...
@@ -60,23 +60,23 @@ pickupGetIfSet("filename", $getFilename);
     // if a file has been chosen ...
     if ($getFilename) {
         // get rakers from .csv
-        $controllerTableRakers1 = new ControllerTableRosterRakers($getFilename, "CSV");
-        $controllerTableRakers1->csvRead(new ControllerRowRosterRaker());
+        $controllerTableRakers1 = new ControllerTable($getFilename, "CSV");
+        $controllerTableRakers1->csvRead(new ControllerRowVolunteerspotRaker());
         // DEBUG       $controllerTableRakers1->viewAsHtmlTable();
 
         // get rakers from database
-        $controllerTableRakers2 = new ControllerTableRosterRakers("roster_rakers", "DB");
-        $controllerTableRakers2->databaseRead(new ControllerRowRosterRaker());
+        $controllerTableRakers2 = new ControllerTable("volunteerspot_rakers", "DB");
+        $controllerTableRakers2->databaseRead(new ControllerRowVolunteerspotRaker());
         // DEBUG        $controllerTableRakers2->viewAsHtmlTable();
 
         // prepare to update database based on posts
-        $matchUppableClass = new MatchUppableClass();
+        $matchUppableClass = new MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb();
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performGetAndPostFunctions();
 
         // re-acquire from database (may have changed as a result of the posts)
-        $controllerTableRakers2->databaseRead(new ControllerRowRosterRaker());
-        $matchUppableClass = new MatchUppableClass();
+        $controllerTableRakers2->databaseRead(new ControllerRowVolunteerspotRaker());
+        $matchUppableClass = new MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb();
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performMatching();
 
@@ -89,7 +89,8 @@ pickupGetIfSet("filename", $getFilename);
 
     } else {
         echo "\n<form method=get>";
-        $dirName = '../upload/roster/';
+
+        $dirName = '../upload/VolunteerSpot/';
         $d = dir($dirName);
         while (false !== ($entry = $d->read())) {
             if ($entry != "." && $entry != "..") {

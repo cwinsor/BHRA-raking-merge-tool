@@ -12,10 +12,6 @@ abstract class ControllerRow implements InterfaceRowCsv, InterfaceRowDatabase
 
     abstract public function modelGetColumnsAll();
 
-    abstract public function modelGetColumnsNameslug();
-
-    abstract public function modelGetColumnsDataslug();
-
     abstract public function modelGetIdFieldName();
 
 

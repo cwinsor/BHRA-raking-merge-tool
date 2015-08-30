@@ -8,7 +8,7 @@ set_error_handler("my_error_handler");
 /**
  * Class ControllerTable
  */
-abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, InterfaceTableView, MatchUppableInterface
+class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, InterfaceTableView, MatchUppableInterface
 {
 
     private $databaseTableOrFileName;
@@ -35,6 +35,12 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
     {
         return $this->databaseCommonName;
     }
+
+    public function getTable()
+    {
+        return $this->localTable;
+    }
+
 
     public function modelGetRow($rowNum)
     {
@@ -63,13 +69,6 @@ abstract class ControllerTable implements InterfaceTableDatabase, InterfaceTable
             $rowEntity->populateFromDatabaseTableAssociativeArray($rowAssociativeArray);
             array_push($this->localTable, $rowEntity);
         }
-
-//        echo "<br>---- here having read from database ---<br>";
-//        foreach ($this->localTable as $assocRow) {
-//            echo "<br>";
-//            var_dump($assocRow);
-//            echo "<br>";
-//        }
     }
 
 
@@ -211,29 +210,6 @@ th {
             return array();
         }
         return $aRow->modelGetColumnsAll();
-    }
-
-    public function columnsNameslug()
-    {
-        $aRow = reset($this->localTable);
-        if (!$aRow) {
-            return array();
-        }
-        return $aRow->modelGetColumnsNameslug();
-    }
-
-    public function columnsDataslug()
-    {
-        $aRow = reset($this->localTable);
-        if (!$aRow) {
-            return array();
-        }
-        return $aRow->modelGetColumnsDataslug();
-    }
-
-    public function columnIsDataslug($colId)
-    {
-        return in_array($colId, $this->columnsDataslug());
     }
 
     public function getDataElement($rowId, $colId)

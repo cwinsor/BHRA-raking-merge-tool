@@ -43,37 +43,37 @@ pickupGetIfSet("filename", $getFilename);
     <h3>Customer Appointments</h3>
 
     <?php
-    // DEBUG ...
-    //    echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
-    //    echo '<br>' . var_dump($_POST);
-    //    echo '<br>';
-    //    ?>
-    <?php
-    //    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
-    //    echo '<br>' . var_dump($_GET);
-    //    echo '<br>';
-    //    ?>
+    if ($GLOBALS['debug']) {
+        echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
+        echo '<br>' . var_dump($_POST);
+        echo '<br>';
+
+        echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
+        echo '<br>' . var_dump($_GET);
+        echo '<br>';
+    }
+    ?>
 
 
     <?php
     // if a file has been chosen ...
     if ($getFilename) {
         // get rakers from .csv
-        $controllerTableAppointments1 = new ControllerTableAppointments($getFilename, "CSV");
+        $controllerTableAppointments1 = new ControllerTable($getFilename, "CSV");
         $controllerTableAppointments1->csvRead(new ControllerRowAppointment());
 
         // get from database
-        $controllerTableAppointments2 = new ControllerTableAppointments("appointments", "DB");
+        $controllerTableAppointments2 = new ControllerTable("appointments", "DB");
         $controllerTableAppointments2->databaseRead(new ControllerRowAppointment());
 
         // prepare to update database based on posts
-        $matchUppableClass = new MatchUppableClass();
+        $matchUppableClass = new MatchUppableClassSupersaasCsvToAppointmentsDb();
         $matchUppableClass->setAB($controllerTableAppointments1, $controllerTableAppointments2);
         $matchUppableClass->performGetAndPostFunctions();
 
         // re-acquire from database (may have changed as a result of the posts)
         $controllerTableAppointments2->databaseRead(new ControllerRowAppointment());
-        $matchUppableClass = new MatchUppableClass();
+        $matchUppableClass = new MatchUppableClassSupersaasCsvToAppointmentsDb();
         $matchUppableClass->setAB($controllerTableAppointments1, $controllerTableAppointments2);
         $matchUppableClass->performMatching();
 

@@ -41,7 +41,7 @@ pickupGetIfSet("filename", $getFilename);
 <div id="content">
 
 
-    <h3>Volunteer Rakers (from VolunteerSpot)</h3>
+    <h3>Volunteer Rakers (from roster)</h3>
 
     <?php
     // DEBUG ...
@@ -60,31 +60,30 @@ pickupGetIfSet("filename", $getFilename);
     // if a file has been chosen ...
     if ($getFilename) {
         // get rakers from .csv
-        $controllerTableRakers1 = new ControllerTableRosterRakers($getFilename, "CSV");
-        $controllerTableRakers1->csvRead(new ControllerRowVolunteerspotRaker());
+        $controllerTableRakers1 = new ControllerTable($getFilename, "CSV");
+        $controllerTableRakers1->csvRead(new ControllerRowRosterRaker());
         // DEBUG       $controllerTableRakers1->viewAsHtmlTable();
 
         // get rakers from database
-        $controllerTableRakers2 = new ControllerTableRosterRakers("volunteerspot_rakers", "DB");
-        $controllerTableRakers2->databaseRead(new ControllerRowVolunteerspotRaker());
+        $controllerTableRakers2 = new ControllerTable("roster_rakers", "DB");
+        $controllerTableRakers2->databaseRead(new ControllerRowRosterRaker());
         // DEBUG        $controllerTableRakers2->viewAsHtmlTable();
 
         // prepare to update database based on posts
-echo "<br> here2 <br>";
-        $matchUppableClass = new MatchUppableClass();
-        echo "<br> here3 <br>";
+        $matchUppableClass = new MatchUppableClassRosterCsvToRakersDb();
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
-        echo "<br> here4 <br>";
         $matchUppableClass->performGetAndPostFunctions();
-        echo "<br> here5 <br>";
 
         // re-acquire from database (may have changed as a result of the posts)
-        $controllerTableRakers2->databaseRead(new ControllerRowVolunteerspotRaker());
-        $matchUppableClass = new MatchUppableClass();
+        $controllerTableRakers2->databaseRead(new ControllerRowRosterRaker());
+        $matchUppableClass = new MatchUppableClassRosterCsvToRakersDb();
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performMatching();
 
-//        $matchUppableClass->viewAsHtmlBasicSummary();
+     // DEBUG
+//        echo "<br> here 3322165 <br";
+//       $matchUppableClass->viewAsHtmlBasicSummary();
+//        echo "<br> here 3322165 <br";
 
         $matchUppableClass->viewAsHtmlInAonly();
         $matchUppableClass->viewAsHtmlInBonly();
@@ -93,8 +92,7 @@ echo "<br> here2 <br>";
 
     } else {
         echo "\n<form method=get>";
-
-        $dirName = '../upload/VolunteerSpot/';
+        $dirName = '../upload/roster/';
         $d = dir($dirName);
         while (false !== ($entry = $d->read())) {
             if ($entry != "." && $entry != "..") {

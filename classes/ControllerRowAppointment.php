@@ -35,30 +35,6 @@ class ControllerRowAppointment extends ControllerRow
             'DTme2');
     }
 
-    public function modelGetColumnsNameslug()
-    {
-        return array(
-            'CustName',
-            'ApptStart');
-    }
-
-    public function modelGetColumnsDataslug()
-    {
-        return array_merge(
-            $this->modelGetColumnsNameslug(),
-            array(
-//            'ApptStart',
-                'ApptEnd',
-                'ApptDescription',
-//            'CustName',
-                'CustPhone',
-                'CustStreet',
-                'CustDescription',
-                'CustNotes',
-                'CustEmail',
-                'ReservedBy'));
-    }
-
     public function modelGetIdFieldName()
     {
         return 'id_appt';

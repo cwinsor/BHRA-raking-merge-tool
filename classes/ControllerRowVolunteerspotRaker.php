@@ -94,28 +94,6 @@ class ControllerRowVolunteerSpotRaker extends ControllerRow
     }
 
 
-    /////////////////////////////////////////////////
-    // Methods required by the base class
-
-    public function modelGetColumnsNameslug()
-    {
-        return array(
-            'date',
-            'start_time',
-            'firstname',
-            'lastname');
-    }
-
-    public function modelGetColumnsDataslug()
-    {
-        return array_merge(
-            $this->modelGetColumnsNameslug(),
-            array(
-                'task',
-                'end_time',
-                'email',
-                'phone'));
-    }
 
 
 }

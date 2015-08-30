@@ -78,26 +78,6 @@ class ControllerRowRosterRaker extends ControllerRow
     }
 
 
-
-    /////////////////////////////////////////////////
-    // Methods required by the base class
-
-    public function modelGetColumnsNameslug()
-    {
-        return array(
-            'firstname',
-            'lastname');
-    }
-
-    public function modelGetColumnsDataslug()
-    {
-        return array_merge(
-            $this->modelGetColumnsNameslug(),
-            array(
-                'cellphone',
-                'gender'));
-    }
-
 }
     
    

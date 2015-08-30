@@ -163,34 +163,20 @@ abstract class MatchUppableClass
      * @param $theMatchuppableTable
      * @return array
      */
-
-
-    /**
-     * Create a comparable nameSlug list.
-     * This is done by concatenating fields identified as slug.
-     * @param $theMatchuppableTable
-     * @return array
-     */
     private function generateSlugArray($theMatchuppableTable, $theSlugColumns)
     {
         $comparableTable = [];
-        foreach ($theMatchuppableTable->rowNumbers() as $rowNumber) {
+        foreach ($theMatchuppableTable->getTable() as $rowNumber => $row) {
             $thisRowAsArray = [];
             foreach ($theSlugColumns as $colId) {
-                array_push($thisRowAsArray, $theMatchuppableTable->getDataElement($rowNumber, $colId));
+                array_push($thisRowAsArray, $row->modelGetField($colId));
             }
             // concatenate into a single string
-            $thisRowAsString = implode("|", $thisRowAsArray);
+            $thisRowAsString = implode(" | ", $thisRowAsArray);
             $comparableTable[$rowNumber] = $thisRowAsString;
         }
         return $comparableTable;
     }
-
-
-
-
-
-
 
     /**
      * perform functions from POST
@@ -229,24 +215,24 @@ abstract class MatchUppableClass
     function viewAsHtmlBasicSummary()
     {
 
-        echo "\n <br>the following are only in A";
+        echo "\n < br>the following are only in A";
         foreach ($this->inAOnly as $value) {
-            echo "\n <br> (a)row $value";
+            echo "\n < br> (a)row $value";
         }
 
-        echo "\n <br>the following are only in B";
+        echo "\n < br>the following are only in B";
         foreach ($this->inBOnly as $value) {
-            echo "\n <br> (b)row $value";
+            echo "\n < br> (b)row $value";
         }
 
-        echo "\n <br>the following are in both A and B with data miss";
+        echo "\n < br>the following are in both A and B with data miss";
         foreach ($this->inAandBnoDataMatch as $rowNumberA => $rowNumberB) {
-            echo "\n <br> (a)row $rowNumberA maps to(b)row $rowNumberB";
+            echo "\n < br> (a)row $rowNumberA maps to(b)row $rowNumberB";
         }
 
-        echo "\n <br>the following are in both A and B with data match";
+        echo "\n < br>the following are in both A and B with data match";
         foreach ($this->inAandBwithDataMatch as $rowNumberA => $rowNumberB) {
-            echo "\n <br> (a)row $rowNumberA maps to(b)row $rowNumberB";
+            echo "\n < br> (a)row $rowNumberA maps to(b)row $rowNumberB";
         }
 
         echo '<br>';
@@ -289,7 +275,7 @@ abstract class MatchUppableClass
     public
     function viewAsHtmlInABgivenRowList($rowNumbersAB, $msg, $button_delete)
     {
-        echo "\n <b>" . $msg . " </b > ";
+        echo "\n < b>" . $msg . " </b > ";
         if (count($rowNumbersAB) == 0) {
             echo "<br > (none)<br ><br > ";
             return;
@@ -297,17 +283,17 @@ abstract class MatchUppableClass
 
         ///////////////////////////////////////////
         // generate html
-        echo "\n <form method = post > ";
+        echo "\n < form method = post > ";
 
-      //  echo "\n <table class=sortable > ";
+      //  echo "\n < table class=sortable > ";
         echo "\n <table> ";
 
         /////////////////
         // print header
 
-        echo "\n <thead>";
-        echo "\n <tr>";
-        echo " <th>source </th > ";
+        echo "\n < thead>";
+        echo "\n < tr>";
+        echo " < th>source </th > ";
         foreach ($this->a->columnsAll() as $colId) {
             echo "<th > $colId</th > ";
         }
@@ -322,11 +308,11 @@ abstract class MatchUppableClass
         //////////////////////
         // print data rows
 
-        echo "\n <tbody>";
+        echo "\n < tbody>";
 
         foreach ($rowNumbersAB as $rowNumberA => $rowNumberB) {
-            echo "\n <tr>";
-            echo " <th>" . $this->a->getCommonName() . " </th > ";
+            echo "\n < tr>";
+            echo " < th>" . $this->a->getCommonName() . " </th > ";
             foreach ($this->a->columnsAll() as $colId) {
                 echo "<td > " . $this->a->getDataElement($rowNumberA, $colId) . "</td > ";
             }
@@ -337,8 +323,8 @@ abstract class MatchUppableClass
             }
             echo "\n </tr > ";
 
-            echo "\n <tr>";
-            echo " <th>" . $this->b->getCommonName() . " </th > ";
+            echo "\n < tr>";
+            echo " < th>" . $this->b->getCommonName() . " </th > ";
             foreach ($this->b->columnsAll() as $colId) {
                 echo "<td > " . $this->b->getDataElement($rowNumberB, $colId) . "</td > ";
             }
@@ -356,8 +342,8 @@ abstract class MatchUppableClass
         echo "\n </tbody > ";
         echo "\n </table > ";
         echo "\n </form > ";
-        echo "\n <br>";
-        echo "\n <br>";
+        echo "\n < br>";
+        echo "\n < br>";
     }
 
 
@@ -396,26 +382,25 @@ abstract class MatchUppableClass
     public
     function viewAsHtmlSingleTableGivenRowList($theTable, $rowNumbers, $msg, $button_add, $button_delete)
     {
-        echo "<b>" . $msg . " </b >";
-
+        echo "\n < b>" . $msg . " </b > ";
         if (count($rowNumbers) == 0) {
-            echo "<br> (none)<br><br> ";
+            echo "<br > (none)<br ><br > ";
             return;
         }
 
         ///////////////////////////////////////////
         // generate html
-        echo "<form method = post> ";
+        echo "\n < form method = post > ";
 
-        //  echo "\n <table class=sortable > ";
-        echo "\n<table> ";
+        //  echo "\n < table class=sortable > ";
+        echo "\n <table> ";
 
         /////////////////
         // print header
 
-        echo "\n<thead>";
-        echo "\n<tr>";
-        echo "<th>source </th > ";
+        echo "\n < thead>";
+        echo "\n < tr>";
+        echo " < th>source </th > ";
         foreach ($theTable->columnsAll() as $colId) {
             echo "<th > $colId</th > ";
         }
@@ -430,17 +415,17 @@ abstract class MatchUppableClass
             echo "<th > delete</th > ";
         }
 
-        echo "</tr > ";
-        echo "\n</thead > ";
+        echo "\n </tr > ";
+        echo "\n </thead > ";
 
 
 //////////////////////
 // print data rows
 
-        echo "\n<tbody>";
+        echo "\n < tbody>";
         foreach ($rowNumbers as $rowNumber) {
-            echo "\n<tr>";
-            echo "<th>" . $theTable->getCommonName() . " </th > ";
+            echo "\n < tr>";
+            echo " < th>" . $theTable->getCommonName() . " </th > ";
 
             foreach ($theTable->columnsAll() as $colId) {
                 echo "<td > " . $theTable->getDataElement($rowNumber, $colId) . "</td > ";
@@ -459,13 +444,13 @@ abstract class MatchUppableClass
                 echo '<input type=submit name=add_row value=' . $rowNumber . '>';
                 echo '</th>';
             }
-            echo "</tr > ";
+            echo "\n </tr > ";
         }
-        echo "\n</tbody > ";
-        echo "\n</table > ";
-        echo "\n</form > ";
-        echo "\n<br>";
-        echo "\n<br>";
+        echo "\n </tbody > ";
+        echo "\n </table > ";
+        echo "\n </form > ";
+        echo "\n < br>";
+        echo "\n < br>";
     }
 
 

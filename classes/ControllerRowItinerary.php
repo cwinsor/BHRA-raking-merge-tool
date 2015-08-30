@@ -26,16 +26,6 @@ class ControllerRowItinerary extends ControllerRow
         );
     }
 
-    public function modelGetColumnsNameslug()
-    {
-        exit ("not implemented - 22065544");
-    }
-
-    public function modelGetColumnsDataslug()
-    {
-        exit ("not implemented - 22065545");
-    }
-
     public function modelGetIdFieldName()
     {
         exit ("not implemented - 22065546");

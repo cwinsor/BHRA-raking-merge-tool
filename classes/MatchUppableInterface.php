@@ -34,12 +34,5 @@ interface MatchUppableInterface
 
     public function rowNumbers();
 
-//    public function columnsNameslug();
-//    public function columnsDataslug();
-
-    public function columnsNameslug();
-
-    public function columnsDataslug();
-
     public function getDataElement($rowId,$colId);
 }
