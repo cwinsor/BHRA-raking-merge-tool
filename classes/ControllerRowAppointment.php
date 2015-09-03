@@ -18,6 +18,7 @@ class ControllerRowAppointment extends ControllerRow
     {
         return array(
             'id_appt',
+            'ApptDate',
             'ApptStart',
             'ApptEnd',
             'ApptDescription',
@@ -32,7 +33,11 @@ class ControllerRowAppointment extends ControllerRow
             'CustEmail',
             'ReservedBy',
             'DTme1',
-            'DTme2');
+            'DTme2',
+
+            'assigned_day',
+            'assigned_start_time',
+            'assigned_team_number');
     }
 
     public function modelGetIdFieldName()
@@ -48,9 +53,9 @@ class ControllerRowAppointment extends ControllerRow
         $this->fields = array();
 
         $this->fields['id_appt'] = -1;
-
-        $this->fields['ApptStart'] = $this->volunteerSiteProprietaryDateTimeToStandard($rowAssociativeArray[0]);
-        $this->fields['ApptEnd'] = $this->volunteerSiteProprietaryDateTimeToStandard($rowAssociativeArray[1]);
+        $this->fields['ApptDate'] = ClassDateTime::dateFromSupersaasFormat($rowAssociativeArray[0]);
+        $this->fields['ApptStart'] = ClassDateTime::timeFromSupersaasFormat($rowAssociativeArray[0]);
+        $this->fields['ApptEnd'] = ClassDateTime::timeFromSupersaasFormat($rowAssociativeArray[1]);
         $this->fields['ApptDescription'] = $rowAssociativeArray[2];
         $this->fields['Foo'] = $rowAssociativeArray[3];
         $this->fields['ANumber'] = $rowAssociativeArray[4];
@@ -62,10 +67,12 @@ class ControllerRowAppointment extends ControllerRow
         $this->fields['CustNotes'] = $rowAssociativeArray[10];
         $this->fields['CustEmail'] = $rowAssociativeArray[11];
         $this->fields['ReservedBy'] = $rowAssociativeArray[12];
-        $this->fields['DTme1'] = $this->volunteerSiteProprietaryDateTimeToStandard($rowAssociativeArray[13]);
-        $this->fields['DTme2'] = $this->volunteerSiteProprietaryDateTimeToStandard($rowAssociativeArray[14]);
+        $this->fields['DTme1'] = $rowAssociativeArray[13];
+        $this->fields['DTme2'] = $rowAssociativeArray[14];
 
-
+        $this->fields['assigned_day'] = "";
+        $this->fields['assigned_start_time'] = "";
+        $this->fields['assigned_team_number'] = "";
     }
 
     /////////////////////////////////////////////////
@@ -77,7 +84,7 @@ class ControllerRowAppointment extends ControllerRow
     public function populateFromDatabaseTableAssociativeArray($rowAssociativeArray)
     {
         $this->fields['id_appt'] = $rowAssociativeArray['id_appt'];
-
+        $this->fields['ApptDate'] = $rowAssociativeArray['ApptDate'];
         $this->fields['ApptStart'] = $rowAssociativeArray['ApptStart'];
         $this->fields['ApptEnd'] = $rowAssociativeArray['ApptEnd'];
         $this->fields['ApptDescription'] = $rowAssociativeArray['ApptDescription'];
@@ -93,25 +100,10 @@ class ControllerRowAppointment extends ControllerRow
         $this->fields['ReservedBy'] = $rowAssociativeArray['ReservedBy'];
         $this->fields['DTme1'] = $rowAssociativeArray['DTme1'];
         $this->fields['DTme2'] = $rowAssociativeArray['DTme2'];
-    }
 
-    /**
-     * Take in SuperSAAS format date/time
-     * 11/9/2014  4:00:00 PM
-     * and return standard format
-     * 1000-01-01 00:00:00
-     * @param $data
-     */
-    private function volunteerSiteProprietaryDateTimeToStandard($data)
-    {
-        list($date, $time) = explode(" ", $data);
-        list($hour, $minute) = explode(":", $time);
-        list($year, $month, $day) = explode("/", $date);
-
-        // make "15" into "2015"
-        $year = '20' . $year;
-
-        return $year . '-' . $month . '-' . $day . ' ' . $hour . ':' . $minute . ':' . '00';
+        $this->fields['assigned_day'] = $rowAssociativeArray['assigned_day'];
+        $this->fields['assigned_start_time'] = $rowAssociativeArray['assigned_start_time'];
+        $this->fields['assigned_team_number'] = $rowAssociativeArray['assigned_team_number'];
     }
 
     /**
@@ -120,6 +112,7 @@ class ControllerRowAppointment extends ControllerRow
     public function getAsAssociativeArrayForDatabaseTable()
     {
         $array = [];
+        $array['ApptDate'] = $this->fields['ApptDate'];
         $array['ApptStart'] = $this->fields['ApptStart'];
         $array['ApptEnd'] = $this->fields['ApptEnd'];
         $array['ApptDescription'] = $this->fields['ApptDescription'];
@@ -135,8 +128,24 @@ class ControllerRowAppointment extends ControllerRow
         $array['ReservedBy'] = $this->fields['ReservedBy'];
         $array['DTme1'] = $this->fields['DTme1'];
         $array['DTme2'] = $this->fields['DTme2'];
+
+        $array['assigned_day'] = $this->fields['assigned_day'];
+        $array['assigned_start_time'] = $this->fields['assigned_start_time'];
+        $array['assigned_team_number'] = $this->fields['assigned_team_number'];
         return $array;
     }
+
+
+    //////////////////////////////
+    // methods required by the schedulable interface
+
+    public function isAvailable($day, $startTime)
+    {
+        return (
+            ($this->dateFromInternalFormat($this->fields['ApptDate']) == $day) &&
+            ($this->timeFromInternalFormat($this->fields['ApptStart'] == $startTime)));
+    }
+
 
 }
     

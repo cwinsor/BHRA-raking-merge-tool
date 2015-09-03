@@ -1,10 +1,12 @@
 <?php
 
-$GLOBALS['debug'] = 1;
+$GLOBALS['debug'] = 0;
 
 include_once "../common_functions/pickup_post_pickup_get.php";
+include_once "ClassDateTime.php";
 include_once "InterfaceRowDatabase.php";
 include_once "InterfaceRowCsv.php";
+include_once "InterfaceRowSchedulable.php";
 include_once "InterfaceTableDatabase.php";
 include_once "InterfaceTableCsv.php";
 include_once "InterfaceTableView.php";
@@ -20,6 +22,5 @@ include_once "ControllerRow.php";
 include_once "ControllerRowRosterRaker.php";
 include_once "ControllerRowVolunteerspotRaker.php";
 include_once "ControllerRowAppointment.php";
-include_once "ControllerRowAssignment.php";
 include_once "ControllerTable.php";
 ?>

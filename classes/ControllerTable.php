@@ -13,6 +13,7 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
 
     private $databaseTableOrFileName;
     private $databaseCommonName;
+    private $itemToClone;
 
     protected $localTable;
 
@@ -20,10 +21,11 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
     ///////////////////////////////////////
     // METHODS SPECIFIC TO THIS CLASS
 
-    function __construct($databaseTableOrFileName, $commonName)
+    function __construct($databaseTableOrFileName, $commonName, $itemToClone)
     {
         $this->databaseTableOrFileName = $databaseTableOrFileName;
         $this->databaseCommonName = $commonName;
+        $this->itemToClone = $itemToClone;
     }
 
     public function getDatabaseTableOrFileName()
@@ -52,7 +54,7 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
     //////////////////////////////////////////
     // METHODS REQUIRED BY THE DATABASE INTERFACE
 
-    public function databaseRead($itemToClone)
+    public function databaseRead()
     {
         include "../.env_database_password";
         $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
@@ -65,7 +67,7 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
 
         $this->localTable = array();
         while ($rowAssociativeArray = $result->fetch_assoc()) {
-            $rowEntity = clone $itemToClone;
+            $rowEntity = clone $this->itemToClone;
             $rowEntity->populateFromDatabaseTableAssociativeArray($rowAssociativeArray);
             array_push($this->localTable, $rowEntity);
         }
@@ -117,17 +119,22 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
     //////////////////////////////////////////
     // METHODS REQUIRED BY THE CSV INTERFACE
 
-    public function csvRead($itemToClone)
+    public function csvRead()
     {
         $this->localTable = array();
 
         // reference:
         // http://php.net/manual/en/function.str-getcsv.php
-        fopen($this->databaseTableOrFileName, "r");
+        //
+        // ALSO - WARNING ABOUT LINE BREAKS for "file" ... (see comment from Martin K.)
+        // http://php.net/manual/en/function.file.php
+        //
+        $blah = fopen($this->databaseTableOrFileName, 'r');
         $csvAsArray = array_map('str_getcsv', file($this->databaseTableOrFileName));
-        fclose($this->databaseTableOrFileName);
+        fclose($blah);
+
         foreach ($csvAsArray as $row) {
-            $rowEntity = clone $itemToClone;
+            $rowEntity = clone $this->itemToClone;
             $rowEntity->populateFromAssociativeArrayCsvFile($row);
             array_push($this->localTable, $rowEntity);
         }

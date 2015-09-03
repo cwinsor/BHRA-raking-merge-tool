@@ -9,7 +9,7 @@ interface InterfaceTableDatabase
      * @param $itemToClone - when populating the table, entities of this class are used (copy)
      * @return mixed
      */
-    public function databaseRead($itemToClone);
+    public function databaseRead();
 
     /**
      * Delete from database

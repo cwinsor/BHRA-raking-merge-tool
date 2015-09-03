@@ -78,6 +78,17 @@ class ControllerRowRosterRaker extends ControllerRow
     }
 
 
+
+    //////////////////////////////
+    // methods required by the schedulable interface
+
+    public function isAvailable($day, $startTime)
+    {
+        echo "<br> RowRosterRaker is not schedulable 440655 <br>";
+        exit;
+    }
+
+
 }
     
    

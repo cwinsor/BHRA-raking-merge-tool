@@ -59,12 +59,12 @@ pickupGetIfSet("filename", $getFilename);
     // if a file has been chosen ...
     if ($getFilename) {
         // get rakers from .csv
-        $controllerTableAppointments1 = new ControllerTable($getFilename, "CSV");
-        $controllerTableAppointments1->csvRead(new ControllerRowAppointment());
+        $controllerTableAppointments1 = new ControllerTable($getFilename, "CSV", new ControllerRowAppointment());
+        $controllerTableAppointments1->csvRead();
 
         // get from database
-        $controllerTableAppointments2 = new ControllerTable("appointments", "DB");
-        $controllerTableAppointments2->databaseRead(new ControllerRowAppointment());
+        $controllerTableAppointments2 = new ControllerTable("appointments", "DB", new ControllerRowAppointment());
+        $controllerTableAppointments2->databaseRead();
 
         // prepare to update database based on posts
         $matchUppableClass = new MatchUppableClassSupersaasCsvToAppointmentsDb();
@@ -72,7 +72,7 @@ pickupGetIfSet("filename", $getFilename);
         $matchUppableClass->performGetAndPostFunctions();
 
         // re-acquire from database (may have changed as a result of the posts)
-        $controllerTableAppointments2->databaseRead(new ControllerRowAppointment());
+        $controllerTableAppointments2->databaseRead();
         $matchUppableClass = new MatchUppableClassSupersaasCsvToAppointmentsDb();
         $matchUppableClass->setAB($controllerTableAppointments1, $controllerTableAppointments2);
         $matchUppableClass->performMatching();

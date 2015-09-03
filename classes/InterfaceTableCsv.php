@@ -9,6 +9,6 @@ interface InterfaceTableCsv
      * @param $filename
      * @return mixed
      */
-    public function csvRead($itemToClone);
+    public function csvRead();
 
 }

@@ -59,15 +59,16 @@ pickupGetIfSet("filename", $getFilename);
     <?php
     // if a file has been chosen ...
     if ($getFilename) {
+        echo "<br>zona here1 44522<br>";
         // get rakers from .csv
-        $controllerTableRakers1 = new ControllerTable($getFilename, "CSV");
-        $controllerTableRakers1->csvRead(new ControllerRowVolunteerspotRaker());
-        // DEBUG       $controllerTableRakers1->viewAsHtmlTable();
+        $controllerTableRakers1 = new ControllerTable($getFilename, "CSV", new ControllerRowVolunteerspotRaker());
+        $controllerTableRakers1->csvRead();
+        //  $controllerTableRakers1->viewAsHtmlTable();
 
         // get rakers from database
-        $controllerTableRakers2 = new ControllerTable("volunteerspot_rakers", "DB");
-        $controllerTableRakers2->databaseRead(new ControllerRowVolunteerspotRaker());
-        // DEBUG        $controllerTableRakers2->viewAsHtmlTable();
+        $controllerTableRakers2 = new ControllerTable("volunteerspot_rakers", "DB", new ControllerRowVolunteerspotRaker());
+        $controllerTableRakers2->databaseRead();
+        //     $controllerTableRakers2->viewAsHtmlTable();
 
         // prepare to update database based on posts
         $matchUppableClass = new MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb();
@@ -75,7 +76,7 @@ pickupGetIfSet("filename", $getFilename);
         $matchUppableClass->performGetAndPostFunctions();
 
         // re-acquire from database (may have changed as a result of the posts)
-        $controllerTableRakers2->databaseRead(new ControllerRowVolunteerspotRaker());
+        $controllerTableRakers2->databaseRead();
         $matchUppableClass = new MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb();
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performMatching();
@@ -90,7 +91,7 @@ pickupGetIfSet("filename", $getFilename);
     } else {
         echo "\n<form method=get>";
 
-        $dirName = '../upload/VolunteerSpot/';
+        $dirName = '../upload/VolunteerSpot/rakers/';
         $d = dir($dirName);
         while (false !== ($entry = $d->read())) {
             if ($entry != "." && $entry != "..") {
