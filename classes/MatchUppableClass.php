@@ -46,7 +46,7 @@ abstract class MatchUppableClass
 
 
     /**
-     * Identify th etables to be compared.
+     * Identify the tables to be compared.
      * @param $p
      * @param $b
      */

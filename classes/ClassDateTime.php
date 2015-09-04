@@ -27,7 +27,9 @@ class ClassDateTime
     {
         return array(
             "2015-7-4",
-            "2015-7-5");
+            "2015-7-5",
+            "2015-7-6"
+        );
     }
 
     public static function allTimes()
@@ -160,14 +162,14 @@ class ClassDateTime
     // given standard format date - return a pretty format
     public static function prettyDate($in)
     {
-        list($month, $day, $year) = explode("-", $in);
+        list($year, $month, $day) = explode("-", $in);
 
         $myDateTime = new DateTime;
         $myDateTime->setDate($year, $month, $day);
 
         return $myDateTime->format('l, d-M-Y');
     }
-    
+
 }
     
    

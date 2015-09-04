@@ -9,7 +9,8 @@ set_error_handler("my_error_handler");
 
 
 <?php
-pickupGetIfSet("filename", $getFilename);
+
+
 ?>
 
 
@@ -43,6 +44,22 @@ pickupGetIfSet("filename", $getFilename);
     <h3>Itinerary</h3>
 
     <?php
+
+
+    // handle the posts
+    $postAssignRaker = "";
+    foreach ($_POST as $postKey => $postVal) {
+        list($firstTerm) = explode("_", $postKey);
+        // see if there is a post assigning a raker to a team
+        if (!is_null($firstTerm) && ($firstTerm == "assignRaker")) {
+            $postAssignRaker = $postKey;
+        }
+    }
+
+
+    echo "<br>postAssignRaker=" . $postAssignRaker . "<br>";
+
+
     //   if ($GLOBALS['debug']) {
     echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
     echo '<br>' . var_dump($_POST);
@@ -59,6 +76,22 @@ pickupGetIfSet("filename", $getFilename);
 
     // get volunteer rakers from database
     $tableVolunteerRakers = new ControllerTable("volunteerspot_rakers", "VOLUNTEER RAKERS", new ControllerRowVolunteerSpotRaker());
+    $tableVolunteerRakers->databaseRead();
+    // handle posts
+    if ($postAssignRaker) {
+        echo "<br>zona1122 $postAssignRaker<br>";
+        // assignRaker_row_date_starttime_team
+        list($junk, $theRowNumber, $theDate, $theStartTime, $theTeamNumber) = explode("_", $postAssignRaker);
+        $row = $tableVolunteerRakers->modelGetRow($theRowNumber);
+        // remove row from database
+        $tableVolunteerRakers->databaseDeleteItem($row);
+        // update the local row copy with new assignment
+        $row->assign($theDate, $theStartTime, $theTeamNumber);
+        // write updated row to database
+        $tableVolunteerRakers->databaseAddItem($row);
+
+    }
+    // re-read
     $tableVolunteerRakers->databaseRead();
     $tableVolunteerRakers->viewAsHtmlTable();
 
@@ -131,15 +164,15 @@ pickupGetIfSet("filename", $getFilename);
     echo "<br><br>";
     foreach ($days as $day) {
         foreach ($amPmList as $amOrPm) {
-            echo "<br><br>" . ClassDateTime::prettyDate($day) . " " . $amOrPm . "<br>";
+            echo "<br><br><h3>" . ClassDateTime::prettyDate($day) . " " . $amOrPm . "</h3><br>";
             echo "\n<table> ";
             echo "\n<tbody>";
+            // common header
+            echo "\n<tr><th></th><th></th><th>cell</th><th>home</th><th></th><th></th><th></th></tr>";
             foreach ($teamNumbers as $teamNumber) {
-                ///////////////////
                 // team-specific header...
-
-                echo "\n<tr><th colspan=2>" . ClassTeams::pretty($teamNumber) . "</th>";
-                echo "<th>cell</th><th>home</th><th></th><th></th><th></th></tr>";
+                echo "\n<tr><th>" . ClassTeams::pretty($teamNumber) . "</th>";
+                echo "<th></th><th></th><th></th><th></th><th></th><th></th></tr>";
 
 
                 // SUPERVISOR
@@ -163,7 +196,9 @@ pickupGetIfSet("filename", $getFilename);
                             } else {
                                 echo "<td>RAKER NOT AVAILABLE</td>";
                             }
-                            echo "<td>$volunteerRaker->modelGetField('firstname') $volunteerRaker->modelGetField('lastname')</td></tr>";
+                            echo "<td>" . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . "</td>";
+                            echo "\n<td></td> <td></td> <td></td> <td></td> <td></td></tr>";
+                            echo "</tr>";
                         }
                     }
                 }
@@ -184,6 +219,7 @@ pickupGetIfSet("filename", $getFilename);
                         }
                     }
                 }
+                echo "\n<tr><th>-</th><th></th><th></th><th></th><th></th><th></th><th></th></tr>";
             }
             echo "\n </tbody > ";
             echo "\n </table > ";
@@ -192,7 +228,8 @@ pickupGetIfSet("filename", $getFilename);
             // unassigned header
             echo "\n<table> ";
             echo "\n<tbody>";
-            echo "\n<tr>Unassigned:</tr>";
+
+            echo "\n<tr><br><h4>To-Be-Anassigned:</h4></tr>";
             echo "\n<tr></tr>";
 
 
@@ -201,7 +238,7 @@ pickupGetIfSet("filename", $getFilename);
 
             // RAKERS
             foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
-                foreach ($tableVolunteerRakers->getTable() as $volunteerRaker) {
+                foreach ($tableVolunteerRakers->getTable() as $rowNumber => $volunteerRaker) {
                     // if need to assign
                     if ($volunteerRaker->isAvailable($day, $startTime) && !$volunteerRaker->isAssigned($day, $startTime)) {
                         echo "\n<tr>";
@@ -211,7 +248,8 @@ pickupGetIfSet("filename", $getFilename);
                         echo "<td></td>";
                         echo "<td>";
                         foreach (ClassTeams::allTeams() as $team) {
-                            echo "<input type=submit name=assign_raker_" . $volunteerRaker->modelGetIdFieldValue() . "_id value=" . $team . ">";
+                            // assignRaker_row_date_starttime_team
+                            echo "<input type=submit name=assignRaker_" . $rowNumber . "_" . $day . "_" . $startTime . "_" . $team . " value=" . $team . ">";
                         }
                         echo "</td>";
                         echo "</tr>";

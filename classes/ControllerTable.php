@@ -43,7 +43,6 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
         return $this->localTable;
     }
 
-
     public function modelGetRow($rowNum)
     {
         return $this->localTable[$rowNum];

@@ -41,14 +41,30 @@ abstract class ControllerRow implements InterfaceRowCsv, InterfaceRowDatabase, I
 
     public function isAssigned($day, $startTime)
     {
-        return (($this->modelGetField("assigned_day") == $day) &&
+        if (
+            (array_key_exists("assigned_day", $this->fields) == false) ||
+            (array_key_exists("assigned_start_time", $this->fields) == false)
+        ) {
+            return false;
+        }
+        return (
+            ($this->modelGetField("assigned_day") == $day) &&
             ($this->modelGetField("assigned_start_time") == $startTime));
     }
 
     public function isAssignedTeam($day, $startTime, $teamNumber)
     {
-        return $this->isAssigned($day, $startTime) &&
-        ($this->modelGetfield("assigned_team_number" == $teamNumber));
+        if (
+            (array_key_exists("assigned_day", $this->fields) == false) ||
+            (array_key_exists("assigned_start_time", $this->fields) == false) ||
+            (array_key_exists("assigned_team_number", $this->fields) == false)
+        ) {
+            return false;
+        }
+        return (
+            ($this->modelGetField("assigned_day") == $day) &&
+            ($this->modelGetField("assigned_start_time") == $startTime) &&
+            ($this->modelGetfield("assigned_team_number") == $teamNumber));
     }
 
     public function assign($day, $startTime, $teamNumber)
