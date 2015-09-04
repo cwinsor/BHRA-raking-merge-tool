@@ -43,80 +43,107 @@ pickupGetIfSet("filename", $getFilename);
     <h3>Itinerary</h3>
 
     <?php
-    if ($GLOBALS['debug']) {
-        echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
-        echo '<br>' . var_dump($_POST);
-        echo '<br>';
+    //   if ($GLOBALS['debug']) {
+    echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
+    echo '<br>' . var_dump($_POST);
+    echo '<br>';
 
-        echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
-        echo '<br>' . var_dump($_GET);
-        echo '<br>';
-    }
+    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
+    echo '<br>' . var_dump($_GET);
+    echo '<br>';
+    // }
     ?>
 
     <?php
 
 
     // get volunteer rakers from database
-    $tableVolunteerRakers = new ControllerTable("volunteerspot_rakers", "VOLUNTEER RAKERS");
-    $tableVolunteerRakers->databaseRead(new ControllerRowVolunteerSpotRaker());
+    $tableVolunteerRakers = new ControllerTable("volunteerspot_rakers", "VOLUNTEER RAKERS", new ControllerRowVolunteerSpotRaker());
+    $tableVolunteerRakers->databaseRead();
     $tableVolunteerRakers->viewAsHtmlTable();
 
     // get customer appointments from database
-    $tableAppointments = new ControllerTable("appointments", "APPOINTMENTS");
-    $tableAppointments->databaseRead(new ControllerRowAppointment());
+    $tableAppointments = new ControllerTable("appointments", "APPOINTMENTS", new ControllerRowAppointment());
+    $tableAppointments->databaseRead();
     $tableAppointments->viewAsHtmlTable();
 
 
-    $days = array(
-        "2011-9-2014 14:30:00",
-        "2011-10-2014 14:30:00");
-    $teamNumbers = array(
-        "TEAM1",
-        "TEAM2");
-    $amPms = array(
-        "AM",
-        "PM");
-    $appointmentStartTimes = array(
-        "08:00:00",
-        "08:30:00",
-        "09:00:00",
-        "09:30:00",
-        "10:00:00",
-        "10:30:00",
-        "11:00:00",
-        "11:30:00",
-        "12:00:00",
-        "12:30:00",
-        "13:00:00",
-        "13:30:00",
-        "14:00:00",
-        "14:30:00",
-        "15:00:00",
-        "15:30:00",
-        "16:00:00",
-        "16:30:00",
-        "17:00:00",
-        "17:30:00");
+    $days = ClassDateTime::allDays();
+    $appointmentStartTimes = ClassDateTime::allTimes();
+    $amPmList = ClassDatetime::allAmPm();
+
+
+    $teamNumbers = ClassTeams::allTeams();
 
 
     // the order for final printout is  day / teamNumber / amPm
     // the order for task assignment is day / amPm / teamNumber
 
+
+    ///////////////////////////////////////////
+    // generate html
+    echo "<form method = post> ";
+
+    /***************************************************/
+    /* THE FOLLOWING IS PRINTED SCHEDULE FORMAT        */
+    /* THIS SHOWS TEAM_X AM/PM NEXT TO ONE ANOTHER     */
+    /* THIS IS DONE TO MAKE THE EQUIPMENT HANDOFF EASY */
+    /***************************************************/
+    //
+    // Saturday 7/4/2015 - TEAM_1 - AM
+    //                                   cell          home
+    // Supervisor    John White     978-621-2724    123-456-7890
+    // Raker         Baker White    978-621-2724    123-456-7890
+    // Raker         Jill Watkins   978-621-2724    123-456-7890
+    // 8:30-9:00     Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+    // 9:30-12:00    Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+
+    // Saturday 7/4/2015 - TEAM_1 - PM
+    //                                   cell          home
+    // Supervisor    John White     978-621-2724    123-456-7890
+    // Raker         Baker White    978-621-2724    123-456-7890
+    // Raker         Jill Watkins   978-621-2724    123-456-7890
+    // 8:30-9:00     Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+    // 9:30-12:00    Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+
+    /***************************************************/
+    /* THE FOLLOWING IS PLANNING FORMAT                */
+    /* THIS SHOWS AM TEAMS TOGETHER                    */
+    /* THIS IS DONE TO MAKE PLANNING EASY */
+    /***************************************************/
+    //
+    // Saturday 7/4/2015 - TEAM_1 - AM
+    //                                   cell          home
+    // Supervisor    John White     978-621-2724    123-456-7890
+    // Raker         Baker White    978-621-2724    123-456-7890
+    // Raker         Jill Watkins   978-621-2724    123-456-7890
+    // 8:30-9:00     Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+    // 9:30-12:00    Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+
+    // Saturday 7/4/2015 - TEAM_2 - AM
+    //                                   cell          home
+    // Supervisor    John White     978-621-2724    123-456-7890
+    // Raker         Baker White    978-621-2724    123-456-7890
+    // Raker         Jill Watkins   978-621-2724    123-456-7890
+    // 8:30-9:00     Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+    // 9:30-12:00    Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+
+    echo "<br><br>";
     foreach ($days as $day) {
-
-
-        foreach (array("AM", "PM") as $amPmm) {
-            echo "<br>---------- $day --- $amPmm ----------<br>";
-
-            $shiftStartTime = ($amPmm == "AM") ? "08:30:00" : "12:00:00";
-
-            echo "<br>CURRENT ASSIGNMENTS:<br>";
+        foreach ($amPmList as $amOrPm) {
+            echo "<br><br>" . $day->getPretty() . " " . $amOrPm . "<br>";
+            echo "\n<table> ";
+            echo "\n<tbody>";
             foreach ($teamNumbers as $teamNumber) {
-                echo "<br>$teamNumber<br>";
+                ///////////////////
+                // team-specific header...
+
+                echo "\n<tr><th colspan=2>" . ClassTeams::pretty($teamNumber) . "</th>";
+                echo "<th>cell</th><th>home</th><th></th><th></th><th></th></tr>";
+
 
                 // SUPERVISOR
-           //     echo "<br>SUPERVISORS...<br>";
+                //     echo "<br>SUPERVISORS...<br>";
                 //        foreach ($supervisors as $supervisor) {} ...
                 // public function isAvailable($day, $startTime);
                 // public function isAssigned($day, $startTime);
@@ -126,64 +153,99 @@ pickupGetIfSet("filename", $getFilename);
 
 
                 // RAKERS
-                echo "<br>RAKERS...<br>";
-                foreach ($tableVolunteerRakers->getTable() as $volunteerRaker) {
-                    if ($volunteerRaker->isAssignedTeam($day, $shiftStartTime, $teamNumber)) {
-                        // confirm they are (still) available !
-                        if ($volunteerRaker->isAvailable($day, $shiftStartTime)) {
-                            echo "<br>RAKER " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . "<br>";
-                        } else {
-                            echo "<br>RAKER NO LONGER AVAILABLE -> " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . "<br>";
+                foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
+                    foreach ($tableVolunteerRakers->getTable() as $volunteerRaker) {
+                        if ($volunteerRaker->isAssignedTeam($day, $startTime, $teamNumber)) {
+                            // confirm they are (still) available !
+                            echo "\n<tr>";
+                            if ($volunteerRaker->isAvailable($day, $startTime)) {
+                                echo "<td>RAKER</td>";
+                            } else {
+                                echo "<td>RAKER NOT AVAILABLE</td>";
+                            }
+                            echo "<td>$volunteerRaker->modelGetField('firstname') $volunteerRaker->modelGetField('lastname')</td></tr>";
                         }
                     }
                 }
 
                 // CUSTOMERS
-                echo "<br>CUSTOMERS...<br>";
-                foreach ($appointmentStartTimes as $appointmentStartTime) {
+                foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
                     foreach ($tableAppointments->getTable() as $appointment) {
-                        if ($appointment->isAssigned($day, $appointmentStartTime, $teamNumber)) {
+                        if ($appointment->isAssigned($day, $startTime, $teamNumber)) {
                             // confirm the reservation still is in place !
-                            if ($appointment->isAvailable($day, $appointmentStartTime)) {
-
-                                echo "<br>CUSTOMER " . $appointment->modelGetField('CustName') . "<br>";
+                            if ($appointment->isAvailable($day, $startTime)) {
+                                echo "<td>CUSTOMER</td>";
                             } else {
-                                echo "<br>CUSTOMER NO LONGER AVAILABLE -> " . $appointment->modelGetField('CustName') . "<br>";
-
+                                echo "<td>CUSTOMER NOT AVAILABLE</td>";
                             }
+
+
+                            echo "<td>$appointment->modelGetField('CustName')</td></tr>";
                         }
                     }
                 }
             }
+            echo "\n </tbody > ";
+            echo "\n </table > ";
 
-            echo "<br>UNASSIGNED:<br>";
+            //////////////////////////
+            // unassigned header
+            echo "\n<table> ";
+            echo "\n<tbody>";
+            echo "\n<tr>Unassigned:</tr>";
+            echo "\n<tr></tr>";
 
-            // SUPERVISOR
-            //     echo "<br>UNASSIGNED SUPERVISORS...<br>";
-            //        foreach ($supervisors as $supervisor) {} ...
+
+            // SUPERVISORS
+
 
             // RAKERS
-            echo "<br>UNASSIGNED RAKERS...<br>";
-            foreach ($tableVolunteerRakers->getTable() as $volunteerRaker) {
-                // need to assign
-                if ($volunteerRaker->isAvailable($day, $shiftStartTime) && !$volunteerRaker->isAssigned($day, $shiftStartTime)) {
-                    echo "<br>RAKER " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . "<br>";
+            foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
+                foreach ($tableVolunteerRakers->getTable() as $volunteerRaker) {
+                    // if need to assign
+                    if ($volunteerRaker->isAvailable($day, $startTime) && !$volunteerRaker->isAssigned($day, $startTime)) {
+                        echo "\n<tr>";
+                        echo "<td>RAKER</td>";
+                        echo "<td>" . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . "</td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "<td>";
+                        foreach (ClassTeams::allTeams() as $team) {
+                            echo "<input type=submit name=assign_raker_" . $volunteerRaker->modelGetIdFieldValue() . "_id value=" . $team . ">";
+                        }
+                        echo "</td>";
+                        echo "</tr>";
+                    }
                 }
             }
 
             // CUSTOMERS
-            echo "<br>UNASSIGNED CUSTOMERS...<br>";
-            foreach ($appointmentStartTimes as $appointmentStartTime) {
+            //  echo " < br>UNASSIGNED CUSTOMERS...<br > ";
+            foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
                 foreach ($tableAppointments->getTable() as $appointment) {
-                    if ($appointment->isAvailable($day, $appointmentStartTime) && !$appointment->isAssigned($day, $appointmentStartTime)) {
-                        echo "<br>CUSTOMER " . $appointment->modelGetField('CustName') . "<br>";
+                    // if need to assign
+                    if ($appointment->isAvailable($day, $startTime) && !$appointment->isAssigned($day, $startTime)) {
+                        echo "\n<tr>";
+                        echo "<td>CUSTOMER</td>";
+                        echo "<td>" . $appointment->modelGetField('CustName') . "</td>";
+                        echo "<td>" . $appointment->modelGetField('ApptStart') . "</td>";
+                        echo "<td>" . $appointment->modelGetField('ApptEnd') . "</td>";
+                        echo "<td>";
+                        foreach (ClassTeams::allTeams() as $team) {
+                            echo "<input type=submit name=assign_appointment_" . $appointment->modelGetIdFieldValue() . "_id value=" . $team . ">";
+                        }
+                        echo "</td>";
+                        echo "<tr>";
                     }
                 }
-
-
             }
+            echo "\n </tbody > ";
+            echo "\n </table > ";
         }
     }
+
+    echo "\n</form>";
+    echo "<br><br>";
 
 
     ?>

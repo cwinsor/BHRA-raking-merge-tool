@@ -6,7 +6,7 @@ set_error_handler("my_error_handler");
 <?php
 
 /**
- * Class ControllerRowRaker
+ * Date/Time
  */
 class ClassDateTime
 {
@@ -150,6 +150,60 @@ class ClassDateTime
         list($hour, $minute) = explode(":", $time);
 
         return ($hour . ":" . $minute);
+    }
+
+
+    public static function allDays()
+    {
+        return array(
+            "2015-7-4",
+            "2015-7-5");
+    }
+
+
+    public static function allTimes()
+    {
+        return array_merge(ClassDateTime::allTimesAmOrPm("AM"), ClassDateTime::allTimesAmOrPm("PM"));
+    }
+
+    public static function allTimesAmOrPm($amOrPm)
+    {
+        if ($amOrPm == "AM") {
+            return array(
+                "8:00",
+                "8:30",
+                "9:00",
+                "9:30",
+                "10:00",
+                "10:30",
+                "11:00",
+                "11:30");
+        }
+        if ($amOrPm == "PM") {
+            return array(
+                "12:00",
+                "12:30",
+                "13:00",
+                "13:30",
+                "14:00",
+                "14:30",
+                "15:00",
+                "15:30",
+                "16:00",
+                "16:30",
+                "17:00",
+                "17:30");
+
+            exit ("zona 25546 programming error");
+        }
+    }
+
+    public
+    static function allAmPm()
+    {
+        return array(
+            "AM",
+            "PM");
     }
 }
     

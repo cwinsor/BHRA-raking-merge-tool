@@ -142,8 +142,8 @@ class ControllerRowAppointment extends ControllerRow
     public function isAvailable($day, $startTime)
     {
         return (
-            ($this->dateFromInternalFormat($this->fields['ApptDate']) == $day) &&
-            ($this->timeFromInternalFormat($this->fields['ApptStart'] == $startTime)));
+            ($this->modelGetField('ApptDate') == $day) &&
+            ($this->modelGetField('ApptStart') == $startTime));
     }
 
 

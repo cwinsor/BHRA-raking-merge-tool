@@ -14,6 +14,10 @@ abstract class ControllerRow implements InterfaceRowCsv, InterfaceRowDatabase, I
 
     abstract public function modelGetIdFieldName();
 
+    public function modelGetIdFieldValue()
+    {
+        return $this->modelGetField($this->modelGetIdFieldName());
+    }
 
     public function modelGetField($key)
     {
@@ -37,13 +41,13 @@ abstract class ControllerRow implements InterfaceRowCsv, InterfaceRowDatabase, I
 
     public function isAssigned($day, $startTime)
     {
-   return (($this->modelGetField("assigned_day") == $day) &&
-       ($this->modelGetField("assigned_start_time") == $startTime));
+        return (($this->modelGetField("assigned_day") == $day) &&
+            ($this->modelGetField("assigned_start_time") == $startTime));
     }
 
     public function isAssignedTeam($day, $startTime, $teamNumber)
     {
-        return $this->isAssigned($day,$startTime) &&
+        return $this->isAssigned($day, $startTime) &&
         ($this->modelGetfield("assigned_team_number" == $teamNumber));
     }
 
@@ -60,7 +64,6 @@ abstract class ControllerRow implements InterfaceRowCsv, InterfaceRowDatabase, I
         $this->modelSetField("assigned_start_time", "");
         $this->modelSetField("assigned_team_number", "");
     }
-
 
 
 }

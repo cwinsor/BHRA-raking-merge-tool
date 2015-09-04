@@ -11,7 +11,9 @@ class MatchUppableClassSupersaasCsvToAppointmentsDb extends MatchUppableClass
     {
         return array(
             'CustName' => 'CustName',
-            'ApptStart' => 'ApptStart');
+            'ApptDate' => 'ApptDate',
+            'ApptStart' => 'ApptStart',
+            'ApptEnd' => 'ApptEnd');
     }
 
     public function getDataslugMapAB()
