@@ -42,6 +42,7 @@ set_error_handler("my_error_handler");
 <div id="content">
 
     <h3>Itinerary</h3>
+    <p>This page lets you organize your raking resources (rakers and supervisors) into teams, and assign customers.</p>
 
     <?php
 

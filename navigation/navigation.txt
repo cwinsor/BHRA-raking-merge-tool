@@ -1,6 +1,11 @@
-files:../content/file.php
-upload:../content/file_upload.php
-roster:../content/roster.php
-rakers:../content/volunteer.rakers.c.php
-supervisors:../content/volunteer.supervisors.php
-appointments:../content/appointments.php
+files:../classes/page_02_files.php
+upload:../classes/page_03_file_upload.php
+.:../classes/index.php
+raker avail:../classes/page_04_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php
+superv avail:../classes/page_05_match_uppable_volunteerspot_supervisors_csv_to_volunteerspot_supervisors_db.php
+customer appt:../classes/page_06_match_uppable_supersaas_csv_to_appointments_db.php
+.:../classes/index.php
+roster(rowers):../classes/page_07_match_uppable_roster_csv_to_rakers_db.php
+roster(parents):../classes/page_08_match_uppable_roster_csv_to_supervisors_db.php
+.:../classes/index.php
+itinerary:../classes/page_09_itinerary.php
