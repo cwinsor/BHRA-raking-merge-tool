@@ -12,146 +12,16 @@ class ClassDateTime
 {
 
 
-    /*
-     * Construct using a given date/time in standard internal format
-    * 2015-12-30 13:30
-          */
-    function __construct($in)
-    {
-        $this->dateTime = new DateTime();
-
-        if ($in != "") {
-            list($year_month_day, $hr_min) = explode(" ", $in);
-            $this->setDate($year_month_day);
-            $this->setTime($hr_min);
-        }
-    }
-
-    public function setDate($in)
-    {
-        list($year, $month, $day) = explode("-", $in);
-        $this->dateTime->setDate($year, $month, $day);
-    }
-
-    public function setTime($in)
-    {
-        list($hour, $minute) = explode(":", $in);
-        $this->dateTime->setTime($hour, $minute);
-    }
-
-    /**
-     * get date/time - standard internal format
-     * 2015-12-30 13:30
-     */
-    public function get()
-    {
-        return $this->dateTime->format('d-M-y H:i');
-    }
-
-    public function getDate()
-    {
-        return $this->dateTime->format('d-M-y');
-    }
-
-    public function getTime()
-    {
-        return $this->dateTime->format('H:i');
-    }
+    /***********************************************************************/
+    /* "standard format" is the format used internally for all date/times  */
+    /* i.e.                                                                */
+    /* 2015-12-30 13:30                                                    */
+    /***********************************************************************/
 
 
-    /**
-     * get date/time - pretty format
-     * Monday, 15-Aug-2005 15:52)
-     */
-    public function getPretty()
-    {
-        return $this->dateTime->format('l, d-M-Y H:i');
-    }
-
-    public function getPrettyDate()
-    {
-        return $this->dateTime->format('l, d-M-Y');
-    }
-
-    public function getPrettyTime()
-    {
-        return $this->dateTime->format('H:i');
-    }
-
-
-    /**
-     * return standard format date given input which is VolunteerSpot format date
-     * input:
-     * 7/20/2015
-     * output:
-     * 2015-12-30
-     */
-    public static function dateFromVolunteerspotFormat($inDate)
-    {
-        $temp = explode("/", $inDate);
-        if (count($temp) != 3) {
-            throw new Exception('in --> dateFromVolunteerspotFormat');
-        }
-        list($month, $day, $year) = explode("/", $inDate);
-        return ($year . "-" . $month . "-" . $day);
-    }
-
-
-    /**
-     * return standard format time given input which is VolunteerSpot format time
-     * input:
-     *   8:00 AM
-     *  12:30 PM
-     *   1:30 PM
-     * output:
-     *  13:30
-     */
-    public static function timeFromVolunteerspotFormat($inTime)
-    {
-
-        list($hr_min, $am_pm) = explode(" ", $inTime);
-        list($hour, $minute) = explode(":", $hr_min);
-        if (($am_pm == "PM") && ($hour != 12)) {
-            $hour += 12;
-        }
-        return ($hour . ":" . $minute);
-    }
-
-
-    /**
-     * return standard format date given input which is SuperSAAS format date/time
-     * input:
-     *  11/9/2014 14:30
-     * output:
-     *  2015-12-30
-     */
-    public static function dateFromSupersaasFormat($in)
-    {
-        echo "<br>zona 443344";
-        var_dump($in);
-        echo "<br>zona 443344";
-
-        list($date, $time) = explode(" ", $in);
-        list($month, $day, $year) = explode("/", $date);
-
-        return ($year . "-" . $month . "-" . $day);
-    }
-
-    /**
-     * return standard format time given input which is SuperSAAS format date/time
-     * input:
-     *  11/9/2014 14:30
-     * output:
-     *  13:30
-     */
-    public static function timeFromSupersaasFormat($in)
-    {
-        list($date, $time) = explode(" ", $in);
-        list($hour, $minute) = explode(":", $time);
-
-        return ($hour . ":" . $minute);
-    }
-
+    /***********************************************************************/
+    /* enumerations                                                        */
+    /***********************************************************************/
 
     public static function allDays()
     {
@@ -159,7 +29,6 @@ class ClassDateTime
             "2015-7-4",
             "2015-7-5");
     }
-
 
     public static function allTimes()
     {
@@ -198,13 +67,107 @@ class ClassDateTime
         }
     }
 
-    public
-    static function allAmPm()
+    public static function allAmPm()
     {
         return array(
             "AM",
             "PM");
     }
+
+
+    /***********************************************************************/
+    /* Methods to convert proprietary formats to standard format           */
+    /* These are used when reading in .csv files                           */
+    /***********************************************************************/
+
+    /**
+     * return standard format date given VolunteerSpot format date
+     * input:
+     * 7/20/2015
+     * output:
+     * 2015-12-30
+     */
+    public static function dateFromVolunteerspotFormat($inDate)
+    {
+        $temp = explode("/", $inDate);
+        if (count($temp) != 3) {
+            throw new Exception('in --> dateFromVolunteerspotFormat');
+        }
+        list($month, $day, $year) = explode("/", $inDate);
+        return ($year . "-" . $month . "-" . $day);
+    }
+
+    /**
+     * return standard format time given VolunteerSpot format time
+     * input:
+     *   8:00 AM
+     *  12:30 PM
+     *   1:30 PM
+     * output:
+     *  13:30
+     */
+    public static function timeFromVolunteerspotFormat($inTime)
+    {
+        list($hr_min, $am_pm) = explode(" ", $inTime);
+        list($hour, $minute) = explode(":", $hr_min);
+        if (($am_pm == "PM") && ($hour != 12)) {
+            $hour += 12;
+        }
+        return ($hour . ":" . $minute);
+    }
+
+    /**
+     * return standard format date given SuperSAAS format date/time
+     * input:
+     *  11/9/2014 14:30
+     * output:
+     *  2015-12-30
+     */
+    public static function dateFromSupersaasFormat($in)
+    {
+        echo "<br>zona 443344";
+        var_dump($in);
+        echo "<br>zona 443344";
+
+        list($date, $time) = explode(" ", $in);
+        list($month, $day, $year) = explode("/", $date);
+
+        return ($year . "-" . $month . "-" . $day);
+    }
+
+    /**
+     * return standard format time given SuperSAAS format date/time
+     * input:
+     *  11/9/2014 14:30
+     * output:
+     *  13:30
+     */
+    public static function timeFromSupersaasFormat($in)
+    {
+        list($date, $time) = explode(" ", $in);
+        list($hour, $minute) = explode(":", $time);
+
+        return ($hour . ":" . $minute);
+    }
+
+
+
+    /*************************************************************************/
+    /* Methods to convert internal format into nonstandard "pretty" formats  */
+    /* These methods are used only for printing, not storing                 */
+    /*************************************************************************/
+
+    // given standard format date - return a pretty format
+    public static function prettyDate($in)
+    {
+        list($month, $day, $year) = explode("-", $in);
+
+        $myDateTime = new DateTime;
+        $myDateTime->setDate($year, $month, $day);
+
+        return $myDateTime->format('l, d-M-Y');
+    }
+    
 }
     
    

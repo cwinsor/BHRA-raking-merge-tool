@@ -131,7 +131,7 @@ pickupGetIfSet("filename", $getFilename);
     echo "<br><br>";
     foreach ($days as $day) {
         foreach ($amPmList as $amOrPm) {
-            echo "<br><br>" . $day->getPretty() . " " . $amOrPm . "<br>";
+            echo "<br><br>" . ClassDateTime::prettyDate($day) . " " . $amOrPm . "<br>";
             echo "\n<table> ";
             echo "\n<tbody>";
             foreach ($teamNumbers as $teamNumber) {
