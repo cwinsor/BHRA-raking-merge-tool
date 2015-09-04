@@ -48,27 +48,40 @@ set_error_handler("my_error_handler");
 
     // handle the posts
     $postAssignRaker = "";
+    $postAssignAppointment = "";
+    $postUnassignRaker = "";
+    $postUnassignAppointment = "";
     foreach ($_POST as $postKey => $postVal) {
         list($firstTerm) = explode("_", $postKey);
+
         // see if there is a post assigning a raker to a team
         if (!is_null($firstTerm) && ($firstTerm == "assignRaker")) {
             $postAssignRaker = $postKey;
         }
+        // see if there is a post assigning an appointment to a team
+        if (!is_null($firstTerm) && ($firstTerm == "assignAppointment")) {
+            $postAssignAppointment = $postKey;
+        }
+        // see if there is a post assigning a raker to a team
+        if (!is_null($firstTerm) && ($firstTerm == "unassignRaker")) {
+            $postUnassignRaker = $postKey;
+        }
+        // see if there is a post assigning an appointment to a team
+        if (!is_null($firstTerm) && ($firstTerm == "unassignAppointment")) {
+            $postUnassignAppointment = $postKey;
+        }
     }
 
 
-    echo "<br>postAssignRaker=" . $postAssignRaker . "<br>";
+    if ($GLOBALS['debug']) {
+        echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
+        echo '<br>' . var_dump($_POST);
+        echo '<br>';
 
-
-    //   if ($GLOBALS['debug']) {
-    echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
-    echo '<br>' . var_dump($_POST);
-    echo '<br>';
-
-    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
-    echo '<br>' . var_dump($_GET);
-    echo '<br>';
-    // }
+        echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
+        echo '<br>' . var_dump($_GET);
+        echo '<br>';
+    }
     ?>
 
     <?php
@@ -79,7 +92,6 @@ set_error_handler("my_error_handler");
     $tableVolunteerRakers->databaseRead();
     // handle posts
     if ($postAssignRaker) {
-        echo "<br>zona1122 $postAssignRaker<br>";
         // assignRaker_row_date_starttime_team
         list($junk, $theRowNumber, $theDate, $theStartTime, $theTeamNumber) = explode("_", $postAssignRaker);
         $row = $tableVolunteerRakers->modelGetRow($theRowNumber);
@@ -89,23 +101,59 @@ set_error_handler("my_error_handler");
         $row->assign($theDate, $theStartTime, $theTeamNumber);
         // write updated row to database
         $tableVolunteerRakers->databaseAddItem($row);
-
+    }
+    if ($postUnassignRaker) {
+        list($junk, $theRowNumber) = explode("_", $postUnassignRaker);
+        $row = $tableVolunteerRakers->modelGetRow($theRowNumber);
+        // remove row from database
+        $tableVolunteerRakers->databaseDeleteItem($row);
+        // update the local row copy with new assignment
+        $row->unassign();
+        // write updated row to database
+        $tableVolunteerRakers->databaseAddItem($row);
     }
     // re-read
     $tableVolunteerRakers->databaseRead();
-    $tableVolunteerRakers->viewAsHtmlTable();
+    if ($GLOBALS['debug']) {
+        $tableVolunteerRakers->viewAsHtmlTable();
+    }
 
     // get customer appointments from database
     $tableAppointments = new ControllerTable("appointments", "APPOINTMENTS", new ControllerRowAppointment());
     $tableAppointments->databaseRead();
-    $tableAppointments->viewAsHtmlTable();
+    // handle posts
+    if ($postAssignAppointment) {
+        // assignAppointment_row_date_starttime_team
+        list($junk, $theRowNumber, $theDate, $theStartTime, $theTeamNumber) = explode("_", $postAssignAppointment);
+        $row = $tableAppointments->modelGetRow($theRowNumber);
+        // remove row from database
+        $tableAppointments->databaseDeleteItem($row);
+        // update the local row copy with new assignment
+        $row->assign($theDate, $theStartTime, $theTeamNumber);
+        // write updated row to database
+        $tableAppointments->databaseAddItem($row);
+    }
+    if ($postUnassignAppointment) {
+        list($junk, $theRowNumber) = explode("_", $postUnassignAppointment);
+        $row = $tableAppointments->modelGetRow($theRowNumber);
+        // remove row from database
+        $tableAppointments->databaseDeleteItem($row);
+        // update the local row copy with new assignment
+        $row->unassign($theDate, $theStartTime, $theTeamNumber);
+        // write updated row to database
+        $tableAppointments->databaseAddItem($row);
+    }
+    // re-read
+    $tableAppointments->databaseRead();
+    if ($GLOBALS['debug']) {
+        $tableAppointments->viewAsHtmlTable();
+    }
 
-
+    ////////////////////
+    // choose day(s), am/pm, team(s) we want to focus on
     $days = ClassDateTime::allDays();
     $appointmentStartTimes = ClassDateTime::allTimes();
     $amPmList = ClassDatetime::allAmPm();
-
-
     $teamNumbers = ClassTeams::allTeams();
 
 
@@ -164,7 +212,31 @@ set_error_handler("my_error_handler");
     echo "<br><br>";
     foreach ($days as $day) {
         foreach ($amPmList as $amOrPm) {
-            echo "<br><br><h3>" . ClassDateTime::prettyDate($day) . " " . $amOrPm . "</h3><br>";
+
+
+       // used to make table sort-able
+            echo '<script src="../content_mappable/sorttable.js"></script>';
+            echo '<style> table {
+              table-layout: fixed;
+             border-collapse: collapse;
+               width: 100%;
+              border: 1px solid black;
+              font-size: 0.9em;
+              word-wrap: break-word;
+            }
+            td {
+                border: 1px solid black;
+            }
+            th {
+                border: 1px solid black;
+            }
+            </style>';
+
+            echo '<table class=sortable>';
+            echo "<caption><h3>" . ClassDateTime::prettyDate($day) . " " . $amOrPm ."</h3></caption>";
+
+
+   //         echo "<br><br><h3>" . ClassDateTime::prettyDate($day) . " " . $amOrPm . "</h3><br>";
             echo "\n<table> ";
             echo "\n<tbody>";
             // common header
@@ -187,7 +259,7 @@ set_error_handler("my_error_handler");
 
                 // RAKERS
                 foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
-                    foreach ($tableVolunteerRakers->getTable() as $volunteerRaker) {
+                    foreach ($tableVolunteerRakers->getTable() as $rowNumber => $volunteerRaker) {
                         if ($volunteerRaker->isAssignedTeam($day, $startTime, $teamNumber)) {
                             // confirm they are (still) available !
                             echo "\n<tr>";
@@ -197,7 +269,8 @@ set_error_handler("my_error_handler");
                                 echo "<td>RAKER NOT AVAILABLE</td>";
                             }
                             echo "<td>" . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . "</td>";
-                            echo "\n<td></td> <td></td> <td></td> <td></td> <td></td></tr>";
+                            echo "\n<td></td> <td></td> <td></td> <td></td>";
+                            echo "<td><input type=submit name=unassignRaker_" . $rowNumber . " value=un-assign></td>";
                             echo "</tr>";
                         }
                     }
@@ -205,17 +278,18 @@ set_error_handler("my_error_handler");
 
                 // CUSTOMERS
                 foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
-                    foreach ($tableAppointments->getTable() as $appointment) {
-                        if ($appointment->isAssigned($day, $startTime, $teamNumber)) {
+                    foreach ($tableAppointments->getTable() as $rowNumber => $appointment) {
+                        if ($appointment->isAssignedTeam($day, $startTime, $teamNumber)) {
                             // confirm the reservation still is in place !
                             if ($appointment->isAvailable($day, $startTime)) {
                                 echo "<td>CUSTOMER</td>";
                             } else {
                                 echo "<td>CUSTOMER NOT AVAILABLE</td>";
                             }
-
-
-                            echo "<td>$appointment->modelGetField('CustName')</td></tr>";
+                            echo "<td>" . $appointment->modelGetField('CustName') . " " . "</td>";
+                            echo "\n<td></td> <td></td> <td></td> <td></td>";
+                            echo "<td><input type=submit name=unassignAppointment_" . $rowNumber . " value=un-assign></td>";
+                            echo "</tr>";
                         }
                     }
                 }
@@ -260,7 +334,7 @@ set_error_handler("my_error_handler");
             // CUSTOMERS
             //  echo " < br>UNASSIGNED CUSTOMERS...<br > ";
             foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
-                foreach ($tableAppointments->getTable() as $appointment) {
+                foreach ($tableAppointments->getTable() as $rowNumber => $appointment) {
                     // if need to assign
                     if ($appointment->isAvailable($day, $startTime) && !$appointment->isAssigned($day, $startTime)) {
                         echo "\n<tr>";
@@ -270,7 +344,8 @@ set_error_handler("my_error_handler");
                         echo "<td>" . $appointment->modelGetField('ApptEnd') . "</td>";
                         echo "<td>";
                         foreach (ClassTeams::allTeams() as $team) {
-                            echo "<input type=submit name=assign_appointment_" . $appointment->modelGetIdFieldValue() . "_id value=" . $team . ">";
+                            // assignAppointment_row_date_starttime_team
+                            echo "<input type=submit name=assignAppointment_" . $rowNumber . "_" . $day . "_" . $startTime . "_" . $team . " value=" . $team . ">";
                         }
                         echo "</td>";
                         echo "<tr>";
