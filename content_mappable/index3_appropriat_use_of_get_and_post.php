@@ -193,10 +193,10 @@ var_dump($_SESSION);
         <form
             method="post"
             action=""
-        ><br> My Car Is A: <select name="cars">
+        ><br> My Car Is A: <select name="cars" >
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
-                <option value="fiat">Fiat</option>
+                <option value="fiat" selected >Fiat</option>
                 <option value="audi">Audi</option>
         </select> <br> <input
             type="checkbox"

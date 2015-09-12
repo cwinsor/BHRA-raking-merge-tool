@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS['debug'] = 1;
+$GLOBALS['debug'] = 0;
 
 include_once "../common_functions/pickup_post_pickup_get.php";
 include_once "ClassDateTime.php";

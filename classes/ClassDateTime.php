@@ -127,10 +127,6 @@ class ClassDateTime
      */
     public static function dateFromSupersaasFormat($in)
     {
-        echo "<br>zona 443344";
-        var_dump($in);
-        echo "<br>zona 443344";
-
         list($date, $time) = explode(" ", $in);
         list($month, $day, $year) = explode("/", $date);
 
@@ -159,7 +155,7 @@ class ClassDateTime
     /* These methods are used only for printing, not storing                 */
     /*************************************************************************/
 
-    // given standard format date - return a pretty format
+    // given standard format date/time - return a pretty format date
     public static function prettyDate($in)
     {
         list($year, $month, $day) = explode("-", $in);
