@@ -55,7 +55,7 @@ pickupGetIfSet("filename", $getFilename);
     <?php
     // if a file has been chosen ...
     if ($getFilename) {
-        echo "<br>zona here1 44522<br>";
+
         // get rakers from .csv
         $controllerTableRakers1 = new ControllerTable($getFilename, "CSV", new ControllerRowVolunteerspotRaker());
         $controllerTableRakers1->csvRead();

@@ -101,7 +101,7 @@ include_once "aaaStandardIncludes.php";
     }
     if (count($getShowTeamsList) == 0) {
         $getShowTeamsAll = true;
-        $getShowTeamsList = ClassDateTime::allTimes();
+        $getShowTeamsList = ClassTeams::allTeams();
     } else {
         $getShowTeamsAll = false;
     }
@@ -222,7 +222,7 @@ include_once "aaaStandardIncludes.php";
     echo "\n<option value=ALL " . ($getShowAmPmsAll ? " selected" : "") . ">all am/pm</option>";
     foreach (ClassDateTime::allAmPm() as $amPm) {
         echo "\n<option value=" . $amPm .
-            ((($getShowAmPmsAll===false) && (array_search($amPm, $getShowAmPmsList)) !== false) ? " selected" : "") .
+            ((($getShowAmPmsAll === false) && (array_search($amPm, $getShowAmPmsList)) !== false) ? " selected" : "") .
             ">" . $amPm . "</option>";
     }
     echo "\n</select>";
@@ -232,7 +232,7 @@ include_once "aaaStandardIncludes.php";
     echo "\n<option value=ALL " . ($getShowTeamsAll ? " selected" : "") . ">all teams</option>";
     foreach (ClassTeams::allTeams() as $team) {
         echo "\n<option value=" . $team .
-            ((($getShowTeamsAll===false) && (array_search($team, $getShowTeamsList)) !== false) ? " selected" : "") .
+            ((($getShowTeamsAll === false) && (array_search($team, $getShowTeamsList)) !== false) ? " selected" : "") .
             ">" . ClassTeams::pretty($team) . "</option>";
     }
     echo "\n</select>";

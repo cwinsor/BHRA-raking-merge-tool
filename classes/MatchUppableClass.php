@@ -306,7 +306,8 @@ abstract class MatchUppableClass
     public
     function viewAsHtmlInABgivenRowList($rowNumbersAB, $msg, $button_delete)
     {
-        echo "\n <b>" . $msg . " </b > ";
+        echo " <caption><h3 > " . $msg . " </h3 ></caption > ";
+
         if (count($rowNumbersAB) == 0) {
             echo "<br > (none)<br ><br > ";
             return;
@@ -413,7 +414,7 @@ abstract class MatchUppableClass
     public
     function viewAsHtmlSingleTableGivenRowList($theTable, $rowNumbers, $msg, $button_add, $button_delete)
     {
-        echo "<b>" . $msg . " </b >";
+        echo " <caption><h3 > " . $msg . " </h3 ></caption > ";
 
         if (count($rowNumbers) == 0) {
             echo "<br> (none)<br><br> ";
