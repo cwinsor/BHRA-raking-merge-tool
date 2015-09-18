@@ -1,7 +1,3 @@
-<?php
-require_once("../my_error_handler.php");
-set_error_handler("my_error_handler");
-?>
 
 <?php
 
@@ -150,7 +146,7 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
         echo '<br>';
         echo '
 <!-- used to make table sort-able -->
-<script src="../content_mappable/sorttable.js"></script>
+<script src="../common_functions/sorttable.js"></script>
 ';
 
         echo '

@@ -2,17 +2,6 @@
 include_once "aaaStandardIncludes.php";
 ?>
 
-<?php
-require_once("../my_error_handler.php");
-set_error_handler("my_error_handler");
-?>
-
-
-<?php
-
-
-?>
-
 
 <!DOCTYPE HTML PUBLIC  "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
 <html>

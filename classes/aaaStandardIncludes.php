@@ -1,6 +1,9 @@
 <?php
 
-$GLOBALS['debug'] = 1;
+$GLOBALS['debug'] = 0;
+
+require_once("../common_functions/my_error_handler.php");
+set_error_handler("my_error_handler");
 
 include_once "../common_functions/pickup_post_pickup_get.php";
 include_once "ClassDateTime.php";
