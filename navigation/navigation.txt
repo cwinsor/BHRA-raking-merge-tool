@@ -1,5 +1,4 @@
 files:../classes/page_02_files.php
-upload:../classes/page_03_file_upload.php
 .:../classes/index.php
 raker avail:../classes/page_04_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php
 superv avail:../classes/page_05_match_uppable_volunteerspot_supervisors_csv_to_volunteerspot_supervisors_db.php

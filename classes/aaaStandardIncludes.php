@@ -27,4 +27,17 @@ include_once "ControllerRowRosterRaker.php";
 include_once "ControllerRowVolunteerspotRaker.php";
 include_once "ControllerRowAppointment.php";
 include_once "ControllerTable.php";
+
+
+if ($GLOBALS['debug']) {
+    echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
+    echo '<br>' . var_dump($_POST);
+    echo '<br>';
+
+    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
+    echo '<br>' . var_dump($_GET);
+    echo '<br>';
+}
+
+
 ?>
