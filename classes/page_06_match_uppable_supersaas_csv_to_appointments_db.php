@@ -4,6 +4,7 @@ include_once "aaaStandardIncludes.php";
 
 <?php
 pickupGetIfSet("filename", $getFilename);
+pickupGetIfSet("verbose", $getDisplayVerbose);
 ?>
 
 
@@ -35,24 +36,42 @@ pickupGetIfSet("filename", $getFilename);
 <div id="content">
 
     <h3>Customer Appointments</h3>
+
     <p>This page lets you get the latest customer appointments from a SuperSAAS file.</p>
 
-
     <?php
-    if ($GLOBALS['debug']) {
-        echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
-        echo '<br>' . var_dump($_POST);
-        echo '<br>';
 
-        echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
-        echo '<br>' . var_dump($_GET);
-        echo '<br>';
+    echo "\n<form method=get>";
+
+    /////////////////////////
+    // user to choose a file
+    echo "Choose file:";
+    $dirName = '../upload/SuperSAAS/';
+    $d = dir($dirName);
+    while (false !== ($entry = $d->read())) {
+        if ($entry != "." && $entry != "..") {
+            if ($getFilename == ($dirName . $entry)) {
+                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\" checked>" . $entry . "</label>";
+            } else {
+                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\">" . $entry . "</label>";
+            }
+        }
     }
-    ?>
+    $d->close();
+    echo "\n<br><input type=submit value=Submit>";
+
+    ///////////////////////////////////////////
+    // user option to set verbose (see all data fields)
+    echo "<br><br>Verbose?";
+    if ($getDisplayVerbose == "checked") {
+        echo "\n<br><input type=checkbox name=verbose value=checked checked>";
+    } else {
+        echo "\n<br><input type=checkbox name=verbose value=checked>";
+    }
+    echo "\n<br><input type=submit value=Submit>";
+    echo "\n</form >";
 
 
-    <?php
-    // if a file has been chosen ...
     if ($getFilename) {
         // get rakers from .csv
         $controllerTableAppointments1 = new ControllerTable($getFilename, "CSV", new ControllerRowAppointment());
@@ -75,24 +94,11 @@ pickupGetIfSet("filename", $getFilename);
 
 //        $matchUppableClass->viewAsHtmlBasicSummary();
 
-        $matchUppableClass->viewAsHtmlInAonly();
-        $matchUppableClass->viewAsHtmlInBonly();
-        $matchUppableClass->viewAsHtmlInABwithDataMismatch();
-        $matchUppableClass->viewAsHtmlInABwithDataMatch();
+        $matchUppableClass->viewAsHtmlInAonly($getDisplayVerbose);
+        $matchUppableClass->viewAsHtmlInBonly($getDisplayVerbose);
+        $matchUppableClass->viewAsHtmlInABwithDataMismatch($getDisplayVerbose);
+        $matchUppableClass->viewAsHtmlInABwithDataMatch($getDisplayVerbose);
 
-    } else {
-        echo "\n<form method=get>";
-
-        $dirName = '../upload/SuperSAAS/';
-        $d = dir($dirName);
-        while (false !== ($entry = $d->read())) {
-            if ($entry != "." && $entry != "..") {
-                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\">" . $entry . "</label>";
-            }
-        }
-        $d->close();
-        echo "\n<br><input type=submit name=submit value=Submit>";
-        echo "\n</form>";
     }
     ?>
 

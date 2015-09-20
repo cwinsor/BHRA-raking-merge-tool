@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -23,6 +22,17 @@ class ControllerRowVolunteerSpotRaker extends ControllerRow
             'email',
             'phone',
 
+            'assigned_day',
+            'assigned_start_time',
+            'assigned_team_number');
+    }
+
+    public function modelGetColumnsToDisplay()
+    {
+        return array(
+            'firstname',
+            'lastname',
+            'date',
             'assigned_day',
             'assigned_start_time',
             'assigned_team_number');

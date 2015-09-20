@@ -36,6 +36,17 @@ class ControllerRowAppointment extends ControllerRow
             'assigned_team_number');
     }
 
+    public function modelGetColumnsToDisplay()
+    {
+        return array(
+            'ApptDate',
+            'ApptStart',
+            'ApptEnd',
+            'CustName',
+            'assigned_team_number');
+    }
+
+
     public function modelGetIdFieldName()
     {
         return 'id_appt';

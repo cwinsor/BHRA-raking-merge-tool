@@ -4,6 +4,7 @@ include_once "aaaStandardIncludes.php";
 
 <?php
 pickupGetIfSet("filename", $getFilename);
+pickupGetIfSet("verbose", $getDisplayVerbose);
 ?>
 
 
@@ -34,27 +35,44 @@ pickupGetIfSet("filename", $getFilename);
 
 <div id="content">
 
-
     <h3>Raker Data From Roster</h3>
+
     <p>This page lets you pull in raker data from the team roster.</p>
+
     <p>The roster is used for information like age, gender, phone, etc.</p>
 
-
     <?php
-    // DEBUG ...
-    //    echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
-    //    echo '<br>' . var_dump($_POST);
-    //    echo '<br>';
-    //    ?>
-    <?php
-    //    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
-    //    echo '<br>' . var_dump($_GET);
-    //    echo '<br>';
-    //    ?>
 
+    echo "\n<form method=get>";
 
-    <?php
-    // if a file has been chosen ...
+    /////////////////////////
+    // user to choose a file
+    echo "Choose file:";
+    $dirName = '../upload/roster/';
+    $d = dir($dirName);
+    while (false !== ($entry = $d->read())) {
+        if ($entry != "." && $entry != "..") {
+            if ($getFilename == ($dirName . $entry)) {
+                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\" checked>" . $entry . "</label>";
+            } else {
+                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\">" . $entry . "</label>";
+            }
+        }
+    }
+    $d->close();
+    echo "\n<br><input type=submit value=Submit>";
+
+    ///////////////////////////////////////////
+    // user option to set verbose (see all data fields)
+    echo "<br><br>Verbose?";
+    if ($getDisplayVerbose == "checked") {
+        echo "\n<br><input type=checkbox name=verbose value=checked checked>";
+    } else {
+        echo "\n<br><input type=checkbox name=verbose value=checked>";
+    }
+    echo "\n<br><input type=submit value=Submit>";
+    echo "\n</form >";
+
     if ($getFilename) {
         // get rakers from .csv
         $controllerTableRakers1 = new ControllerTable($getFilename, "CSV", new ControllerRowRosterRaker());
@@ -77,28 +95,16 @@ pickupGetIfSet("filename", $getFilename);
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performMatching();
 
-     // DEBUG
+        // DEBUG
 //        echo "<br> here 3322165 <br";
 //       $matchUppableClass->viewAsHtmlBasicSummary();
 //        echo "<br> here 3322165 <br";
 
-        $matchUppableClass->viewAsHtmlInAonly();
-        $matchUppableClass->viewAsHtmlInBonly();
-        $matchUppableClass->viewAsHtmlInABwithDataMismatch();
-        $matchUppableClass->viewAsHtmlInABwithDataMatch();
+        $matchUppableClass->viewAsHtmlInAonly($getDisplayVerbose);
+        $matchUppableClass->viewAsHtmlInBonly($getDisplayVerbose);
+        $matchUppableClass->viewAsHtmlInABwithDataMismatch($getDisplayVerbose);
+        $matchUppableClass->viewAsHtmlInABwithDataMatch($getDisplayVerbose);
 
-    } else {
-        echo "\n<form method=get>";
-        $dirName = '../upload/roster/';
-        $d = dir($dirName);
-        while (false !== ($entry = $d->read())) {
-            if ($entry != "." && $entry != "..") {
-                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\">" . $entry . "</label>";
-            }
-        }
-        $d->close();
-        echo "\n<br><input type=submit name=submit value=Submit>";
-        echo "\n</form>";
     }
     ?>
 

@@ -8,6 +8,8 @@ abstract class ControllerRow implements InterfaceRowCsv, InterfaceRowDatabase, I
 
     abstract public function modelGetColumnsAll();
 
+    abstract public function modelGetColumnsToDisplay();
+
     abstract public function modelGetIdFieldName();
 
     public function modelGetIdFieldValue()

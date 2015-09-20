@@ -14,25 +14,15 @@
 // There are two pieces of infrastructure (interface and compare tool).
 // This file defines the interface.
 //
-// The interface requires a MatchUppable class to be able to
-//
-// rowIdList()
-//return a list of rowIds which constitute the list
-//
-// colIdListSlug()
-// return the list of column IDs that constitute the (to-be-compared) slug
-//
-// colIdListData()
-// return the list of column IDs that constitute the (to-be-compared) data elements
-//
-// getDataElement(rowId,colId)
-// return a single data element based on row, column
+// The interface establishes methods required of a class to claim itself MatchUppable.
 //
 
 interface MatchUppableInterface
 {
 
+    // give me an array of row numbers in the table
     public function rowNumbers();
 
+    // give me a means to get a row using row number and column identifier
     public function getDataElement($rowId,$colId);
 }

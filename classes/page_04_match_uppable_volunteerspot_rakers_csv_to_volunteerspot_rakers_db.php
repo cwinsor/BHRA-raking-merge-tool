@@ -4,6 +4,7 @@ include_once "aaaStandardIncludes.php";
 
 <?php
 pickupGetIfSet("filename", $getFilename);
+pickupGetIfSet("verbose", $getDisplayVerbose);
 ?>
 
 
@@ -34,26 +35,43 @@ pickupGetIfSet("filename", $getFilename);
 
 <div id="content">
 
-
     <h3>Raker Availability</h3>
+
     <p>This page lets you get the latest raker availability from a VolunteerSpot file.</p>
 
-
     <?php
-    // DEBUG ...
-    //    echo '<br>' . '--- PARAMETERS FROM POST ---' . '<br>';
-    //    echo '<br>' . var_dump($_POST);
-    //    echo '<br>';
-    //    ?>
-    <?php
-    //    echo '<br>' . '--- PARAMETERS FROM GET ---' . '<br>';
-    //    echo '<br>' . var_dump($_GET);
-    //    echo '<br>';
-    //    ?>
+
+    echo "\n<form method=get>";
+
+    /////////////////////////
+    // user to choose a file
+    echo "Choose file:";
+    $dirName = '../upload/VolunteerSpot/rakers/';
+    $d = dir($dirName);
+    while (false !== ($entry = $d->read())) {
+        if ($entry != "." && $entry != "..") {
+            if ($getFilename == ($dirName . $entry)) {
+                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\" checked>" . $entry . "</label>";
+            } else {
+                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\">" . $entry . "</label>";
+            }
+        }
+    }
+    $d->close();
+    echo "\n<br><input type=submit value=Submit>";
+
+    ///////////////////////////////////////////
+    // user option to set verbose (see all data fields)
+    echo "<br><br>Verbose?";
+    if ($getDisplayVerbose == "checked") {
+        echo "\n<br><input type=checkbox name=verbose value=checked checked>";
+    } else {
+        echo "\n<br><input type=checkbox name=verbose value=checked>";
+    }
+    echo "\n<br><input type=submit value=Submit>";
+    echo "\n</form >";
 
 
-    <?php
-    // if a file has been chosen ...
     if ($getFilename) {
 
         // get rakers from .csv
@@ -77,27 +95,14 @@ pickupGetIfSet("filename", $getFilename);
         $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performMatching();
 
-//        $matchUppableClass->viewAsHtmlBasicSummary();
+        //        $matchUppableClass->viewAsHtmlBasicSummary();
 
-        $matchUppableClass->viewAsHtmlInAonly();
-        $matchUppableClass->viewAsHtmlInBonly();
-        $matchUppableClass->viewAsHtmlInABwithDataMismatch();
-        $matchUppableClass->viewAsHtmlInABwithDataMatch();
-
-    } else {
-        echo "\n<form method=get>";
-
-        $dirName = '../upload/VolunteerSpot/rakers/';
-        $d = dir($dirName);
-        while (false !== ($entry = $d->read())) {
-            if ($entry != "." && $entry != "..") {
-                echo "\n <br><label> <input type=radio name=filename value=\"" . $dirName . $entry . "\">" . $entry . "</label>";
-            }
-        }
-        $d->close();
-        echo "\n<br><input type=submit name=submit value=Submit>";
-        echo "\n</form>";
+        $matchUppableClass->viewAsHtmlInAonly($getDisplayVerbose);
+        $matchUppableClass->viewAsHtmlInBonly($getDisplayVerbose);
+        $matchUppableClass->viewAsHtmlInABwithDataMismatch($getDisplayVerbose);
+        $matchUppableClass->viewAsHtmlInABwithDataMatch($getDisplayVerbose);
     }
+
     ?>
 
 </div>

@@ -22,9 +22,10 @@ class ClassDateTime
     public static function allDays()
     {
         return array(
-            "2015-7-4",
-            "2015-7-5",
-            "2015-7-6"
+            "2015-9-26",
+        "2015-9-27",
+            "2015-10-3",
+                "2015-10-4"
         );
     }
 

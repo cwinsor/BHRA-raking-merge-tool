@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -20,6 +19,13 @@ class ControllerRowRosterRaker extends ControllerRow
             'gender');
     }
 
+    public function modelGetColumnsToDisplay()
+    {
+        return array(
+            'firstname',
+            'lastname');
+    }
+
     public function modelGetIdFieldName()
     {
         return 'id';
@@ -33,9 +39,9 @@ class ControllerRowRosterRaker extends ControllerRow
         $this->fields = array();
 
         $this->fields['id'] = -1;
-        $this->fields['firstname'] = $rowAssociativeArray[2];
-        $this->fields['lastname'] = $rowAssociativeArray[3];
-        $this->fields['cellphone'] = $rowAssociativeArray[8];
+        $this->fields['firstname'] = $rowAssociativeArray[1];
+        $this->fields['lastname'] = $rowAssociativeArray[2];
+        $this->fields['cellphone'] = $rowAssociativeArray[6];
         $this->fields['gender'] = $rowAssociativeArray[4];
     }
 

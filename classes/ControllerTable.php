@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -7,11 +6,10 @@
 class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, InterfaceTableView, MatchUppableInterface
 {
 
+    protected $localTable;
     private $databaseTableOrFileName;
     private $databaseCommonName;
     private $itemToClone;
-
-    protected $localTable;
 
 
     ///////////////////////////////////////
@@ -214,6 +212,15 @@ th {
             return array();
         }
         return $aRow->modelGetColumnsAll();
+    }
+
+    public function modelGetColumnsToDisplay()
+    {
+        $aRow = reset($this->localTable);
+        if (!$aRow) {
+            return array();
+        }
+        return $aRow->modelGetColumnsToDisplay();
     }
 
     public function getDataElement($rowId, $colId)
