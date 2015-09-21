@@ -127,7 +127,8 @@ class ClassDateTime
         list($date, $time) = explode(" ", $in);
         list($month, $day, $year) = explode("/", $date);
 
-        return ($year . "-" . $month . "-" . $day);
+//        return ($year . "-" . $month . "-" . $day);
+        return ("2015-" . $month . "-" . $day);
     }
 
     /**
