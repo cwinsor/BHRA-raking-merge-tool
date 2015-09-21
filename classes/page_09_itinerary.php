@@ -39,8 +39,10 @@ include_once "aaaStandardIncludes.php";
 
     // handle the posts
     $postAssignRaker = "";
+    $postAssignSupervisor = "";
     $postAssignAppointment = "";
     $postUnassignRaker = "";
+    $postUnassignSupervisor = "";
     $postUnassignAppointment = "";
     foreach ($_POST as $postKey => $postVal) {
         list($firstTerm) = explode("_", $postKey);
@@ -49,6 +51,10 @@ include_once "aaaStandardIncludes.php";
         if (!is_null($firstTerm) && ($firstTerm == "assignRaker")) {
             $postAssignRaker = $postKey;
         }
+        // see if there is a post assigning a supervisor to a team
+        if (!is_null($firstTerm) && ($firstTerm == "assignSupervisor")) {
+            $postAssignSupervisor = $postKey;
+        }
         // see if there is a post assigning an appointment to a team
         if (!is_null($firstTerm) && ($firstTerm == "assignAppointment")) {
             $postAssignAppointment = $postKey;
@@ -56,6 +62,10 @@ include_once "aaaStandardIncludes.php";
         // see if there is a post assigning a raker to a team
         if (!is_null($firstTerm) && ($firstTerm == "unassignRaker")) {
             $postUnassignRaker = $postKey;
+        }
+        // see if there is a post assigning a supervisor to a team
+        if (!is_null($firstTerm) && ($firstTerm == "unassignSupervisor")) {
+            $postUnassignSupervisor = $postKey;
         }
         // see if there is a post assigning an appointment to a team
         if (!is_null($firstTerm) && ($firstTerm == "unassignAppointment")) {
@@ -168,6 +178,42 @@ include_once "aaaStandardIncludes.php";
     if ($GLOBALS['debug']) {
         $tableVolunteerRakers->viewAsHtmlTable();
     }
+
+
+    // get volunteer supervisors from database
+    $tableVolunteerSupervisors = new ControllerTable("volunteerspot_supervisors", "VOLUNTEER SUPERVISORS", new ControllerRowVolunteerSpotRaker());
+    $tableVolunteerSupervisors->databaseRead();
+    // handle posts
+    if ($postAssignSupervisor) {
+        // assignSupervisor_row_date_starttime_team
+        list($junk, $theRowNumber, $theDate, $theStartTime, $theTeamNumber) = explode("_", $postAssignSupervisor);
+        $row = $tableVolunteerSupervisors->modelGetRow($theRowNumber);
+        // remove row from database
+        $tableVolunteerSupervisors->databaseDeleteItem($row);
+        // update the local row copy with new assignment
+        $row->assign($theDate, $theStartTime, $theTeamNumber);
+        // write updated row to database
+        $tableVolunteerSupervisors->databaseAddItem($row);
+    }
+    if ($postUnassignSupervisor) {
+        list($junk, $theRowNumber) = explode("_", $postUnassignSupervisor);
+        $row = $tableVolunteerSupervisors->modelGetRow($theRowNumber);
+        // remove row from database
+        $tableVolunteerSupervisors->databaseDeleteItem($row);
+        // update the local row copy with new assignment
+        $row->unassign();
+        // write updated row to database
+        $tableVolunteerSupervisors->databaseAddItem($row);
+    }
+    // re-read
+    $tableVolunteerSupervisors->databaseRead();
+    if ($GLOBALS['debug']) {
+        $tableVolunteerSupervisors->viewAsHtmlTable();
+    }
+
+
+
+
 
     // get customer appointments from database
     $tableAppointments = new ControllerTable("appointments", "APPOINTMENTS", new ControllerRowAppointment());
@@ -330,15 +376,25 @@ include_once "aaaStandardIncludes.php";
                 echo "<th ></th ><th ></th ><th ></th ><th ></th ><th ></th ><th ></th ></tr > ";
 
 
-                // SUPERVISOR
-                //     echo "<br > SUPERVISORS...<br > ";
-                //        foreach ($supervisors as $supervisor) {} ...
-                // public function isAvailable($day, $startTime);
-                // public function isAssigned($day, $startTime);
-                // public function isAssignedTeam($day, $startTime, $teamNumber);
-                // public function assign($day, $startTime, $teamNumber);
-                // public function unAssign();
+                // SUPERVISORS
+                foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
+                    foreach ($tableVolunteerSupervisors->getTable() as $rowNumber => $volunteerSupervisor) {
+                        if ($volunteerSupervisor->isAssignedTeam($day, $startTime, $teamNumber)) {
+                            // confirm they are (still) available !
+                            echo "\n <tr>";
+                            if ($volunteerSupervisor->isAvailable($day, $startTime)) {
+                                echo " <td>SUPERVISOR </td > ";
+                            } else {
+                                echo "<td >SUPERVISOR NOT AVAILABLE </td > ";
+                            }
+                            echo "<td > " . $volunteerSupervisor->modelGetField('firstname') . " " . $volunteerSupervisor->modelGetField('lastname') . " </td > ";
+                            echo "\n <td></td > <td ></td > <td ></td > <td ></td > ";
 
+                            echo "<td ><input type = submit name = unassignSupervisor_" . $rowNumber . " value = unassign ></td > ";
+                            echo "</tr > ";
+                        }
+                    }
+                }
 
                 // RAKERS
                 foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
@@ -349,7 +405,7 @@ include_once "aaaStandardIncludes.php";
                             if ($volunteerRaker->isAvailable($day, $startTime)) {
                                 echo " <td>RAKER </td > ";
                             } else {
-                                echo "<td > RAKER NOT AVAILABLE </td > ";
+                                echo "<td >RAKER NOT AVAILABLE </td > ";
                             }
                             echo "<td > " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . " </td > ";
                             echo "\n <td></td > <td ></td > <td ></td > <td ></td > ";
@@ -391,7 +447,27 @@ include_once "aaaStandardIncludes.php";
             echo "\n <tr></tr > ";
 
 
+
             // SUPERVISORS
+            foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
+                foreach ($tableVolunteerSupervisors->getTable() as $rowNumber => $volunteerSupervisor) {
+                    // if need to assign
+                    if ($volunteerSupervisor->isAvailable($day, $startTime) && !$volunteerSupervisor->isAssigned($day, $startTime)) {
+                        echo "\n <tr>";
+                        echo " <td>SUPERVISOR </td > ";
+                        echo "<td > " . $volunteerSupervisor->modelGetField('firstname') . " " . $volunteerSupervisor->modelGetField('lastname') . " </td > ";
+                        echo "<td ></td > ";
+                        echo "<td ></td > ";
+                        echo "<td > ";
+                        foreach (ClassTeams::allTeams() as $team) {
+                            // assignSupervisor_row_date_starttime_team
+                            echo "<input type = submit name = assignSupervisor_" . $rowNumber . "_" . $day . "_" . $startTime . "_" . $team . " value = " . $team . " > ";
+                        }
+                        echo "</td > ";
+                        echo "</tr > ";
+                    }
+                }
+            }
 
 
             // RAKERS
