@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -22,10 +21,10 @@ class ClassDateTime
     public static function allDays()
     {
         return array(
-            "2015-9-26",
-        "2015-9-27",
-            "2015-10-3",
-                "2015-10-4"
+            "2015-11-7",
+            "2015-11-8",
+            "2015-11-14",
+            "2015-11-15"
         );
     }
 
@@ -118,7 +117,7 @@ class ClassDateTime
     /**
      * return standard format date given SuperSAAS format date/time
      * input:
-     *  11/9/2014 14:30
+     *  11/7/2015 2:00pm
      * output:
      *  2015-12-30
      */
@@ -134,15 +133,21 @@ class ClassDateTime
     /**
      * return standard format time given SuperSAAS format date/time
      * input:
-     *  11/9/2014 14:30
+     *  11/7/2015 2:00pm
      * output:
      *  13:30
      */
     public static function timeFromSupersaasFormat($in)
     {
         list($date, $time) = explode(" ", $in);
-        list($hour, $minute) = explode(":", $time);
 
+        // regular expression match...
+        preg_match("/^(\d+)(:)(\d+)((am)|(pm))$/", $time, $keywords);
+        $hour = $keywords[1];
+        $minute = $keywords[3];
+        if (($keywords[4] == "pm") && ($hour != 12)) {
+            $hour += 12;
+        }
         return ($hour . ":" . $minute);
     }
 

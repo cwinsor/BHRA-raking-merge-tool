@@ -27,7 +27,6 @@ class MatchUppableClassSupersaasCsvToAppointmentsDb extends MatchUppableClass
                 'CustStreet' => 'CustStreet',
                 'CustDescription' => 'CustDescription',
                 'CustNotes' => 'CustNotes',
-                'CustEmail' => 'CustEmail',
-                'ReservedBy' => 'ReservedBy'));
+                'CustEmail' => 'CustEmail'));
     }
 }

@@ -496,6 +496,12 @@ include_once "aaaStandardIncludes.php";
             foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
                 foreach ($tableAppointments->getTable() as $rowNumber => $appointment) {
                     // if need to assign
+
+                //    echo " <br >looking at appointment on $day with start time $startTime ...";
+                //    echo " isAvailable= " . ($appointment->isAvailable($day, $startTime) ? "1" : "0");
+                //    echo " isAssigned=" . ($appointment->isAssigned($day, $startTime) ? "1" : "0");
+                //    echo " <br > ";
+
                     if ($appointment->isAvailable($day, $startTime) && !$appointment->isAssigned($day, $startTime)) {
                         echo "\n <tr>";
                         echo " <td>CUSTOMER </td > ";

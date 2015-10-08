@@ -27,9 +27,6 @@ class ControllerRowAppointment extends ControllerRow
             'CustDescription',
             'CustNotes',
             'CustEmail',
-            'ReservedBy',
-            'DTme1',
-            'DTme2',
 
             'assigned_day',
             'assigned_start_time',
@@ -73,9 +70,6 @@ class ControllerRowAppointment extends ControllerRow
         $this->fields['CustDescription'] = $rowAssociativeArray[9];
         $this->fields['CustNotes'] = $rowAssociativeArray[10];
         $this->fields['CustEmail'] = $rowAssociativeArray[11];
-        $this->fields['ReservedBy'] = $rowAssociativeArray[12];
-        $this->fields['DTme1'] = $rowAssociativeArray[13];
-        $this->fields['DTme2'] = $rowAssociativeArray[14];
 
         $this->fields['assigned_day'] = "";
         $this->fields['assigned_start_time'] = "";
@@ -104,9 +98,6 @@ class ControllerRowAppointment extends ControllerRow
         $this->fields['CustDescription'] = $rowAssociativeArray['CustDescription'];
         $this->fields['CustNotes'] = $rowAssociativeArray['CustNotes'];
         $this->fields['CustEmail'] = $rowAssociativeArray['CustEmail'];
-        $this->fields['ReservedBy'] = $rowAssociativeArray['ReservedBy'];
-        $this->fields['DTme1'] = $rowAssociativeArray['DTme1'];
-        $this->fields['DTme2'] = $rowAssociativeArray['DTme2'];
 
         $this->fields['assigned_day'] = $rowAssociativeArray['assigned_day'];
         $this->fields['assigned_start_time'] = $rowAssociativeArray['assigned_start_time'];
@@ -132,9 +123,6 @@ class ControllerRowAppointment extends ControllerRow
         $array['CustDescription'] = $this->fields['CustDescription'];
         $array['CustNotes'] = $this->fields['CustNotes'];
         $array['CustEmail'] = $this->fields['CustEmail'];
-        $array['ReservedBy'] = $this->fields['ReservedBy'];
-        $array['DTme1'] = $this->fields['DTme1'];
-        $array['DTme2'] = $this->fields['DTme2'];
 
         $array['assigned_day'] = $this->fields['assigned_day'];
         $array['assigned_start_time'] = $this->fields['assigned_start_time'];
