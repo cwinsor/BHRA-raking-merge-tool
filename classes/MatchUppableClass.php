@@ -187,32 +187,40 @@ abstract class MatchUppableClass
             $this->deleteRowFromB($_POST["delete_row"]);
         }
 
-//        if (isset($_POST["delete_all"])) {
-//            xxxxxxxxxx
-//            $this->deleteRowFromB($_POST["delete_row"]);
-//        }
-//        if (isset($_POST["add_all"])) {
-//            $this->deleteRowFromB($_POST["delete_row"]);
-//        }
-
         if (isset($_POST["add_row"])) {
             $this->addRowUsingA($_POST["add_row"]);
         }
+
+        if (isset($_POST["del_all_from_db"])) {
+            echo "<br>here1<br>";
+            foreach ($this->b->getTable() as $row) {
+                $this->b->databaseDeleteItem($row);
+            }
+        }
+
+        if (isset($_POST["add_all_from_csv"])) {
+            foreach ($this->a->getTable() as $row) {
+                $this->b->databaseAddItem($row);
+            }
+        }
     }
 
-    public function deleteRowFromB($rowNum)
+    public
+    function deleteRowFromB($rowNum)
     {
         $row = $this->b->modelGetRow($rowNum);
         $this->b->databaseDeleteItem($row);
     }
 
-    public function addRowUsingA($rowNum)
+    public
+    function addRowUsingA($rowNum)
     {
         $row = $this->a->modelGetRow($rowNum);
         $this->b->databaseAddItem($row);
     }
 
-    public function viewAsHtmlBasicSummary()
+    public
+    function viewAsHtmlBasicSummary()
     {
 
         echo "\n <br>the following are only in A";
@@ -243,7 +251,8 @@ abstract class MatchUppableClass
      * Get html view of table items that are in A only
      * Present options assuming this is a CSV file
      */
-    public function viewAsHtmlInAonly($display_verbose)
+    public
+    function viewAsHtmlInAonly($display_verbose)
     {
         $this->viewAsHtmlSingleTableGivenRowList(
             $this->a,
@@ -256,7 +265,8 @@ abstract class MatchUppableClass
     /**
      * Get html view of table items (common function)
      */
-    public function viewAsHtmlSingleTableGivenRowList($theTable, $rowNumbers, $msg, $button_add, $button_delete, $display_verbose)
+    public
+    function viewAsHtmlSingleTableGivenRowList($theTable, $rowNumbers, $msg, $button_add, $button_delete, $display_verbose)
     {
         echo " <caption><h3 > " . $msg . " </h3 ></caption > ";
 
@@ -348,7 +358,8 @@ abstract class MatchUppableClass
      * Get html view of table items that are in B only
      * Present options assuming this is a DATABASE
      */
-    public function viewAsHtmlInBonly($display_verbose)
+    public
+    function viewAsHtmlInBonly($display_verbose)
     {
         $this->viewAsHtmlSingleTableGivenRowList(
             $this->b,
@@ -361,7 +372,8 @@ abstract class MatchUppableClass
     /**
      * Get html view of the matchups A<->B where data does NOT match
      */
-    public function viewAsHtmlInABwithDataMismatch($display_verbose)
+    public
+    function viewAsHtmlInABwithDataMismatch($display_verbose)
     {
         $this->viewAsHtmlInABgivenRowList($this->inAandBnoDataMatch,
             "The following are in both " .
@@ -376,7 +388,8 @@ abstract class MatchUppableClass
     /**
      * Get html view of matchups A<->B (common function)
      */
-    public function viewAsHtmlInABgivenRowList($rowNumbersAB, $msg, $button_delete, $skip_display_a, $display_verbose)
+    public
+    function viewAsHtmlInABgivenRowList($rowNumbersAB, $msg, $button_delete, $skip_display_a, $display_verbose)
     {
         echo " <caption><h3 > " . $msg . " </h3 ></caption > ";
 
@@ -464,7 +477,8 @@ abstract class MatchUppableClass
     /**
      * Get html view of the matchups A<->B where data DOES match
      */
-    public function viewAsHtmlInABwithDataMatch($display_verbose)
+    public
+    function viewAsHtmlInABwithDataMatch($display_verbose)
     {
         $this->viewAsHtmlInABgivenRowList($this->inAandBwithDataMatch,
             "The following are in both " .

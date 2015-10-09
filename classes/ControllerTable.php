@@ -153,7 +153,7 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
     border-collapse: collapse;
     width: 100%;
     border: 1px solid black;
-    font-size: 0.9em;
+    font-size: 0.6em;
     word-wrap: break-word;
 }
 td {

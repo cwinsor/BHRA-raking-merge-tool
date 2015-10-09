@@ -340,7 +340,7 @@ include_once "aaaStandardIncludes.php";
     // 8:30-9:00     Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
     // 9:30-12:00    Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
 
-    echo "<br ><br > ";
+//    echo "<br ><br > ";
     foreach ($getShowDaysList as $day) {
         foreach ($getShowAmPmsList as $amOrPm) {
 
@@ -352,7 +352,7 @@ include_once "aaaStandardIncludes.php";
              border-collapse: collapse;
                width: 100%;
               border: 1px solid black;
-              font-size: 0.9em;
+              font-size: 0.7em;
               word-wrap: break-word;
             }
             td {
@@ -363,7 +363,7 @@ include_once "aaaStandardIncludes.php";
             }
             </style>';
 
-            echo '<br>';
+     //       echo '<br>';
             echo '<table class=sortable>';
 
             echo " <caption><h3 > " . ClassDateTime::prettyDate($day) . " " . $amOrPm . " </h3 ></caption > ";

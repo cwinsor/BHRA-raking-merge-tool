@@ -62,13 +62,22 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
 
     ///////////////////////////////////////////
     // user option to set verbose (see all data fields)
-    echo "<br><br>Verbose?";
+    echo "<br>";
     if ($getDisplayVerbose == "checked") {
-        echo "\n<br><input type=checkbox name=verbose value=checked checked>";
+        echo "<br><input type=checkbox name=verbose value=checked checked>";
     } else {
-        echo "\n<br><input type=checkbox name=verbose value=checked>";
+        echo "<br><input type=checkbox name=verbose value=checked>";
     }
-    echo "\n<br><input type=submit value=Submit>";
+    echo "Verbose";
+    echo "<br><input type=submit value=Submit>";
+    echo "\n</form >";
+
+    echo "\n<form method=post>";
+    echo "<br><input type=checkbox name=del_all_from_db>";
+    echo "Delete everything in database (NOTE - will result in loss of itinerary and team assignments)";
+    echo "<br><input type=checkbox name=add_all_from_csv>";
+    echo "Add everything from .csv file";
+    echo "<br><input type=submit value=Submit>";
     echo "\n</form >";
 
 
@@ -100,6 +109,7 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
         $matchUppableClass->viewAsHtmlInABwithDataMatch($getDisplayVerbose);
 
     }
+
     ?>
 
 </div>
