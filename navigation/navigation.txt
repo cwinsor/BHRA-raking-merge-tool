@@ -7,4 +7,5 @@ customer appt:../classes/page_06_match_uppable_supersaas_csv_to_appointments_db.
 roster(rowers):../classes/page_07_match_uppable_roster_csv_to_rakers_db.php
 roster(parents):../classes/page_08_match_uppable_roster_csv_to_supervisors_db.php
 .:../classes/index.php
-itinerary:../classes/page_09_itinerary.php
+make_schedule:../classes/page_10_publish.php
+view_schedule:../classes/page_11_show_published.php

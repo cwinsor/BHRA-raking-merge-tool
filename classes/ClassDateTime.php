@@ -169,6 +169,16 @@ class ClassDateTime
         return $myDateTime->format('l, d-M-Y');
     }
 
+    // given standard format date/time - return a pretty format time
+    public static function prettyTime($in)
+    {
+        list($hour24, $minute) = explode(":", $in);
+
+        if ($hour24 > 12) {
+            return ($hour24 - 12) . ":" . $minute;
+        }
+        return $hour24 . ":" . $minute;
+    }
 }
     
    

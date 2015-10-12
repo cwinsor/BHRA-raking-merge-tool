@@ -117,8 +117,8 @@ include_once "aaaStandardIncludes.php";
     }
 
     // if the user requested to create a html file
-    $getCreateHtmlFile = "";
-    pickupGetIfSet("publish", $getCreateHtmlFile);
+    $getPublish = "";
+    pickupGetIfSet("publish", $getPublish);
 
 
     if ($GLOBALS['debug']) {
@@ -287,12 +287,46 @@ include_once "aaaStandardIncludes.php";
 
     echo "\n<br> <input type=submit name=submit value=submit>";
     echo "\n<br>";
-    echo "\n<br> <input type=submit name=publish value=publish>";
-    echo "\n</form > ";
 
+
+    ///////////////////////////////////////////
+    // user option to write out a .html file
+    echo "<br>";
+    if ($getPublish == "checked") {
+        echo "<br><input type=checkbox name=publish value=checked checked>";
+    } else {
+        echo "<br><input type=checkbox name=publish value=checked>";
+    }
+    echo "publish_as_html_file";
+
+
+    echo "\n</form > ";
 
     // the order for final printout is  day / teamNumber / amPm
     // the order for task assignment is day / amPm / teamNumber
+
+
+    /***************************************************/
+    /* THE FOLLOWING IS PLANNING FORMAT                */
+    /* THIS SHOWS AM TEAMS TOGETHER                    */
+    /* THIS IS DONE TO MAKE PLANNING EASY */
+    /***************************************************/
+    //
+    // Saturday 7/4/2015 - TEAM_1 - AM
+    //                                   cell          home
+    // Supervisor    John White     978-621-2724    123-456-7890
+    // Raker         Baker White    978-621-2724    123-456-7890
+    // Raker         Jill Watkins   978-621-2724    123-456-7890
+    // 8:30-9:00     Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+    // 9:30-12:00    Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+
+    // Saturday 7/4/2015 - TEAM_2 - AM
+    //                                   cell          home
+    // Supervisor    John White     978-621-2724    123-456-7890
+    // Raker         Baker White    978-621-2724    123-456-7890
+    // Raker         Jill Watkins   978-621-2724    123-456-7890
+    // 8:30-9:00     Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
+    // 9:30-12:00    Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
 
 
     /***************************************************/
@@ -310,28 +344,6 @@ include_once "aaaStandardIncludes.php";
     // 9:30-12:00    Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
 
     // Saturday 7/4/2015 - TEAM_1 - PM
-    //                                   cell          home
-    // Supervisor    John White     978-621-2724    123-456-7890
-    // Raker         Baker White    978-621-2724    123-456-7890
-    // Raker         Jill Watkins   978-621-2724    123-456-7890
-    // 8:30-9:00     Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
-    // 9:30-12:00    Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
-
-    /***************************************************/
-    /* THE FOLLOWING IS PLANNING FORMAT                */
-    /* THIS SHOWS AM TEAMS TOGETHER                    */
-    /* THIS IS DONE TO MAKE PLANNING EASY */
-    /***************************************************/
-    //
-    // Saturday 7/4/2015 - TEAM_1 - AM
-    //                                   cell          home
-    // Supervisor    John White     978-621-2724    123-456-7890
-    // Raker         Baker White    978-621-2724    123-456-7890
-    // Raker         Jill Watkins   978-621-2724    123-456-7890
-    // 8:30-9:00     Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
-    // 9:30-12:00    Customer       Sonia Chernova  22 Fifers Lane      Boxborough   978-621-2724   Please do my back yard
-
-    // Saturday 7/4/2015 - TEAM_2 - AM
     //                                   cell          home
     // Supervisor    John White     978-621-2724    123-456-7890
     // Raker         Baker White    978-621-2724    123-456-7890
@@ -431,7 +443,7 @@ include_once "aaaStandardIncludes.php";
                                 echo "<td > CUSTOMER NOT AVAILABLE </td > ";
                             }
                             echo "<td > " . $appointment->modelGetField('CustName') . " " . " </td > ";
-                            echo "<td > " . $appointment->modelGetField('ApptStart') . " to " . $appointment->modelGetField('ApptEnd') . " </td > ";
+                            echo "<td > " . ClassDateTime::prettyTime($appointment->modelGetField('ApptStart')) . " to " . ClassDateTime::prettyTime($appointment->modelGetField('ApptEnd')) . " </td > ";
                             echo "\n <td></td > <td ></td > <td ></td > ";
                             echo "<td ><input type = submit name = unassignAppointment_" . $rowNumber . " value = unassign ></td > ";
                             echo "</tr > ";
@@ -509,7 +521,7 @@ include_once "aaaStandardIncludes.php";
                         echo "\n <tr>";
                         echo " <td>CUSTOMER </td > ";
                         echo "<td > " . $appointment->modelGetField('CustName') . "</td > ";
-                        echo "<td > " . $appointment->modelGetField('ApptStart') . " to " . $appointment->modelGetField('ApptEnd') . " </td > ";
+                        echo "<td > " . ClassDateTime::prettyTime($appointment->modelGetField('ApptStart')) . " to " . ClassDateTime::prettyTime($appointment->modelGetField('ApptEnd')) . " </td > ";
                         echo "<td ></td > ";
                         echo "<td > ";
                         foreach (ClassTeams::allTeams() as $team) {
@@ -541,43 +553,35 @@ include_once "aaaStandardIncludes.php";
     /***************************************************/
     /***************************************************/
 
-    if ($getCreateHtmlFile) {
+    if ($getPublish) {
         $myfile = fopen("../download/temp.html", "w");
 
-        fwrite($myfile, '<!DOCTYPE html>');
-        fwrite($myfile, '<html>');
-        fwrite($myfile, '<head>');
-        fwrite($myfile, '<title>Page Title</title>');
-        fwrite($myfile, '</head>');
-        fwrite($myfile, '<body>');
-        fwrite($myfile, '<h1>Leaf Raking Schedule</h1>');
-        fwrite($myfile, '<p>(published ' . date('F jS h:i A') . ')</p>');
-//        echo date('l jS \of F Y h:i:s A');
-
-        fwrite($myfile, '<table style="width:100%">');
-//        fwrite($myfile, '<tr>');
-//        fwrite($myfile, '<td>Jill</td>');
-//        fwrite($myfile, '<td>Smith</td>');
-//        fwrite($myfile, '<td>50</td>');
-//        fwrite($myfile, '</tr>');
-//        fwrite($myfile, '<tr>');
-//        fwrite($myfile, '<td>Eve</td>');
-//        fwrite($myfile, '<td>Jackson</td>');
-//        fwrite($myfile, '<td>94</td>');
-//        fwrite($myfile, '</tr>');
-//        fwrite($myfile, '</table>');
+        fwrite($myfile, "\n ");
+        fwrite($myfile, "\n <!DOCTYPE html>");
+        fwrite($myfile, "\n <html>");
+        fwrite($myfile, "\n <head>");
+        fwrite($myfile, "\n <title>Page Title</title>");
+        fwrite($myfile, "\n </head>");
+        fwrite($myfile, "\n <body>");
+        fwrite($myfile, "\n <br><small>(version: " . date("m_d_h_i") . ")</small></br>");
+        fwrite($myfile, "\n <h2>Leaf Raking Schedule</h2>");
 
 
         foreach ($getShowDaysList as $day) {
-            foreach ($getShowAmPmsList as $amOrPm) {
-                fwrite($myfile, "\n<caption><h3 > " . ClassDateTime::prettyDate($day) . " " . $amOrPm . " </h3 ></caption > ");
-                fwrite($myfile, "\n <tbody>");
-                // common header
-                fwrite($myfile, "\n <tr><th ></th ><th ></th ><th > cell</th ><th > home</th ><th ></th ><th ></th ><th ></th ></tr > ");
-                foreach ($getShowTeamsList as $teamNumber) {
+            foreach ($getShowTeamsList as $teamNumber) {
+                fwrite($myfile, "<table style=width:100% border=1 >");
+                //               fwrite($myfile, "<table style=width:100% border=0 >");
+                foreach ($getShowAmPmsList as $amOrPm) {
+
                     // team-specific header...
-                    fwrite($myfile, "\n <tr><th > " . ClassTeams::pretty($teamNumber) . "</th > ");
-                    fwrite($myfile, "<th ></th ><th ></th ><th ></th ><th ></th ><th ></th ><th ></th ></tr > ");
+                    fwrite($myfile, "\n <tr>");
+                    fwrite($myfile, "\n <td ><b> " . ClassDateTime::prettyDate($day) . "</b></td > ");
+                    fwrite($myfile, "\n <td ><b> " . ClassTeams::pretty($teamNumber) . ' "' . $amOrPm . '"' . "</b></td > ");
+                    fwrite($myfile, "\n <td></td >");
+                    fwrite($myfile, "\n <td></td >");
+                    fwrite($myfile, "\n <td></td >");
+                    fwrite($myfile, "\n <td></td >");
+                    fwrite($myfile, "\n </tr >");
 
                     // SUPERVISORS
                     foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
@@ -617,18 +621,18 @@ include_once "aaaStandardIncludes.php";
                             if ($appointment->isAssignedTeam($day, $startTime, $teamNumber)) {
                                 fwrite($myfile, "\n<tr>");
                                 fwrite($myfile, "\n<td > CUSTOMER</td > ");
-                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustName') . " " . " </td > ");
-                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('ApptStart') . " to " . $appointment->modelGetField('ApptEnd') . " </td > ");
-                                fwrite($myfile, "\n<td></td >");
-                                fwrite($myfile, "\n<td></td >");
-                                fwrite($myfile, "\n<td></td >");
+                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustName') . " </td > ");
+                                fwrite($myfile, "\n<td > " . ClassDateTime::prettyTime($appointment->modelGetField('ApptStart')) . " to " . ClassDateTime::prettyTime($appointment->modelGetField('ApptEnd')) . " </td > ");
+                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustStreet') . "</td >");
+                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustPhone') . " " . $appointment->modelGetField('CustDescription') . "</td >");
+                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustNotes') . "</td >");
                                 fwrite($myfile, "\n</tr > ");
                             }
                         }
                     }
 
                     fwrite($myfile, "\n <tr>");
-                    fwrite($myfile, "\n<td > ------------</td > ");
+                    fwrite($myfile, "\n<td>" . "------" . "</td >");
                     fwrite($myfile, "\n<td></td >");
                     fwrite($myfile, "\n<td></td >");
                     fwrite($myfile, "\n<td></td >");
@@ -637,11 +641,14 @@ include_once "aaaStandardIncludes.php";
                     fwrite($myfile, "\n</tr > ");
                 }
                 fwrite($myfile, "\n </table > ");
-                fwrite($myfile, '</body>');
-                fwrite($myfile, '</html>');
-                fclose($myfile);
+                fwrite($myfile, "\n<br>");
             }
         }
+        fwrite($myfile, '</body>');
+        fwrite($myfile, '</html>');
+        fwrite($myfile, "\n ");
+        fwrite($myfile, "\n ");
+        fclose($myfile);
     }
     ?>
 

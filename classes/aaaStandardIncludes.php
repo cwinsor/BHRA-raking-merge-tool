@@ -1,6 +1,7 @@
 <?php
 
 $GLOBALS['debug'] = 0;
+date_default_timezone_set('America/New_York');
 
 require_once("../common_functions/my_error_handler.php");
 set_error_handler("my_error_handler");
