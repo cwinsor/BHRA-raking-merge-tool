@@ -560,7 +560,7 @@ include_once "aaaStandardIncludes.php";
         fwrite($myfile, "\n <!DOCTYPE html>");
         fwrite($myfile, "\n <html>");
         fwrite($myfile, "\n <head>");
-        fwrite($myfile, "\n <title>Page Title</title>");
+        fwrite($myfile, "\n <title>BHRA Leaf Raking</title>");
         fwrite($myfile, "\n </head>");
         fwrite($myfile, "\n <body>");
         fwrite($myfile, "\n <br><small>(version: " . date("m_d_h_i") . ")</small></br>");
@@ -579,8 +579,6 @@ include_once "aaaStandardIncludes.php";
                     fwrite($myfile, "\n <td ><b> " . ClassTeams::pretty($teamNumber) . ' "' . $amOrPm . '"' . "</b></td > ");
                     fwrite($myfile, "\n <td></td >");
                     fwrite($myfile, "\n <td></td >");
-                    fwrite($myfile, "\n <td></td >");
-                    fwrite($myfile, "\n <td></td >");
                     fwrite($myfile, "\n </tr >");
 
                     // SUPERVISORS
@@ -590,9 +588,7 @@ include_once "aaaStandardIncludes.php";
                                 fwrite($myfile, "\n<tr>");
                                 fwrite($myfile, "\n<td>SUPERVISOR </td > ");
                                 fwrite($myfile, "\n<td > " . $volunteerSupervisor->modelGetField('firstname') . " " . $volunteerSupervisor->modelGetField('lastname') . " </td > ");
-                                fwrite($myfile, "\n<td></td >");
-                                fwrite($myfile, "\n<td></td >");
-                                fwrite($myfile, "\n<td></td >");
+                                fwrite($myfile, "\n<td > " . $volunteerSupervisor->modelGetField('phone') . "</td >");
                                 fwrite($myfile, "\n<td></td >");
                                 fwrite($myfile, "\n</tr >");
                             }
@@ -606,9 +602,7 @@ include_once "aaaStandardIncludes.php";
                                 fwrite($myfile, "\n<tr>");
                                 fwrite($myfile, "\n<td>RAKER </td > ");
                                 fwrite($myfile, "\n<td > " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . " </td > ");
-                                fwrite($myfile, "\n<td></td >");
-                                fwrite($myfile, "\n<td></td >");
-                                fwrite($myfile, "\n<td></td >");
+                                fwrite($myfile, "\n<td > " . $volunteerRaker->modelGetField('phone') . "</td >");
                                 fwrite($myfile, "\n<td></td >");
                                 fwrite($myfile, "\n</tr >");
                             }
@@ -621,20 +615,18 @@ include_once "aaaStandardIncludes.php";
                             if ($appointment->isAssignedTeam($day, $startTime, $teamNumber)) {
                                 fwrite($myfile, "\n<tr>");
                                 fwrite($myfile, "\n<td > CUSTOMER</td > ");
-                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustName') . " </td > ");
                                 fwrite($myfile, "\n<td > " . ClassDateTime::prettyTime($appointment->modelGetField('ApptStart')) . " to " . ClassDateTime::prettyTime($appointment->modelGetField('ApptEnd')) . " </td > ");
-                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustStreet') . "</td >");
-                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustPhone') . " " . $appointment->modelGetField('CustDescription') . "</td >");
-                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustNotes') . "</td >");
+                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustName') . "<br>");
+                                fwrite($myfile, $appointment->modelGetField('CustStreet') . "<br>");
+                                fwrite($myfile, $appointment->modelGetField('CustPhone') . "</td >");
+                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustDescription') . " " . $appointment->modelGetField('CustNotes') . "</td >");
                                 fwrite($myfile, "\n</tr > ");
                             }
                         }
                     }
 
                     fwrite($myfile, "\n <tr>");
-                    fwrite($myfile, "\n<td>" . "------" . "</td >");
-                    fwrite($myfile, "\n<td></td >");
-                    fwrite($myfile, "\n<td></td >");
+                    fwrite($myfile, "\n<td>" . "___________________" . "</td >");
                     fwrite($myfile, "\n<td></td >");
                     fwrite($myfile, "\n<td></td >");
                     fwrite($myfile, "\n<td></td >");
