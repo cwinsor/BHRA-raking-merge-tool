@@ -78,27 +78,38 @@ class ClassDateTime
     /* These are used when reading in .csv files                           */
     /***********************************************************************/
 
-    /**
-     * return standard format date given VolunteerSpot format date
-     * input:
-     * 7/20/2015
-     * output:
-     * 2015-12-30
-     */
+
     public static function dateFromVolunteerspotFormat($inDate)
     {
+        /**
+         * return standard format date given VolunteerSpot format date
+         * input:
+         *  2015-11-07
+         * output:
+         * 2015-12-30
+         */
+        return $inDate;
+
+        /*
+        * input:
+        * 7/20/2015
+        * output:
+        * 2015-12-30
         $temp = explode("/", $inDate);
         if (count($temp) != 3) {
             throw new Exception('in --> dateFromVolunteerspotFormat');
         }
         list($month, $day, $year) = explode("/", $inDate);
         return ($year . "-" . $month . "-" . $day);
+        */
+
+
     }
 
     /**
      * return standard format time given VolunteerSpot format time
      * input:
-     *   8:00 AM
+     *   8:00 AM   (or "am")
      *  12:30 PM
      *   1:30 PM
      * output:
@@ -106,12 +117,14 @@ class ClassDateTime
      */
     public static function timeFromVolunteerspotFormat($inTime)
     {
+
         list($hr_min, $am_pm) = explode(" ", $inTime);
         list($hour, $minute) = explode(":", $hr_min);
-        if (($am_pm == "PM") && ($hour != 12)) {
+        if ((($am_pm == "PM") || ($am_pm == "pm")) && ($hour != 12)) {
             $hour += 12;
         }
         return ($hour . ":" . $minute);
+
     }
 
     /**

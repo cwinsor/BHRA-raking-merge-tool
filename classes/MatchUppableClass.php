@@ -51,7 +51,7 @@ abstract class MatchUppableClass
         /////////////////
         // debug...
         if ($GLOBALS['debug']) {
-            echo "<br>--- debug --- in MatchUppableClass - performMatching ---<br>";
+            echo "<br>--- debug --- in MatchUppableClass - entering performMatching ---<br>";
         }
 
         $nameslugMapAB = $this->getNameslugMapAB();
@@ -66,13 +66,12 @@ abstract class MatchUppableClass
         }
 
         // generate array   rowNumber->nameslug
+
         $nameslugArrayA = $this->generateSlugArray($this->a, array_keys($nameslugMapAB));
         $nameslugArrayB = $this->generateSlugArray($this->b, array_values($nameslugMapAB));
-
         // generate array   rowNumber->nameslug
         $dataslugArrayA = $this->generateSlugArray($this->a, array_keys($dataslugMapAB));
         $dataslugArrayB = $this->generateSlugArray($this->b, array_values($dataslugMapAB));
-
 
         /////////////////
         // debug...
@@ -148,7 +147,11 @@ abstract class MatchUppableClass
             echo "\n<br>";
         }
 
-
+        /////////////////
+        // debug...
+        if ($GLOBALS['debug']) {
+            echo "<br>--- debug --- in MatchUppableClass - leaving performMatching ---<br>";
+        }
     }
 
     abstract public function getNameslugMapAB();

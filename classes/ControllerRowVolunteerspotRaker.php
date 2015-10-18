@@ -52,14 +52,14 @@ class ControllerRowVolunteerSpotRaker extends ControllerRow
             $this->fields = array();
 
             $this->fields['id'] = -1;
-            $this->fields['task'] = $rowAssociativeArray[1];
-            $this->fields['date'] = ClassDateTime::dateFromVolunteerspotFormat($rowAssociativeArray[0]);
-            $this->fields['start_time'] = ClassDateTime::timeFromVolunteerspotFormat($rowAssociativeArray[4]);
-            $this->fields['end_time'] = ClassDateTime::timeFromVolunteerspotFormat($rowAssociativeArray[5]);
-            $this->fields['firstname'] = $rowAssociativeArray[7];
-            $this->fields['lastname'] = $rowAssociativeArray[8];
-            $this->fields['email'] = $rowAssociativeArray[12];
-            $this->fields['phone'] = $rowAssociativeArray[13];
+            $this->fields['task'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 1);
+            $this->fields['date'] = ClassDateTime::dateFromVolunteerspotFormat($this->getFromArrayOrReturnX($rowAssociativeArray, 0));
+            $this->fields['start_time'] = ClassDateTime::timeFromVolunteerspotFormat($this->getFromArrayOrReturnX($rowAssociativeArray, 4));
+            $this->fields['end_time'] = ClassDateTime::timeFromVolunteerspotFormat($this->getFromArrayOrReturnX($rowAssociativeArray, 5));
+            $this->fields['firstname'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 7);
+            $this->fields['lastname'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 8);
+            $this->fields['email'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 12);
+            $this->fields['phone'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 13);
 
             $this->fields['assigned_day'] = "";
             $this->fields['assigned_start_time'] = "";

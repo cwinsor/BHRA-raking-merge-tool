@@ -1,10 +1,10 @@
-
 <?php
 include_once "aaaStandardIncludes.php";
 ?>
 
 <?php
 pickupGetIfSet("filename", $getFilename);
+pickupGetIfSet("skipFirstLine", $skipFirstLine);
 pickupGetIfSet("verbose", $getDisplayVerbose);
 ?>
 
@@ -37,6 +37,7 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
 <div id="content">
 
     <h3>Supervisor Availability</h3>
+
     <p>This page lets you get the latest supervisor availability from a VolunteerSpot file.</p>
 
     <?php
@@ -59,6 +60,16 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
     }
     $d->close();
     echo "\n<br><input type=submit value=Submit>";
+
+    ///////////////////////////////////////////
+    // user option to skip first line of .csv file (frequently a header line)
+    echo "<br>";
+    if ($skipFirstLine == "checked") {
+        echo "<br><input type=checkbox name=skipFirstLine value=checked checked>";
+    } else {
+        echo "<br><input type=checkbox name=skipFirstLine value=checked>";
+    }
+    echo "Skip first line (header)";
 
     ///////////////////////////////////////////
     // user option to set verbose (see all data fields)
@@ -85,7 +96,7 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
 
         // get rakers from .csv
         $controllerTableSupervisors1 = new ControllerTable($getFilename, "CSV", new ControllerRowVolunteerspotRaker());
-        $controllerTableSupervisors1->csvRead();
+        $controllerTableSupervisors1->csvRead($skipFirstLine);
         //  $controllerTableRakers1->viewAsHtmlTable();
 
         // get rakers from database

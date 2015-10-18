@@ -9,6 +9,6 @@ interface InterfaceTableCsv
      * @param $filename
      * @return mixed
      */
-    public function csvRead();
+    public function csvRead($skipFirstLine);
 
 }

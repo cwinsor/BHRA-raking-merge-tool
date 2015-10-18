@@ -112,7 +112,7 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
     //////////////////////////////////////////
     // METHODS REQUIRED BY THE CSV INTERFACE
 
-    public function csvRead()
+    public function csvRead($skipFirstLine)
     {
         $this->localTable = array();
 
@@ -127,9 +127,13 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
         fclose($blah);
 
         foreach ($csvAsArray as $row) {
-            $rowEntity = clone $this->itemToClone;
-            $rowEntity->populateFromAssociativeArrayCsvFile($row);
-            array_push($this->localTable, $rowEntity);
+            if ($skipFirstLine) {
+                $skipFirstLine = 0;
+            } else {
+                $rowEntity = clone $this->itemToClone;
+                $rowEntity->populateFromAssociativeArrayCsvFile($row);
+                array_push($this->localTable, $rowEntity);
+            }
         }
     }
 

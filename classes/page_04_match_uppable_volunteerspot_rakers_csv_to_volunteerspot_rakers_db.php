@@ -4,6 +4,7 @@ include_once "aaaStandardIncludes.php";
 
 <?php
 pickupGetIfSet("filename", $getFilename);
+pickupGetIfSet("skipFirstLine", $skipFirstLine);
 pickupGetIfSet("verbose", $getDisplayVerbose);
 ?>
 
@@ -61,6 +62,17 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
     echo "\n<br><input type=submit value=Submit>";
 
     ///////////////////////////////////////////
+    // user option to skip first line of .csv file (frequently a header line)
+    echo "<br>";
+    if ($skipFirstLine == "checked") {
+        echo "<br><input type=checkbox name=skipFirstLine value=checked checked>";
+    } else {
+        echo "<br><input type=checkbox name=skipFirstLine value=checked>";
+    }
+    echo "Skip first line (header)";
+
+
+    ///////////////////////////////////////////
     // user option to set verbose (see all data fields)
     echo "<br>";
     if ($getDisplayVerbose == "checked") {
@@ -69,6 +81,8 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
         echo "<br><input type=checkbox name=verbose value=checked>";
     }
     echo "Verbose";
+
+    // submit button for get form
     echo "<br><input type=submit value=Submit>";
     echo "\n</form >";
 
@@ -85,7 +99,7 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
 
         // get rakers from .csv
         $controllerTableRakers1 = new ControllerTable($getFilename, "CSV", new ControllerRowVolunteerspotRaker());
-        $controllerTableRakers1->csvRead();
+        $controllerTableRakers1->csvRead($skipFirstLine);
         //  $controllerTableRakers1->viewAsHtmlTable();
 
         // get rakers from database
