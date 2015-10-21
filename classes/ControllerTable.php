@@ -116,34 +116,78 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
     {
         $this->localTable = array();
 
-        // reference:
-        // http://php.net/manual/en/function.str-getcsv.php
-        //
-        // ALSO - WARNING ABOUT LINE BREAKS for "file" ... (see comment from Martin K.)
-        // http://php.net/manual/en/function.file.php
-        //
-        $blah = fopen($this->databaseTableOrFileName, 'r');
-        $csvAsArray = array_map('str_getcsv', file($this->databaseTableOrFileName));
-        fclose($blah);
+        if (($handle = fopen($this->databaseTableOrFileName, "r")) !== FALSE) {
+            // while (($data = fgetcsv(, 1000, ",", "//")) !== FALSE) {
+            // while (($data = fgetcsv($handle, ",", "//")) !== FALSE) {
+            while (($row = fgetcsv($handle)) !== FALSE) {
 
-        foreach ($csvAsArray as $row) {
-            if ($skipFirstLine) {
-                $skipFirstLine = 0;
-            } else {
-                $rowEntity = clone $this->itemToClone;
-                $rowEntity->populateFromAssociativeArrayCsvFile($row);
-                array_push($this->localTable, $rowEntity);
+                if ($GLOBALS['debug']) {
+                    echo "<br>input line is:<br>";
+                    var_dump($row);
+                    echo "<br>";
+                }
+
+                if ($skipFirstLine) {
+                    $skipFirstLine = 0;
+                } else {
+                    $rowEntity = clone $this->itemToClone;
+                    $rowEntity->populateFromAssociativeArrayCsvFile($row);
+                    array_push($this->localTable, $rowEntity);
+                }
             }
+            fclose($handle);
+        } else {
+            echo "<br>unable to open file " . $this->databaseTableOrFileName . "<br>";
+            exit;
         }
+
+//        echo "<br>zona here<br>";
+//        exit;
+
+
+// reference:
+// http://php.net/manual/en/function.str-getcsv.php
+//
+// ALSO - WARNING ABOUT LINE BREAKS for "file" ... (see comment from Martin K.)
+// http://php.net/manual/en/function.file.php
+//
+//        $blah = fopen($this->databaseTableOrFileName, 'r');
+//        $csvAsArray = array_map('str_getcsv', file($this->databaseTableOrFileName));
+
+// from
+// http://stackoverflow.com/questions/6536826/dealing-with-commas-in-csv
+// The third parameter informs str_getcsv() to look for quote-enclosed fields.
+//       $array = str_getcsv($subject, ",", '"');
+
+
+//        $handle = fopen($this->databaseTableOrFileName, 'r');
+//        while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE)
+
+
+//        The third parameter informs str_getcsv() to look for quote-enclosed fields.
+
+
+//       fclose($blah);
+
+//      foreach ($csvAsArray as $row) {
+//          if ($skipFirstLine) {
+//              $skipFirstLine = 0;
+//          } else {
+//              $rowEntity = clone $this->itemToClone;
+//              $rowEntity->populateFromAssociativeArrayCsvFile($row);
+//              array_push($this->localTable, $rowEntity);
+//          }
+//      }
     }
 
 
-    //////////////////////////////////
-    // METHODS REQUIRED BY THE VIEW INTERFACE
-    // reference relating to "table" - laying out / wrapping, etc
-    // http://stackoverflow.com/questions/6253963/table-with-table-layout-fixed-and-how-to-make-one-column-wider
+//////////////////////////////////
+// METHODS REQUIRED BY THE VIEW INTERFACE
+// reference relating to "table" - laying out / wrapping, etc
+// http://stackoverflow.com/questions/6253963/table-with-table-layout-fixed-and-how-to-make-one-column-wider
 
-    public function viewAsHtmlTable()
+    public
+    function viewAsHtmlTable()
     {
         echo '<br>';
         echo '
@@ -200,16 +244,17 @@ th {
     }
 
 
+//////////////////////////////////////////////
+// METHODS REQUIRED BY MatchUppableInterface
 
-    //////////////////////////////////////////////
-    // METHODS REQUIRED BY MatchUppableInterface
-
-    public function rowNumbers()
+    public
+    function rowNumbers()
     {
         return array_keys($this->localTable);
     }
 
-    public function columnsAll()
+    public
+    function columnsAll()
     {
         $aRow = reset($this->localTable);
         if (!$aRow) {
@@ -218,7 +263,8 @@ th {
         return $aRow->modelGetColumnsAll();
     }
 
-    public function modelGetColumnsToDisplay()
+    public
+    function modelGetColumnsToDisplay()
     {
         $aRow = reset($this->localTable);
         if (!$aRow) {
@@ -227,7 +273,8 @@ th {
         return $aRow->modelGetColumnsToDisplay();
     }
 
-    public function getDataElement($rowId, $colId)
+    public
+    function getDataElement($rowId, $colId)
     {
         $myRow = $this->localTable[$rowId];
         return $myRow->modelGetField($colId);

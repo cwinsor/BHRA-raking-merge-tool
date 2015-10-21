@@ -39,10 +39,10 @@ class ControllerRowRosterRaker extends ControllerRow
         $this->fields = array();
 
         $this->fields['id'] = -1;
-        $this->fields['firstname'] = $rowAssociativeArray[1];
-        $this->fields['lastname'] = $rowAssociativeArray[2];
-        $this->fields['cellphone'] = $rowAssociativeArray[6];
-        $this->fields['gender'] = $rowAssociativeArray[4];
+        $this->fields['firstname'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 1);
+        $this->fields['lastname'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 2);
+        $this->fields['cellphone'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 6);
+        $this->fields['gender'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 4);
     }
 
 

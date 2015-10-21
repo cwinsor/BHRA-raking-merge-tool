@@ -4,6 +4,7 @@ include_once "aaaStandardIncludes.php";
 
 <?php
 pickupGetIfSet("filename", $getFilename);
+pickupGetIfSet("skipFirstLine", $skipFirstLine);
 pickupGetIfSet("verbose", $getDisplayVerbose);
 ?>
 
@@ -61,6 +62,16 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
     echo "\n<br><input type=submit value=Submit>";
 
     ///////////////////////////////////////////
+    // user option to skip first line of .csv file (frequently a header line)
+    echo "<br>";
+    if ($skipFirstLine == "checked") {
+        echo "<br><input type=checkbox name=skipFirstLine value=checked checked>";
+    } else {
+        echo "<br><input type=checkbox name=skipFirstLine value=checked>";
+    }
+    echo "Skip first line (header)";
+
+    ///////////////////////////////////////////
     // user option to set verbose (see all data fields)
     echo "<br>";
     if ($getDisplayVerbose == "checked") {
@@ -84,7 +95,7 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
     if ($getFilename) {
         // get rakers from .csv
         $controllerTableAppointments1 = new ControllerTable($getFilename, "CSV", new ControllerRowAppointment());
-        $controllerTableAppointments1->csvRead();
+        $controllerTableAppointments1->csvRead($skipFirstLine);
 
         // get from database
         $controllerTableAppointments2 = new ControllerTable("appointments", "DB", new ControllerRowAppointment());

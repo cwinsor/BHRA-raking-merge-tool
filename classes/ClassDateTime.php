@@ -61,7 +61,7 @@ class ClassDateTime
                 "17:00",
                 "17:30");
 
-            exit ("zona 25546 programming error");
+            exit ("programming error 33224455");
         }
     }
 
@@ -86,24 +86,14 @@ class ClassDateTime
          * input:
          *  2015-11-07
          * output:
-         * 2015-12-30
+         *  2015-11-7  <- no leading zero
          */
-        return $inDate;
+        list($year, $month, $day) = explode("-", $inDate);
 
-        /*
-        * input:
-        * 7/20/2015
-        * output:
-        * 2015-12-30
-        $temp = explode("/", $inDate);
-        if (count($temp) != 3) {
-            throw new Exception('in --> dateFromVolunteerspotFormat');
-        }
-        list($month, $day, $year) = explode("/", $inDate);
+        // remove leading zero on date
+        $day = preg_replace('/0(\d+)/', '${1}', $day);
+
         return ($year . "-" . $month . "-" . $day);
-        */
-
-
     }
 
     /**
@@ -130,17 +120,25 @@ class ClassDateTime
     /**
      * return standard format date given SuperSAAS format date/time
      * input:
-     *  11/7/2015 2:00pm
+     *  11/7/2015 2:30pm
      * output:
-     *  2015-12-30
+     *  2015-11-7   <- no leading zero
      */
     public static function dateFromSupersaasFormat($in)
     {
+        if ($in == "X") {
+            echo "<br>error 3322554466 when attempting to get date<br>";
+            exit;
+        }
+        if ($in == "") {
+            echo "<br>error 33445544 when attemptign to get date<br>";
+            exit;
+        }
+
         list($date, $time) = explode(" ", $in);
         list($month, $day, $year) = explode("/", $date);
 
-//        return ($year . "-" . $month . "-" . $day);
-        return ("2015-" . $month . "-" . $day);
+        return ($year . "-" . $month . "-" . $day);
     }
 
     /**
@@ -150,7 +148,8 @@ class ClassDateTime
      * output:
      *  13:30
      */
-    public static function timeFromSupersaasFormat($in)
+    public
+    static function timeFromSupersaasFormat($in)
     {
         list($date, $time) = explode(" ", $in);
 

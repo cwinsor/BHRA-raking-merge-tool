@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -56,20 +55,26 @@ class ControllerRowAppointment extends ControllerRow
         // map local fields from csv file
         $this->fields = array();
 
+        if ($GLOBALS['debug']) {
+            echo "<br>input associative array is:<br>";
+            var_dump($rowAssociativeArray);
+            echo "<br>";
+        }
+
         $this->fields['id_appt'] = -1;
-        $this->fields['ApptDate'] = ClassDateTime::dateFromSupersaasFormat($rowAssociativeArray[0]);
-        $this->fields['ApptStart'] = ClassDateTime::timeFromSupersaasFormat($rowAssociativeArray[0]);
-        $this->fields['ApptEnd'] = ClassDateTime::timeFromSupersaasFormat($rowAssociativeArray[1]);
-        $this->fields['ApptDescription'] = $rowAssociativeArray[2];
-        $this->fields['Foo'] = $rowAssociativeArray[3];
-        $this->fields['ANumber'] = $rowAssociativeArray[4];
-        $this->fields['BNumber'] = $rowAssociativeArray[5];
-        $this->fields['CustName'] = $rowAssociativeArray[6];
-        $this->fields['CustPhone'] = $rowAssociativeArray[7];
-        $this->fields['CustStreet'] = $rowAssociativeArray[8];
-        $this->fields['CustDescription'] = $rowAssociativeArray[9];
-        $this->fields['CustNotes'] = $rowAssociativeArray[10];
-        $this->fields['CustEmail'] = $rowAssociativeArray[11];
+        $this->fields['ApptDate'] = ClassDateTime::dateFromSupersaasFormat($this->getFromArrayOrReturnX($rowAssociativeArray, 0));
+        $this->fields['ApptStart'] = ClassDateTime::timeFromSupersaasFormat($this->getFromArrayOrReturnX($rowAssociativeArray, 0));
+        $this->fields['ApptEnd'] = ClassDateTime::timeFromSupersaasFormat($this->getFromArrayOrReturnX($rowAssociativeArray, 1));
+        $this->fields['ApptDescription'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 2);
+        $this->fields['Foo'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 3);
+        $this->fields['ANumber'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 4);
+        $this->fields['BNumber'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 5);
+        $this->fields['CustName'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 6);
+        $this->fields['CustPhone'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 7);
+        $this->fields['CustStreet'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 8);
+        $this->fields['CustDescription'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 9);
+        $this->fields['CustNotes'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 10);
+        $this->fields['CustEmail'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 11);
 
         $this->fields['assigned_day'] = "";
         $this->fields['assigned_start_time'] = "";
@@ -82,7 +87,8 @@ class ControllerRowAppointment extends ControllerRow
     /**
      * @param $rowAssociativeArray
      */
-    public function populateFromDatabaseTableAssociativeArray($rowAssociativeArray)
+    public
+    function populateFromDatabaseTableAssociativeArray($rowAssociativeArray)
     {
         $this->fields['id_appt'] = $rowAssociativeArray['id_appt'];
         $this->fields['ApptDate'] = $rowAssociativeArray['ApptDate'];
@@ -107,7 +113,8 @@ class ControllerRowAppointment extends ControllerRow
     /**
      *
      */
-    public function getAsAssociativeArrayForDatabaseTable()
+    public
+    function getAsAssociativeArrayForDatabaseTable()
     {
         $array = [];
         $array['ApptDate'] = $this->fields['ApptDate'];
@@ -134,7 +141,8 @@ class ControllerRowAppointment extends ControllerRow
     //////////////////////////////
     // methods required by the schedulable interface
 
-    public function isAvailable($day, $startTime)
+    public
+    function isAvailable($day, $startTime)
     {
         return (
             ($this->modelGetField('ApptDate') == $day) &&

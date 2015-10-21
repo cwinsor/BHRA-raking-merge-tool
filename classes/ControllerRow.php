@@ -26,14 +26,25 @@ abstract class ControllerRow implements InterfaceRowCsv, InterfaceRowDatabase, I
         return $this->fields;
     }
 
+    /**
+     * this function will sanitize user input (say from a .csv file)
+     * it handles cases where the array element doesn't exist, or exists and is null
+     * it also check for and removes new lines \n \r
+     */
     public function getFromArrayOrReturnX($rowAssociativeArray, $index)
     {
+        // if there is an entry
         if (array_key_exists($index, $rowAssociativeArray)) {
+            // remove newlines
+     //       $rowAssociativeArray[$index] = str_replace(array("\r", "\n"), '', $rowAssociativeArray[$index]);
+            // check for an entry that is nothing
             if ($rowAssociativeArray[$index] == "") {
                 return "X";
             }
+            // return the entry
             return $rowAssociativeArray[$index];
         }
+        // there is no entry so return X
         return "X";
     }
 
