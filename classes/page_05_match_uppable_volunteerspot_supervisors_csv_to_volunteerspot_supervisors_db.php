@@ -107,6 +107,7 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
         // prepare to update database based on posts
         $matchUppableClass = new MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb();
         $matchUppableClass->setAB($controllerTableSupervisors1, $controllerTableSupervisors2);
+        $matchUppableClass->performMatching();
         $matchUppableClass->performGetAndPostFunctions();
 
         // re-acquire from database (may have changed as a result of the posts)

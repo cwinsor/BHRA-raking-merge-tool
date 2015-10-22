@@ -455,13 +455,13 @@ include_once "aaaStandardIncludes.php";
             echo "\n </tbody > ";
             echo "\n </table > ";
 
-       //     echo "<br>zona here44<br>";
-       //     foreach ($tableVolunteerRakers->getTable() as $rowNumber => $volunteerRaker) {
-       //         echo "<br>";
+            //     echo "<br>zona here44<br>";
+            //     foreach ($tableVolunteerRakers->getTable() as $rowNumber => $volunteerRaker) {
+            //         echo "<br>";
 //var_dump($volunteerRaker);
-        //        echo "<br>";
-        //    }
-        //    exit();
+            //        echo "<br>";
+            //    }
+            //    exit();
 
             //////////////////////////
             // unassigned header
@@ -576,9 +576,9 @@ include_once "aaaStandardIncludes.php";
 
 
         foreach ($getShowDaysList as $day) {
+            fwrite($myfile, "<table style=width:100% border=1 >");
+            //               fwrite($myfile, "<table style=width:100% border=0 >");
             foreach ($getShowTeamsList as $teamNumber) {
-                fwrite($myfile, "<table style=width:100% border=1 >");
-                //               fwrite($myfile, "<table style=width:100% border=0 >");
                 foreach ($getShowAmPmsList as $amOrPm) {
 
                     // team-specific header...
@@ -625,24 +625,28 @@ include_once "aaaStandardIncludes.php";
                                 fwrite($myfile, "\n<td > CUSTOMER</td > ");
                                 fwrite($myfile, "\n<td > " . ClassDateTime::prettyTime($appointment->modelGetField('ApptStart')) . " to " . ClassDateTime::prettyTime($appointment->modelGetField('ApptEnd')) . " </td > ");
                                 fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustName') . "<br>");
-                                fwrite($myfile, $appointment->modelGetField('CustStreet') . "<br>");
+                                $temp = $appointment->modelGetField('CustStreet');
+                                $temp = wordwrap($temp, 30, "<br />\n");
+                                fwrite($myfile, $temp . "<br>");
                                 fwrite($myfile, $appointment->modelGetField('CustPhone') . "</td >");
-                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustDescription') . " " . $appointment->modelGetField('CustNotes') . "</td >");
+                                $temp = $appointment->modelGetField('CustDescription') . "\n" . $appointment->modelGetField('CustNotes');
+                                $temp = wordwrap($temp, 50, "<br />\n");
+                                fwrite($myfile, "\n<td > " . $temp . "</td >");
                                 fwrite($myfile, "\n</tr > ");
                             }
                         }
                     }
 
-                    fwrite($myfile, "\n <tr>");
-                    fwrite($myfile, "\n<td>" . "___________________" . "</td >");
-                    fwrite($myfile, "\n<td></td >");
-                    fwrite($myfile, "\n<td></td >");
-                    fwrite($myfile, "\n<td></td >");
-                    fwrite($myfile, "\n</tr > ");
+//                    fwrite($myfile, "\n <tr>");
+//                    fwrite($myfile, "\n<td>" . "___________________" . "</td >");
+//                    fwrite($myfile, "\n<td></td >");
+//                    fwrite($myfile, "\n<td></td >");
+//                    fwrite($myfile, "\n<td></td >");
+//                    fwrite($myfile, "\n</tr > ");
                 }
-                fwrite($myfile, "\n </table > ");
-                fwrite($myfile, "\n<br>");
             }
+            fwrite($myfile, "\n </table > ");
+            fwrite($myfile, "\n<br>");
         }
         fwrite($myfile, '</body>');
         fwrite($myfile, '</html>');

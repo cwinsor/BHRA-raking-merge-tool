@@ -104,6 +104,7 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
         // prepare to update database based on posts
         $matchUppableClass = new MatchUppableClassSupersaasCsvToAppointmentsDb();
         $matchUppableClass->setAB($controllerTableAppointments1, $controllerTableAppointments2);
+        $matchUppableClass->performMatching();
         $matchUppableClass->performGetAndPostFunctions();
 
         // re-acquire from database (may have changed as a result of the posts)

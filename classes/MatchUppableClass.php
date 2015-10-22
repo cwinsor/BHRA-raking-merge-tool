@@ -202,8 +202,12 @@ abstract class MatchUppableClass
         }
 
         if (isset($_POST["add_all_from_csv"])) {
-            foreach ($this->a->getTable() as $row) {
-                $this->b->databaseAddItem($row);
+//echo "<br>zona";
+//            var_dump($this->inAOnly);
+//            echo "<br>";
+//            exit;
+            foreach ($this->inAOnly as $rowNumA) {
+                $this->b->databaseAddItem($this->a->modelGetRow($rowNumA));
             }
         }
     }
