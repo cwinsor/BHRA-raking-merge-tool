@@ -385,11 +385,11 @@ include_once "aaaStandardIncludes.php";
             echo " <caption><h3 > " . ClassDateTime::prettyDate($day) . " " . $amOrPm . " </h3 ></caption > ";
             echo "\n <tbody>";
             // common header
-            echo "\n <tr><th ></th ><th ></th ><th > cell</th ><th > home</th ><th ></th ><th ></th ><th ></th ></tr > ";
+            echo "\n <tr><th ></th ><th ></th ><th ></th ><th ></th ><th ></th ></tr > ";
             foreach ($getShowTeamsList as $teamNumber) {
                 // team-specific header...
                 echo "\n <tr><th > " . ClassTeams::pretty($teamNumber) . "</th > ";
-                echo "<th ></th ><th ></th ><th ></th ><th ></th ><th ></th ><th ></th ></tr > ";
+                echo "<th ></th ><th ></th ><th ></th ><th ></th ></tr > ";
 
 
                 // SUPERVISORS
@@ -404,7 +404,8 @@ include_once "aaaStandardIncludes.php";
                                 echo "<td >SUPERVISOR NOT AVAILABLE </td > ";
                             }
                             echo "<td > " . $volunteerSupervisor->modelGetField('firstname') . " " . $volunteerSupervisor->modelGetField('lastname') . " </td > ";
-                            echo "\n <td></td > <td ></td > <td ></td > <td ></td > ";
+                            echo "<td > </td > ";
+                            echo "<td > " . $volunteerSupervisor->modelGetField('comments') . " </td > ";
 
                             echo "<td ><input type = submit name = unassignSupervisor_" . $rowNumber . " value = unassign ></td > ";
                             echo "</tr > ";
@@ -424,7 +425,8 @@ include_once "aaaStandardIncludes.php";
                                 echo "<td >RAKER NOT AVAILABLE </td > ";
                             }
                             echo "<td > " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . " </td > ";
-                            echo "\n <td></td > <td ></td > <td ></td > <td ></td > ";
+                            echo "<td > </td > ";
+                            echo "<td > " . $volunteerRaker->modelGetField('comments') . " </td > ";
 
                             echo "<td ><input type = submit name = unassignRaker_" . $rowNumber . " value = unassign ></td > ";
                             echo "</tr > ";
@@ -444,13 +446,13 @@ include_once "aaaStandardIncludes.php";
                             }
                             echo "<td > " . $appointment->modelGetField('CustName') . " " . " </td > ";
                             echo "<td > " . ClassDateTime::prettyTime($appointment->modelGetField('ApptStart')) . " to " . ClassDateTime::prettyTime($appointment->modelGetField('ApptEnd')) . " </td > ";
-                            echo "\n <td></td > <td ></td > <td ></td > ";
+                            echo "\n <td ></td > ";
                             echo "<td ><input type = submit name = unassignAppointment_" . $rowNumber . " value = unassign ></td > ";
                             echo "</tr > ";
                         }
                     }
                 }
-                echo "\n <tr><th > -</th ><th ></th ><th ></th ><th ></th ><th ></th ><th ></th ><th ></th ></tr > ";
+                echo "\n <tr><th > -</th ><th ></th ><th ></th ><th ></th ><th ></th ></tr > ";
             }
             echo "\n </tbody > ";
             echo "\n </table > ";
@@ -480,7 +482,7 @@ include_once "aaaStandardIncludes.php";
                         echo " <td>SUPERVISOR </td > ";
                         echo "<td > " . $volunteerSupervisor->modelGetField('firstname') . " " . $volunteerSupervisor->modelGetField('lastname') . " </td > ";
                         echo "<td ></td > ";
-                        echo "<td ></td > ";
+                        echo "<td > " . $volunteerSupervisor->modelGetField('comments') . " </td > ";
                         echo "<td > ";
                         foreach (ClassTeams::allTeams() as $team) {
                             // assignSupervisor_row_date_starttime_team
@@ -502,7 +504,7 @@ include_once "aaaStandardIncludes.php";
                         echo " <td>RAKER </td > ";
                         echo "<td > " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . " </td > ";
                         echo "<td ></td > ";
-                        echo "<td ></td > ";
+                        echo "<td > " . $volunteerRaker->modelGetField('comments') . " </td > ";
                         echo "<td > ";
                         foreach (ClassTeams::allTeams() as $team) {
                             // assignRaker_row_date_starttime_team
@@ -577,42 +579,58 @@ include_once "aaaStandardIncludes.php";
 
         foreach ($getShowDaysList as $day) {
             fwrite($myfile, "<table style=width:100% border=1 >");
-            //               fwrite($myfile, "<table style=width:100% border=0 >");
             foreach ($getShowTeamsList as $teamNumber) {
                 foreach ($getShowAmPmsList as $amOrPm) {
 
+                    $outstring = "";
+                    $gotSupervisor = 0;
+                    $gotRaker = 0;
+                    $gotCustomer = 0;
+
+
                     // team-specific header...
-                    fwrite($myfile, "\n <tr>");
-                    fwrite($myfile, "\n <td ><b> " . ClassDateTime::prettyDate($day) . "</b></td > ");
-                    fwrite($myfile, "\n <td ><b> " . ClassTeams::pretty($teamNumber) . ' "' . $amOrPm . '"' . "</b></td > ");
-                    fwrite($myfile, "\n <td></td >");
-                    fwrite($myfile, "\n <td></td >");
-                    fwrite($myfile, "\n </tr >");
+                    $outstring = $outstring . "\n <tr style=width:100% >";
+                    $outstring = $outstring . "\n <td style=background-color:#dddddd font-weight: bold ><b> " . ClassDateTime::prettyDate($day) . "</b></td > ";
+                    $outstring = $outstring . "\n <td style=background-color:#dddddd font-weight: bold ><b> " . ClassTeams::pretty($teamNumber) . "</b></td > ";
+                    $outstring = $outstring . "\n <td style=background-color:#dddddd font-weight: bold ><b> " . ' "' . $amOrPm . '"' . "</b></td > ";
+                    $outstring = $outstring . "\n <td style=background-color:#dddddd font-weight: bold ><b></b></td >";
+                    $outstring = $outstring . "\n </tr >";
 
                     // SUPERVISORS
                     foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
                         foreach ($tableVolunteerSupervisors->getTable() as $rowNumber => $volunteerSupervisor) {
                             if ($volunteerSupervisor->isAssignedTeam($day, $startTime, $teamNumber)) {
-                                fwrite($myfile, "\n<tr>");
-                                fwrite($myfile, "\n<td>SUPERVISOR </td > ");
-                                fwrite($myfile, "\n<td > " . $volunteerSupervisor->modelGetField('firstname') . " " . $volunteerSupervisor->modelGetField('lastname') . " </td > ");
-                                fwrite($myfile, "\n<td > " . $volunteerSupervisor->modelGetField('phone') . "</td >");
-                                fwrite($myfile, "\n<td></td >");
-                                fwrite($myfile, "\n</tr >");
+                                $gotSupervisor = 1;
+                                $outstring = $outstring . "\n<tr>";
+                                $outstring = $outstring . "\n<td>SUPERVISOR </td > ";
+                                $outstring = $outstring . "\n<td > " . $volunteerSupervisor->modelGetField('firstname') . " " . $volunteerSupervisor->modelGetField('lastname') . " </td > ";
+                                $outstring = $outstring . "\n<td > " . $volunteerSupervisor->modelGetField('phone') . "</td >";
+                                $outstring = $outstring . "\n<td></td >";
+                                $outstring = $outstring . "\n</tr >";
                             }
                         }
+                    }
+                    // if there are no supervisors - we want to highlight this to help the recruiting effort!
+                    if (!$gotSupervisor) {
+                        $outstring = $outstring . "\n<tr>";
+                        $outstring = $outstring . "\n<td style=background-color:yellow>SUPERVISOR NEEDED </td > ";
+                        $outstring = $outstring . "\n<td></td >";
+                        $outstring = $outstring . "\n<td></td >";
+                        $outstring = $outstring . "\n<td></td >";
+                        $outstring = $outstring . "\n</tr >";
                     }
 
                     // RAKERS
                     foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
                         foreach ($tableVolunteerRakers->getTable() as $rowNumber => $volunteerRaker) {
                             if ($volunteerRaker->isAssignedTeam($day, $startTime, $teamNumber)) {
-                                fwrite($myfile, "\n<tr>");
-                                fwrite($myfile, "\n<td>RAKER </td > ");
-                                fwrite($myfile, "\n<td > " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . " </td > ");
-                                fwrite($myfile, "\n<td > " . $volunteerRaker->modelGetField('phone') . "</td >");
-                                fwrite($myfile, "\n<td></td >");
-                                fwrite($myfile, "\n</tr >");
+                                $gotRaker = 1;
+                                $outstring = $outstring . "\n<tr>";
+                                $outstring = $outstring . "\n<td>RAKER </td > ";
+                                $outstring = $outstring . "\n<td > " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . " </td > ";
+                                $outstring = $outstring . "\n<td > " . $volunteerRaker->modelGetField('phone') . "</td >";
+                                $outstring = $outstring . "\n<td></td >";
+                                $outstring = $outstring . "\n</tr >";
                             }
                         }
                     }
@@ -621,28 +639,25 @@ include_once "aaaStandardIncludes.php";
                     foreach (ClassDateTime::allTimesAmOrPm($amOrPm) as $startTime) {
                         foreach ($tableAppointments->getTable() as $rowNumber => $appointment) {
                             if ($appointment->isAssignedTeam($day, $startTime, $teamNumber)) {
-                                fwrite($myfile, "\n<tr>");
-                                fwrite($myfile, "\n<td > CUSTOMER</td > ");
-                                fwrite($myfile, "\n<td > " . ClassDateTime::prettyTime($appointment->modelGetField('ApptStart')) . " to " . ClassDateTime::prettyTime($appointment->modelGetField('ApptEnd')) . " </td > ");
-                                fwrite($myfile, "\n<td > " . $appointment->modelGetField('CustName') . "<br>");
+                                $gotCustomer = 1;
+                                $outstring = $outstring . "\n<tr>";
+                                $outstring = $outstring . "\n<td > CUSTOMER</td > ";
+                                $outstring = $outstring . "\n<td > " . ClassDateTime::prettyTime($appointment->modelGetField('ApptStart')) . " to " . ClassDateTime::prettyTime($appointment->modelGetField('ApptEnd')) . " </td > ";
+                                $outstring = $outstring . "\n<td > " . $appointment->modelGetField('CustName') . "<br>";
                                 $temp = $appointment->modelGetField('CustStreet');
                                 $temp = wordwrap($temp, 30, "<br />\n");
-                                fwrite($myfile, $temp . "<br>");
-                                fwrite($myfile, $appointment->modelGetField('CustPhone') . "</td >");
+                                $outstring = $outstring . $temp . "<br>";
+                                $outstring = $outstring . $appointment->modelGetField('CustPhone') . "</td >";
                                 $temp = $appointment->modelGetField('CustDescription') . "\n" . $appointment->modelGetField('CustNotes');
                                 $temp = wordwrap($temp, 50, "<br />\n");
-                                fwrite($myfile, "\n<td > " . $temp . "</td >");
-                                fwrite($myfile, "\n</tr > ");
+                                $outstring = $outstring . "\n<td > " . $temp . "</td >";
+                                $outstring = $outstring . "\n</tr > ";
                             }
                         }
                     }
-
-//                    fwrite($myfile, "\n <tr>");
-//                    fwrite($myfile, "\n<td>" . "___________________" . "</td >");
-//                    fwrite($myfile, "\n<td></td >");
-//                    fwrite($myfile, "\n<td></td >");
-//                    fwrite($myfile, "\n<td></td >");
-//                    fwrite($myfile, "\n</tr > ");
+                    if ($gotSupervisor || $gotRaker || $gotCustomer) {
+                        fwrite($myfile, $outstring);
+                    }
                 }
             }
             fwrite($myfile, "\n </table > ");

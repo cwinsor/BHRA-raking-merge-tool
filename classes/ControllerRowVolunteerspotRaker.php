@@ -21,6 +21,7 @@ class ControllerRowVolunteerSpotRaker extends ControllerRow
             'lastname',
             'email',
             'phone',
+            'comments',
 
             'assigned_day',
             'assigned_start_time',
@@ -60,6 +61,7 @@ class ControllerRowVolunteerSpotRaker extends ControllerRow
             $this->fields['lastname'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 8);
             $this->fields['email'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 12);
             $this->fields['phone'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 13);
+            $this->fields['comments'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 10);
 
             $this->fields['assigned_day'] = "";
             $this->fields['assigned_start_time'] = "";
@@ -95,6 +97,7 @@ class ControllerRowVolunteerSpotRaker extends ControllerRow
         $this->fields['lastname'] = $rowAssociativeArray['lastname'];
         $this->fields['email'] = $rowAssociativeArray['email'];
         $this->fields['phone'] = $rowAssociativeArray['phone'];
+        $this->fields['comments'] = $rowAssociativeArray['comments'];
 
         $this->fields['assigned_day'] = $rowAssociativeArray['assigned_day'];
         $this->fields['assigned_start_time'] = $rowAssociativeArray['assigned_start_time'];
@@ -116,6 +119,7 @@ class ControllerRowVolunteerSpotRaker extends ControllerRow
         $array['lastname'] = $this->fields['lastname'];
         $array['email'] = $this->fields['email'];
         $array['phone'] = $this->fields['phone'];
+        $array['comments'] = $this->fields['comments'];
 
         $array['assigned_day'] = $this->fields['assigned_day'];
         $array['assigned_start_time'] = $this->fields['assigned_start_time'];

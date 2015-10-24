@@ -6,16 +6,6 @@
 
 class MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb extends MatchUppableClass
 {
-    public function getNameslugMapAB()
-    {
-        return array(
-            'date' => 'date',
-            'start_time' => 'start_time',
-            'firstname' => 'firstname',
-            'lastname' => 'lastname');
-    }
-
-
     public function getDataslugMapAB()
     {
         return array_merge(
@@ -24,6 +14,16 @@ class MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb extends Mat
                 'task' => 'task',
                 'end_time' => 'end_time',
                 'email' => 'email',
+                'comments' => 'comments',
                 'phone' => 'phone'));
+    }
+
+    public function getNameslugMapAB()
+    {
+        return array(
+            'date' => 'date',
+            'start_time' => 'start_time',
+            'firstname' => 'firstname',
+            'lastname' => 'lastname');
     }
 }

@@ -22,111 +22,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="page_04_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/page_04_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.527273">
-              <caret line="112" column="6" selection-start-line="112" selection-start-column="6" selection-end-line="112" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page_05_match_uppable_volunteerspot_supervisors_csv_to_volunteerspot_supervisors_db.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/page_05_match_uppable_volunteerspot_supervisors_csv_to_volunteerspot_supervisors_db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.76923">
-              <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page_06_match_uppable_supersaas_csv_to_appointments_db.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/page_06_match_uppable_supersaas_csv_to_appointments_db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.923077">
-              <caret line="106" column="46" selection-start-line="106" selection-start-column="46" selection-end-line="106" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page_07_match_uppable_roster_csv_to_rakers_db.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/page_07_match_uppable_roster_csv_to_rakers_db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.153847">
-              <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page_08_match_uppable_roster_csv_to_supervisors_db.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/page_08_match_uppable_roster_csv_to_supervisors_db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3076923">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassDateTime.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/ClassDateTime.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-43.26923">
-              <caret line="95" column="51" selection-start-line="95" selection-start-column="51" selection-end-line="95" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassTeams.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/ClassTeams.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769">
-              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="page_10_publish.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/page_10_publish.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5821229">
-              <caret line="628" column="20" selection-start-line="628" selection-start-column="20" selection-end-line="628" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.57439023">
+              <caret line="505" column="44" selection-start-line="505" selection-start-column="44" selection-end-line="505" selection-end-column="44" />
               <folding>
-                <marker date="1445487442370" expanded="true" signature="13782:14180" placeholder="..." />
-                <marker date="1445487442370" expanded="true" signature="13790:14016" placeholder="{...}" />
-                <marker date="1445487442370" expanded="true" signature="14032:14088" placeholder="{...}" />
-                <marker date="1445487442370" expanded="true" signature="14104:14160" placeholder="{...}" />
-                <marker date="1445487442370" expanded="true" signature="24781:24791" placeholder="..." />
+                <marker date="1445693811017" expanded="true" signature="13782:14180" placeholder="..." />
+                <marker date="1445693811017" expanded="true" signature="13790:14016" placeholder="{...}" />
+                <marker date="1445693811017" expanded="true" signature="14032:14088" placeholder="{...}" />
+                <marker date="1445693811017" expanded="true" signature="14104:14160" placeholder="{...}" />
+                <marker date="1445693811017" expanded="true" signature="24924:24934" placeholder="..." />
+                <marker date="1445693811017" expanded="true" signature="25215:25308" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ControllerRowAppointment.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/ControllerRowAppointment.php">
+      <file leaf-file-name="ControllerRowVolunteerspotRaker.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classes/ControllerRowVolunteerspotRaker.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5769231">
-              <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
+            <state vertical-scroll-proportion="-31.90909">
+              <caret line="121" column="55" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatchUppableClass.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/MatchUppableClass.php">
+      <file leaf-file-name="MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.2545457">
-              <caret line="208" column="3" selection-start-line="208" selection-start-column="3" selection-end-line="208" selection-end-column="3" />
+            <state vertical-scroll-proportion="-12.423077">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
-                <marker date="1445480803222" expanded="true" signature="10658:10773" placeholder="..." />
-                <marker date="1445480803222" expanded="true" signature="10847:10959" placeholder="..." />
-                <marker date="1445480803222" expanded="true" signature="14598:14714" placeholder="..." />
+                <element signature="e#7#82#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -155,7 +84,6 @@
         <option value="$PROJECT_DIR$/classes/MatchUppableClassAssignmentsDbToRakersDb.php" />
         <option value="$PROJECT_DIR$/classes/MatchUppableClassAssignmentsDbToSupervisorsDb.php" />
         <option value="$PROJECT_DIR$/classes/ControllerRowItinerary.php" />
-        <option value="$PROJECT_DIR$/classes/MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb.php" />
         <option value="$PROJECT_DIR$/php.ini" />
         <option value="$PROJECT_DIR$/classes/index_03_show_php_ini.php" />
         <option value="$PROJECT_DIR$/classes/ControllerRowAssignment.php" />
@@ -184,7 +112,6 @@
         <option value="$PROJECT_DIR$/classes/page_11_show_published.php" />
         <option value="$PROJECT_DIR$/navigation/navigation.txt" />
         <option value="$PROJECT_DIR$/classes/InterfaceTableCsv.php" />
-        <option value="$PROJECT_DIR$/classes/ControllerRowVolunteerspotRaker.php" />
         <option value="$PROJECT_DIR$/classes/ControllerRowRosterRaker.php" />
         <option value="$PROJECT_DIR$/classes/ControllerRowAppointment.php" />
         <option value="$PROJECT_DIR$/classes/ControllerRow.php" />
@@ -197,6 +124,8 @@
         <option value="$PROJECT_DIR$/classes/page_06_match_uppable_supersaas_csv_to_appointments_db.php" />
         <option value="$PROJECT_DIR$/classes/page_07_match_uppable_roster_csv_to_rakers_db.php" />
         <option value="$PROJECT_DIR$/classes/ClassTeams.php" />
+        <option value="$PROJECT_DIR$/classes/ControllerRowVolunteerspotRaker.php" />
+        <option value="$PROJECT_DIR$/classes/MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb.php" />
         <option value="$PROJECT_DIR$/classes/page_10_publish.php" />
       </list>
     </option>
@@ -213,10 +142,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="128" />
-    <option name="y" value="25" />
-    <option name="width" value="1703" />
-    <option name="height" value="1083" />
+    <option name="x" value="149" />
+    <option name="y" value="105" />
+    <option name="width" value="1618" />
+    <option name="height" value="1037" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -241,6 +170,69 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="navigation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common_functions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BHRA-raking-merge-tool" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Problems" />
         <subPane subId="Changed Files" />
@@ -328,69 +320,6 @@
         </subPane>
         <subPane subId="Default" />
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BHRA-raking-merge-tool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BHRA-raking-merge-tool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BHRA-raking-merge-tool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BHRA-raking-merge-tool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BHRA-raking-merge-tool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="navigation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BHRA-raking-merge-tool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BHRA-raking-merge-tool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common_functions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BHRA-raking-merge-tool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BHRA-raking-merge-tool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -454,10 +383,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="128" y="25" width="1703" height="1083" extended-state="0" />
+    <frame x="149" y="105" width="1618" height="1037" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23473622" sideWeight="0.4960091" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20162298" sideWeight="0.4960091" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -620,13 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/InterfaceRowCsv.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.2692308">
@@ -761,20 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/page_20_match_uppable_roster_rowers_csv_to_volunteerspot_rakers_db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/ControllerRowVolunteerspotRaker.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.076923">
-          <caret line="54" column="90" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/ControllerRowRosterRaker.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.8461537">
@@ -806,19 +714,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/MatchUppableClass.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.2545457">
+        <state vertical-scroll-proportion="0.0">
           <caret line="208" column="3" selection-start-line="208" selection-start-column="3" selection-end-line="208" selection-end-column="3" />
           <folding>
-            <marker date="1445480803222" expanded="true" signature="10658:10773" placeholder="..." />
-            <marker date="1445480803222" expanded="true" signature="10847:10959" placeholder="..." />
-            <marker date="1445480803222" expanded="true" signature="14598:14714" placeholder="..." />
+            <marker date="1445480803222" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1445480803222" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1445480803222" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/page_04_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.527273">
+        <state vertical-scroll-proportion="0.0">
           <caret line="112" column="6" selection-start-line="112" selection-start-column="6" selection-end-line="112" selection-end-column="46" />
           <folding />
         </state>
@@ -826,7 +734,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/page_05_match_uppable_volunteerspot_supervisors_csv_to_volunteerspot_supervisors_db.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.76923">
+        <state vertical-scroll-proportion="0.0">
           <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
           <folding />
         </state>
@@ -834,7 +742,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/page_06_match_uppable_supersaas_csv_to_appointments_db.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.923077">
+        <state vertical-scroll-proportion="0.0">
           <caret line="106" column="46" selection-start-line="106" selection-start-column="46" selection-end-line="106" selection-end-column="46" />
           <folding />
         </state>
@@ -842,7 +750,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/page_07_match_uppable_roster_csv_to_rakers_db.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.153847">
+        <state vertical-scroll-proportion="0.0">
           <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
           <folding />
         </state>
@@ -850,7 +758,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/page_08_match_uppable_roster_csv_to_supervisors_db.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923">
+        <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
@@ -858,7 +766,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/ClassDateTime.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-43.26923">
+        <state vertical-scroll-proportion="0.0">
           <caret line="95" column="51" selection-start-line="95" selection-start-column="51" selection-end-line="95" selection-end-column="51" />
           <folding />
         </state>
@@ -866,7 +774,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/ClassTeams.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769">
+        <state vertical-scroll-proportion="0.0">
           <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
           <folding />
         </state>
@@ -874,22 +782,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/ControllerRowAppointment.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5769231">
+        <state vertical-scroll-proportion="0.0">
           <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/classes/ControllerRowVolunteerspotRaker.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-31.90909">
+          <caret line="121" column="55" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/MatchUppableClassVolunteerspotRakersCsvToVolunteerspotRakersDb.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.423077">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#7#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/classes/page_10_publish.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5821229">
-          <caret line="628" column="20" selection-start-line="628" selection-start-column="20" selection-end-line="628" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.57439023">
+          <caret line="505" column="44" selection-start-line="505" selection-start-column="44" selection-end-line="505" selection-end-column="44" />
           <folding>
-            <marker date="1445487442370" expanded="true" signature="13782:14180" placeholder="..." />
-            <marker date="1445487442370" expanded="true" signature="13790:14016" placeholder="{...}" />
-            <marker date="1445487442370" expanded="true" signature="14032:14088" placeholder="{...}" />
-            <marker date="1445487442370" expanded="true" signature="14104:14160" placeholder="{...}" />
-            <marker date="1445487442370" expanded="true" signature="24781:24791" placeholder="..." />
+            <marker date="1445693811017" expanded="true" signature="13782:14180" placeholder="..." />
+            <marker date="1445693811017" expanded="true" signature="13790:14016" placeholder="{...}" />
+            <marker date="1445693811017" expanded="true" signature="14032:14088" placeholder="{...}" />
+            <marker date="1445693811017" expanded="true" signature="14104:14160" placeholder="{...}" />
+            <marker date="1445693811017" expanded="true" signature="24924:24934" placeholder="..." />
+            <marker date="1445693811017" expanded="true" signature="25215:25308" placeholder="..." />
           </folding>
         </state>
       </provider>
