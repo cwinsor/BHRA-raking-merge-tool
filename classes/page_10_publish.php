@@ -425,7 +425,7 @@ include_once "aaaStandardIncludes.php";
                                 echo "<td >RAKER NOT AVAILABLE </td > ";
                             }
                             echo "<td > " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . " </td > ";
-                            echo "<td > </td > ";
+                            echo "<td > " . $volunteerRaker->modelGetField('size') . " </td > ";
                             echo "<td > " . $volunteerRaker->modelGetField('comments') . " </td > ";
 
                             echo "<td ><input type = submit name = unassignRaker_" . $rowNumber . " value = unassign ></td > ";
@@ -503,7 +503,7 @@ include_once "aaaStandardIncludes.php";
                         echo "\n <tr>";
                         echo " <td>RAKER </td > ";
                         echo "<td > " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . " </td > ";
-                        echo "<td ></td > ";
+                        echo "<td > " . $volunteerRaker->modelGetField('size') . " </td > ";
                         echo "<td > " . $volunteerRaker->modelGetField('comments') . " </td > ";
                         echo "<td > ";
                         foreach (ClassTeams::allTeams() as $team) {
