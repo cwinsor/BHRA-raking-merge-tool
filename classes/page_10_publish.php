@@ -604,7 +604,8 @@ include_once "aaaStandardIncludes.php";
                                 $outstring = $outstring . "\n<tr>";
                                 $outstring = $outstring . "\n<td>SUPERVISOR </td > ";
                                 $outstring = $outstring . "\n<td > " . $volunteerSupervisor->modelGetField('firstname') . " " . $volunteerSupervisor->modelGetField('lastname') . " </td > ";
-                                $outstring = $outstring . "\n<td > " . $volunteerSupervisor->modelGetField('phone') . "</td >";
+                         //       $outstring = $outstring . "\n<td > " . $volunteerSupervisor->modelGetField('phone') . "</td >";
+                                $outstring = $outstring . "\n<td></td >";
                                 $outstring = $outstring . "\n<td></td >";
                                 $outstring = $outstring . "\n</tr >";
                             }
@@ -628,7 +629,8 @@ include_once "aaaStandardIncludes.php";
                                 $outstring = $outstring . "\n<tr>";
                                 $outstring = $outstring . "\n<td>RAKER </td > ";
                                 $outstring = $outstring . "\n<td > " . $volunteerRaker->modelGetField('firstname') . " " . $volunteerRaker->modelGetField('lastname') . " </td > ";
-                                $outstring = $outstring . "\n<td > " . $volunteerRaker->modelGetField('phone') . "</td >";
+//                                $outstring = $outstring . "\n<td > " . $volunteerRaker->modelGetField('phone') . "</td >";
+                                $outstring = $outstring . "\n<td></td >";
                                 $outstring = $outstring . "\n<td></td >";
                                 $outstring = $outstring . "\n</tr >";
                             }
@@ -647,7 +649,7 @@ include_once "aaaStandardIncludes.php";
                                 $temp = $appointment->modelGetField('CustStreet');
                                 $temp = wordwrap($temp, 30, "<br />\n");
                                 $outstring = $outstring . $temp . "<br>";
-                                $outstring = $outstring . $appointment->modelGetField('CustPhone') . "</td >";
+//                                $outstring = $outstring . $appointment->modelGetField('CustPhone') . "</td >";
                                 $temp = $appointment->modelGetField('CustDescription') . "\n" . $appointment->modelGetField('CustNotes');
                                 $temp = wordwrap($temp, 50, "<br />\n");
                                 $outstring = $outstring . "\n<td > " . $temp . "</td >";
