@@ -578,7 +578,7 @@ include_once "aaaStandardIncludes.php";
 
 
         foreach ($getShowDaysList as $day) {
-            fwrite($myfile, "<table style=width:100% border=1 >");
+            fwrite($myfile, "<table   width: 100%  border=1 >");
             foreach ($getShowTeamsList as $teamNumber) {
                 foreach ($getShowAmPmsList as $amOrPm) {
 
