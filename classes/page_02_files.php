@@ -68,6 +68,27 @@ if (isset($_POST['submit'])) {
 
 <div id="content">
 
+
+    <h3>--- Upload New Files ---</h3>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <fieldset>
+            <br><label><input type=file name=file_upload_vr multiple>volunteer rakers (VolunteerSpot)</label>
+            <br><label><input type=file name=file_upload_vs multiple>volunteer supervisors (VolunteerSpot)</label>
+            <br><label><input type=file name=file_upload_ca multiple>customer appointments (SuperSAAS)</label>
+            <br><label><input type=file name=file_upload_ro multiple>roster</label>
+            <br><input type="submit" name="submit" value="Upload">
+        </fieldset>
+    </form>
+
+    <?php
+    if (isset($_POST['submit'])) {
+        echo ($msg == '') ? 'upload done' : $msg;
+    }
+    ?>
+
+
     <form method="post">
 
         <h3>--- Current Files ---</h3>
@@ -140,24 +161,6 @@ if (isset($_POST['submit'])) {
         </fieldset>
     </form>
 
-    <h3>--- Upload New Files ---</h3>
-
-    <form method="post" enctype="multipart/form-data">
-
-        <fieldset>
-            <br><label><input type=file name=file_upload_vr multiple>volunteer rakers (VolunteerSpot)</label>
-            <br><label><input type=file name=file_upload_vs multiple>volunteer supervisors (VolunteerSpot)</label>
-            <br><label><input type=file name=file_upload_ca multiple>customer appointments (SuperSAAS)</label>
-            <br><label><input type=file name=file_upload_ro multiple>roster</label>
-            <br><input type="submit" name="submit" value="Upload">
-        </fieldset>
-    </form>
-
-    <?php
-    if (isset($_POST['submit'])) {
-        echo ($msg == '') ? 'upload done' : $msg;
-    }
-    ?>
 
 
 </div>

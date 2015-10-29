@@ -86,8 +86,12 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
     echo "\n</form >";
 
     echo "\n<form method=post>";
+
     echo "<br><input type=checkbox name=del_all_from_db>";
     echo "Delete everything in database (NOTE - will result in loss of itinerary and team assignments)";
+    echo "<input type=checkbox name=del_all_im_sure>";
+    echo "I'm sure";
+
     echo "<br><input type=checkbox name=add_all_from_csv>";
     echo "Add everything from .csv file";
     echo "<br><input type=submit value=Submit>";

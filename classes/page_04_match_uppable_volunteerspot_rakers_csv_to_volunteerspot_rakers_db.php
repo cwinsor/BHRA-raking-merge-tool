@@ -4,8 +4,12 @@ include_once "aaaStandardIncludes.php";
 
 <?php
 pickupGetIfSet("filename", $getFilename);
-pickupGetIfSet("skipFirstLine", $skipFirstLine);
-pickupGetIfSet("verbose", $getDisplayVerbose);
+
+//////////////
+// common code...
+// GET parameters for verbose, skip line of input, etc
+include_once "page_00_match_uppable_common_buttons_1.php";
+
 ?>
 
 
@@ -59,36 +63,24 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
         }
     }
     $d->close();
-    echo "\n<br><input type=submit value=Submit>";
 
-    ///////////////////////////////////////////
-    // user option to skip first line of .csv file (frequently a header line)
-    echo "<br>";
-    if ($skipFirstLine == "checked") {
-        echo "<br><input type=checkbox name=skipFirstLine value=checked checked>";
-    } else {
-        echo "<br><input type=checkbox name=skipFirstLine value=checked>";
-    }
-    echo "Skip first line (header)";
+    //////////////
+    // common code...
+    // buttons on page for verbose, skip line of input, etc
+    include_once "page_00_match_uppable_common_buttons_2.php";
 
-
-    ///////////////////////////////////////////
-    // user option to set verbose (see all data fields)
-    echo "<br>";
-    if ($getDisplayVerbose == "checked") {
-        echo "<br><input type=checkbox name=verbose value=checked checked>";
-    } else {
-        echo "<br><input type=checkbox name=verbose value=checked>";
-    }
-    echo "Verbose";
-
-    // submit button for get form
+    // submit button for GET form
     echo "<br><input type=submit value=Submit>";
     echo "\n</form >";
 
+
     echo "\n<form method=post>";
+
     echo "<br><input type=checkbox name=del_all_from_db>";
     echo "Delete everything in database (NOTE - will result in loss of itinerary and team assignments)";
+    echo "<input type=checkbox name=del_all_im_sure>";
+    echo "I'm sure";
+
     echo "<br><input type=checkbox name=add_all_from_csv>";
     echo "Add everything from .csv file";
     echo "<br><input type=submit value=Submit>";

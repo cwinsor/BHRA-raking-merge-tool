@@ -194,7 +194,9 @@ abstract class MatchUppableClass
             $this->addRowUsingA($_POST["add_row"]);
         }
 
-        if (isset($_POST["del_all_from_db"])) {
+        if ((isset($_POST["del_all_from_db"])) &&
+            (isset($_POST["del_all_im_sure"]))
+        ) {
             echo "<br>here1<br>";
             foreach ($this->b->getTable() as $row) {
                 $this->b->databaseDeleteItem($row);
