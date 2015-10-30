@@ -8,6 +8,7 @@ pickupGetIfSet("filename", $getFilename);
 //////////////
 // common code...
 // GET parameters for verbose, skip line of input, etc
+$skipFirstLineDefault = 1;
 include_once "page_00_match_uppable_common_buttons_1.php";
 
 ?>

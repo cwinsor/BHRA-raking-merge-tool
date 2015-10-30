@@ -8,7 +8,7 @@ pickupGetIfSet("filename", $getFilename);
 //////////////
 // common code...
 // GET parameters for verbose, skip line of input, etc
-$skipFirstLineDefault = 1;
+$skipFirstLineDefault = 0;
 include_once "page_00_match_uppable_common_buttons_1.php";
 
 ?>
@@ -41,9 +41,11 @@ include_once "page_00_match_uppable_common_buttons_1.php";
 
 <div id="content">
 
-    <h3>Customer Appointments</h3>
+    <h3>Parents Data From Roster</h3>
 
-    <p>This page lets you get the latest customer appointments from a SuperSAAS file.</p>
+    <p>This page lets you pull in parents data from the team roster.</p>
+
+    <p>The roster is used for information like age, gender, phone, etc.</p>
 
     <?php
 
@@ -52,7 +54,7 @@ include_once "page_00_match_uppable_common_buttons_1.php";
     /////////////////////////
     // user to choose a file
     echo "Choose file:";
-    $dirName = '../upload/SuperSAAS/';
+    $dirName = '../upload/roster/';
     $d = dir($dirName);
     while (false !== ($entry = $d->read())) {
         if ($entry != "." && $entry != "..") {
@@ -74,6 +76,7 @@ include_once "page_00_match_uppable_common_buttons_1.php";
     echo "<br><input type=submit value=Submit>";
     echo "\n</form >";
 
+
     echo "\n<form method=post>";
 
     echo "<br><input type=checkbox name=del_all_from_db>";
@@ -86,29 +89,33 @@ include_once "page_00_match_uppable_common_buttons_1.php";
     echo "<br><input type=submit value=Submit>";
     echo "\n</form >";
 
-
     if ($getFilename) {
         // get rakers from .csv
-        $controllerTableAppointments1 = new ControllerTable($getFilename, "CSV", new ControllerRowAppointment());
-        $controllerTableAppointments1->csvRead($skipFirstLine);
+        $controllerTableRakers1 = new ControllerTable($getFilename, "CSV", new ControllerRowRosterParent());
+        $controllerTableRakers1->csvRead($skipFirstLine);
+        // DEBUG       $controllerTableRakers1->viewAsHtmlTable();
 
-        // get from database
-        $controllerTableAppointments2 = new ControllerTable("appointments", "DB", new ControllerRowAppointment());
-        $controllerTableAppointments2->databaseRead();
+        // get rakers from database
+        $controllerTableRakers2 = new ControllerTable("roster_parents", "DB", new ControllerRowRosterParent());
+        $controllerTableRakers2->databaseRead();
+        // DEBUG        $controllerTableRakers2->viewAsHtmlTable();
 
         // prepare to update database based on posts
-        $matchUppableClass = new MatchUppableClassSupersaasCsvToAppointmentsDb();
-        $matchUppableClass->setAB($controllerTableAppointments1, $controllerTableAppointments2);
+        $matchUppableClass = new MatchUppableClassRosterCsvToParentsDb();
+        $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performMatching();
         $matchUppableClass->performGetAndPostFunctions();
 
         // re-acquire from database (may have changed as a result of the posts)
-        $controllerTableAppointments2->databaseRead();
-        $matchUppableClass = new MatchUppableClassSupersaasCsvToAppointmentsDb();
-        $matchUppableClass->setAB($controllerTableAppointments1, $controllerTableAppointments2);
+        $controllerTableRakers2->databaseRead();
+        $matchUppableClass = new MatchUppableClassRosterCsvToParentsDb();
+        $matchUppableClass->setAB($controllerTableRakers1, $controllerTableRakers2);
         $matchUppableClass->performMatching();
 
-//        $matchUppableClass->viewAsHtmlBasicSummary();
+        // DEBUG
+//        echo "<br> here 3322165 <br";
+//       $matchUppableClass->viewAsHtmlBasicSummary();
+//        echo "<br> here 3322165 <br";
 
         $matchUppableClass->viewAsHtmlInAonly($getDisplayVerbose);
         $matchUppableClass->viewAsHtmlInBonly($getDisplayVerbose);
@@ -116,7 +123,6 @@ include_once "page_00_match_uppable_common_buttons_1.php";
         $matchUppableClass->viewAsHtmlInABwithDataMatch($getDisplayVerbose);
 
     }
-
     ?>
 
 </div>

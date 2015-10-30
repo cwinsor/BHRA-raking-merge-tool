@@ -7,12 +7,12 @@ class MatchUppableClassToAssignmentsDbFromRakersDb extends MatchUppableClass
 {
     public function getNameslugMapAB()
     {
-        exit ('zona not implementee 23456');
+        exit ('ERROR not implemented 23456');
     }
 
     public function getDataslugMapAB()
     {
-        exit ('zona not implementee 23457');
+        exit ('ERROR not implemented 23457');
     }
 
 

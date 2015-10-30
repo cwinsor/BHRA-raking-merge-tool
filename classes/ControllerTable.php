@@ -140,44 +140,6 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
             echo "<br>unable to open file " . $this->databaseTableOrFileName . "<br>";
             exit;
         }
-
-//        echo "<br>zona here<br>";
-//        exit;
-
-
-// reference:
-// http://php.net/manual/en/function.str-getcsv.php
-//
-// ALSO - WARNING ABOUT LINE BREAKS for "file" ... (see comment from Martin K.)
-// http://php.net/manual/en/function.file.php
-//
-//        $blah = fopen($this->databaseTableOrFileName, 'r');
-//        $csvAsArray = array_map('str_getcsv', file($this->databaseTableOrFileName));
-
-// from
-// http://stackoverflow.com/questions/6536826/dealing-with-commas-in-csv
-// The third parameter informs str_getcsv() to look for quote-enclosed fields.
-//       $array = str_getcsv($subject, ",", '"');
-
-
-//        $handle = fopen($this->databaseTableOrFileName, 'r');
-//        while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE)
-
-
-//        The third parameter informs str_getcsv() to look for quote-enclosed fields.
-
-
-//       fclose($blah);
-
-//      foreach ($csvAsArray as $row) {
-//          if ($skipFirstLine) {
-//              $skipFirstLine = 0;
-//          } else {
-//              $rowEntity = clone $this->itemToClone;
-//              $rowEntity->populateFromAssociativeArrayCsvFile($row);
-//              array_push($this->localTable, $rowEntity);
-//          }
-//      }
     }
 
 

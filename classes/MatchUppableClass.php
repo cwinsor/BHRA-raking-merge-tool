@@ -197,17 +197,12 @@ abstract class MatchUppableClass
         if ((isset($_POST["del_all_from_db"])) &&
             (isset($_POST["del_all_im_sure"]))
         ) {
-            echo "<br>here1<br>";
             foreach ($this->b->getTable() as $row) {
                 $this->b->databaseDeleteItem($row);
             }
         }
 
         if (isset($_POST["add_all_from_csv"])) {
-//echo "<br>zona";
-//            var_dump($this->inAOnly);
-//            echo "<br>";
-//            exit;
             foreach ($this->inAOnly as $rowNumA) {
                 $this->b->databaseAddItem($this->a->modelGetRow($rowNumA));
             }

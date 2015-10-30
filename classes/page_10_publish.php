@@ -457,14 +457,6 @@ include_once "aaaStandardIncludes.php";
             echo "\n </tbody > ";
             echo "\n </table > ";
 
-            //     echo "<br>zona here44<br>";
-            //     foreach ($tableVolunteerRakers->getTable() as $rowNumber => $volunteerRaker) {
-            //         echo "<br>";
-//var_dump($volunteerRaker);
-            //        echo "<br>";
-            //    }
-            //    exit();
-
             //////////////////////////
             // unassigned header
             echo "\n <table> ";

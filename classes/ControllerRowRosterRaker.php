@@ -15,6 +15,7 @@ class ControllerRowRosterRaker extends ControllerRow
             'id',
             'firstname',
             'lastname',
+            'email',
             'cellphone',
             'gender');
     }
@@ -41,6 +42,7 @@ class ControllerRowRosterRaker extends ControllerRow
         $this->fields['id'] = -1;
         $this->fields['firstname'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 1);
         $this->fields['lastname'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 2);
+        $this->fields['email'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 3);
         $this->fields['cellphone'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 6);
         $this->fields['gender'] = $this->getFromArrayOrReturnX($rowAssociativeArray, 4);
     }
@@ -61,6 +63,7 @@ class ControllerRowRosterRaker extends ControllerRow
         $this->fields['id'] = $rowAssociativeArray['id'];
         $this->fields['firstname'] = $rowAssociativeArray['firstname'];
         $this->fields['lastname'] = $rowAssociativeArray['lastname'];
+        $this->fields['email'] = $rowAssociativeArray['email'];
         $this->fields['cellphone'] = $rowAssociativeArray['cellphone'];
         $this->fields['gender'] = $rowAssociativeArray['gender'];
     }
@@ -74,6 +77,7 @@ class ControllerRowRosterRaker extends ControllerRow
         $array = [];
         $array['firstname'] = $this->fields['firstname'];
         $array['lastname'] = $this->fields['lastname'];
+        $array['email'] = $this->fields['email'];
         $array['cellphone'] = $this->fields['cellphone'];
         $array['gender'] = $this->fields['gender'];
         return $array;

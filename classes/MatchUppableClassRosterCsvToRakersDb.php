@@ -7,20 +7,21 @@
 class MatchUppableClassRosterCsvToRakersDb extends MatchUppableClass
 {
 
-    public function getNameslugMapAB()
-    {
-        return array(
-            'firstname' => 'firstname',
-            'lastname' => 'lastname');
-    }
-
     public function getDataslugMapAB()
     {
         return array_merge(
             $this->getNameslugMapAB(),
             array(
                 'cellphone' => 'cellphone',
+                'email' => 'email',
                 'gender' => 'gender'));
+    }
+
+    public function getNameslugMapAB()
+    {
+        return array(
+            'firstname' => 'firstname',
+            'lastname' => 'lastname');
     }
 
 }

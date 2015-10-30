@@ -7,12 +7,12 @@ class MatchUppableClassToAssignmentsDbFromSupervisorsDb extends MatchUppableClas
 {
     public function getNameslugMapAB()
     {
-        exit ('zona not implementee 33456');
+        exit ('ERROR not implemented 33456');
     }
 
     public function getDataslugMapAB()
     {
-        exit ('zona not implementee 33457');
+        exit ('ERROR not implemented 33457');
     }
 
 

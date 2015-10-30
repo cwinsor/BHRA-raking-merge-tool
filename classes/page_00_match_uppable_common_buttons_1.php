@@ -5,7 +5,7 @@ $skipFirstLineErr = $getDisplayVerboseErr = "";
 
 // GET parameter to skip first line of input
 if (empty($_GET["skipFirstLine"])) {
-    $skipFirstLine = 1;
+    $skipFirstLine = $skipFirstLineDefault;
 } else {
     test_input($_GET["skipFirstLine"]);
     $skipFirstLine = strcmp(test_input($_GET["skipFirstLine"]), "yes") ? 0 : 1;

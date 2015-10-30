@@ -4,8 +4,13 @@ include_once "aaaStandardIncludes.php";
 
 <?php
 pickupGetIfSet("filename", $getFilename);
-pickupGetIfSet("skipFirstLine", $skipFirstLine);
-pickupGetIfSet("verbose", $getDisplayVerbose);
+
+//////////////
+// common code...
+// GET parameters for verbose, skip line of input, etc
+$skipFirstLineDefault = 0;
+include_once "page_00_match_uppable_common_buttons_1.php";
+
 ?>
 
 
@@ -36,9 +41,9 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
 
 <div id="content">
 
-    <h3>Raker Data From Roster</h3>
+    <h3>Rower Data From Roster</h3>
 
-    <p>This page lets you pull in raker data from the team roster.</p>
+    <p>This page lets you pull in rowers data from the team roster.</p>
 
     <p>The roster is used for information like age, gender, phone, etc.</p>
 
@@ -61,29 +66,16 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
         }
     }
     $d->close();
-    echo "\n<br><input type=submit value=Submit>";
 
-    ///////////////////////////////////////////
-    // user option to skip first line of .csv file (frequently a header line)
-    echo "<br>";
-    if ($skipFirstLine == "checked") {
-        echo "<br><input type=checkbox name=skipFirstLine value=checked checked>";
-    } else {
-        echo "<br><input type=checkbox name=skipFirstLine value=checked>";
-    }
-    echo "Skip first line (header)";
+    //////////////
+    // common code...
+    // buttons on page for verbose, skip line of input, etc
+    include_once "page_00_match_uppable_common_buttons_2.php";
 
-    ///////////////////////////////////////////
-    // user option to set verbose (see all data fields)
-    echo "<br>";
-    if ($getDisplayVerbose == "checked") {
-        echo "<br><input type=checkbox name=verbose value=checked checked>";
-    } else {
-        echo "<br><input type=checkbox name=verbose value=checked>";
-    }
-    echo "Verbose";
+    // submit button for GET form
     echo "<br><input type=submit value=Submit>";
     echo "\n</form >";
+
 
     echo "\n<form method=post>";
 
@@ -104,7 +96,7 @@ pickupGetIfSet("verbose", $getDisplayVerbose);
         // DEBUG       $controllerTableRakers1->viewAsHtmlTable();
 
         // get rakers from database
-        $controllerTableRakers2 = new ControllerTable("roster_rakers", "DB", new ControllerRowRosterRaker());
+        $controllerTableRakers2 = new ControllerTable("roster_kids", "DB", new ControllerRowRosterRaker());
         $controllerTableRakers2->databaseRead();
         // DEBUG        $controllerTableRakers2->viewAsHtmlTable();
 
