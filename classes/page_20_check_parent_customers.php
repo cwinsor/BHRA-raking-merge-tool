@@ -4,6 +4,29 @@ include_once "aaaStandardIncludes.php";
 
 <?php
 
+/**
+ * the following function is used to make customer address easier to match
+ * it is used when trying to match up customer address with parent address
+ * when searching for parents-as-customers
+ */
+function refine($in)
+{
+    $work = strtolower($in);
+    $work = str_replace(" street", "", $work);
+    $work = str_replace(" road", "", $work);
+    $work = str_replace(" rd", "", $work);
+    $work = str_replace(" lane", "", $work);
+    $work = str_replace(" circle", "", $work);
+    $work = str_replace(" ", "", $work);
+    $work = str_replace(" ", "", $work);
+    $work = str_replace(" ", "", $work);
+    $work = str_replace(",", "", $work);
+    $work = str_replace(".", "", $work);
+    $work = str_replace("\n", "", $work);
+    $work = str_replace("\r", "", $work);
+    return $work;
+}
+
 ?>
 
 
@@ -40,8 +63,12 @@ include_once "aaaStandardIncludes.php";
 
     <?php
 
-    //////////////////
+
+    ///////////////////////////
+    ///////////////////////////
     // get customer emails from appointments database
+    $custEmail = array();
+    $custAddress = array();
     $databaseTableOrFileName = "appointments";
     $itemToClone = new ControllerRowAppointment();
 
@@ -54,22 +81,31 @@ include_once "aaaStandardIncludes.php";
         trigger_error("database query failed (appts): ", E_USER_ERROR);
     }
 
-    $custEmail = array();
     while ($rowAssociativeArray = $result->fetch_assoc()) {
         $rowEntity = clone $itemToClone;
         $rowEntity->populateFromDatabaseTableAssociativeArray($rowAssociativeArray);
-        // echo "<br>zona " . $rowEntity->modelGetField("CustEmail");
         array_push($custEmail, $rowEntity->modelGetField("CustEmail"));
+        $temp = refine($rowEntity->modelGetField("CustStreet"));
+        if ($temp !== "x") {
+            array_push($custAddress, $temp);
+        }
     }
+    echo "<br>-------------------------<br>";
     echo "<br>there are " . count($custEmail) . " customer emails";
-    //foreach ($custEmail as $email) {
-    //    echo "<br>" . $email . "<br>";
-    //}
+    echo "<br>there are " . count($custAddress) . " customer streets";
+    //    foreach ($custEmail as $email) {
+    //       echo "<br>" . $email;
+    //    }
+    //    foreach ($custAddress as $address) {
+    //        echo "<br>" . $address;
+    //    }
 
 
-    //////////////////
+    ///////////////////////////
+    ///////////////////////////
     // get parent and kid emails from roster database
     $parentsAndKidsEmail = array();
+    $parentsAndKidsAddress = array();
 
     /////////////////////
     // first the kids
@@ -91,7 +127,6 @@ include_once "aaaStandardIncludes.php";
         array_push($parentsAndKidsEmail, $rowEntity->modelGetField("email"));
     }
 
-
     /////////////////////
     // then the parents
     $databaseTableOrFileName = "roster_parents";
@@ -111,21 +146,51 @@ include_once "aaaStandardIncludes.php";
         $rowEntity->populateFromDatabaseTableAssociativeArray($rowAssociativeArray);
         array_push($parentsAndKidsEmail, $rowEntity->modelGetField("p1_email"));
         array_push($parentsAndKidsEmail, $rowEntity->modelGetField("p2_email"));
+        $temp = refine($rowEntity->modelGetField("address"));
+        if ($temp !== "x") {
+            array_push($parentsAndKidsAddress, $temp);
+        }
     }
 
+    echo "<br>-------------------------<br>";
     echo "<br>there are " . count($parentsAndKidsEmail) . " parent/rower emails";
-    //foreach ($parentsAndKidsEmail as $email) {
-    //    echo "<br>" . $email . "<br>";
-    //}
+    echo "<br>there are " . count($parentsAndKidsAddress) . " parent/rower addresses";
+    //    foreach ($parentsAndKidsEmail as $email) {
+    //        echo "<br>" . $email;
+    //    }
+    //   foreach ($parentsAndKidsAddress as $address) {
+    //       echo "<br>" . $address;
+    //   }
 
 
+    echo "<br>---------matchups----------------<br>";
     ////////////////////////
-    // OK - now see if any of them match
+    // look for an email match
     foreach ($parentsAndKidsEmail as $pkEmail) {
         if (in_array($pkEmail, $custEmail)) {
             echo "<br>found match -> " . $pkEmail . "<br>";
         }
     }
+
+    /////////////////////////
+    // look for a street address match
+    foreach ($parentsAndKidsAddress as $pkAddr) {
+        foreach ($custAddress as $cAddr) {
+          //  if (strpos("squirrel", $pkAddr) !== false) {
+          //      echo "<br>checking " . $pkAddr . " and " . $cAddr . "<br>";
+          //  }
+
+            if (strpos($cAddr, $pkAddr) !== false) {
+                echo "<br>found match -> " . $pkAddr . " --> " . $cAddr . "<br>";
+            }
+        }
+    }
+
+
+    ////////////////
+    // roster as a street address
+    // customer appointment has an entire address streeet, town
+    // see if roster address shows up in any of the customer addresses
 
 
     ?>
