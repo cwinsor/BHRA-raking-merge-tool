@@ -446,7 +446,7 @@ include_once "aaaStandardIncludes.php";
                             }
                             echo "<td > " . $appointment->modelGetField('CustName') . " " . " </td > ";
                             echo "<td > " . ClassDateTime::prettyTime($appointment->modelGetField('ApptStart')) . " to " . ClassDateTime::prettyTime($appointment->modelGetField('ApptEnd')) . " </td > ";
-                            echo "\n <td ></td > ";
+                            echo "\n <td >" . $appointment->modelGetField('CustStreet') . "</td > ";
                             echo "<td ><input type = submit name = unassignAppointment_" . $rowNumber . " value = unassign ></td > ";
                             echo "</tr > ";
                         }

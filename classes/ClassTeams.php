@@ -19,7 +19,8 @@ class ClassTeams
             "T7",
             "T8",
             "T9",
-            "T10");
+            "T10",
+            "T11");
     }
 
     public static function pretty($in)
@@ -34,6 +35,7 @@ class ClassTeams
         if ($in == "T8") return "TEAM_8";
         if ($in == "T9") return "TEAM_9";
         if ($in == "T10") return "TEAM_10";
+        if ($in == "T11") return "TEAM_11";
     }
 
 
