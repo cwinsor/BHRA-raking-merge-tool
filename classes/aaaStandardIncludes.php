@@ -1,7 +1,10 @@
 <?php
 
-$GLOBALS['debug'] = 0;
+  $GLOBALS['debug'] = 0;
 date_default_timezone_set('America/New_York');
+
+// config file is located outside the web root
+$GLOBALS['meatpacker_config_file'] = $_SERVER["DOCUMENT_ROOT"] . "/../meatpacker_config.ini";
 
 require_once("../common_functions/my_error_handler.php");
 set_error_handler("my_error_handler");

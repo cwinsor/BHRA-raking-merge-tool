@@ -1,5 +1,6 @@
 <?php
-include_once "aaaStandardIncludes.php";
+require "aaaStandardIncludes.php";
+$ini = parse_ini_file($GLOBALS['meatpacker_config_file']);
 ?>
 
 
@@ -153,7 +154,7 @@ include_once "aaaStandardIncludes.php";
 
 
     // get volunteer rakers from database
-    $tableVolunteerRakers = new ControllerTable("volunteerspot_rakers", "VOLUNTEER RAKERS", new ControllerRowVolunteerSpotRaker());
+    $tableVolunteerRakers = new ControllerTable($ini['db_table_volunteerspot_rakers'], "VOLUNTEER RAKERS", new ControllerRowVolunteerSpotRaker());
     $tableVolunteerRakers->databaseRead();
     // handle posts
     if ($postAssignRaker) {
@@ -185,7 +186,7 @@ include_once "aaaStandardIncludes.php";
 
 
     // get volunteer supervisors from database
-    $tableVolunteerSupervisors = new ControllerTable("volunteerspot_supervisors", "VOLUNTEER SUPERVISORS", new ControllerRowVolunteerSpotRaker());
+    $tableVolunteerSupervisors = new ControllerTable($ini['db_table_volunteerspot_supervisors'], "VOLUNTEER SUPERVISORS", new ControllerRowVolunteerSpotRaker());
     $tableVolunteerSupervisors->databaseRead();
     // handle posts
     if ($postAssignSupervisor) {
@@ -217,7 +218,7 @@ include_once "aaaStandardIncludes.php";
 
 
     // get customer appointments from database
-    $tableAppointments = new ControllerTable("appointments", "APPOINTMENTS", new ControllerRowAppointment());
+    $tableAppointments = new ControllerTable($ini['db_table_appointments'], "APPOINTMENTS", new ControllerRowAppointment());
     $tableAppointments->databaseRead();
     // handle posts
     if ($postAssignAppointment) {
@@ -556,7 +557,7 @@ include_once "aaaStandardIncludes.php";
     /***************************************************/
 
     if ($getPublish) {
-        $myfile = fopen("../download/temp.html", "w");
+        $myfile = fopen($ini['publish_path'] . $ini['publish_schedule_filename'], "w");
 
         fwrite($myfile, "\n ");
         fwrite($myfile, "\n <!DOCTYPE html>");

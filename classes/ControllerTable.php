@@ -3,54 +3,46 @@
 /**
  * Class ControllerTable
  */
-class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, InterfaceTableView, MatchUppableInterface
-{
+class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, InterfaceTableView, MatchUppableInterface {
 
     protected $localTable;
     private $databaseTableOrFileName;
     private $databaseCommonName;
     private $itemToClone;
-
+    private $ini; // from config file
 
     ///////////////////////////////////////
     // METHODS SPECIFIC TO THIS CLASS
 
-    function __construct($databaseTableOrFileName, $commonName, $itemToClone)
-    {
+    function __construct($databaseTableOrFileName, $commonName, $itemToClone) {
         $this->databaseTableOrFileName = $databaseTableOrFileName;
         $this->databaseCommonName = $commonName;
         $this->itemToClone = $itemToClone;
+
+        $this->ini = parse_ini_file($GLOBALS['meatpacker_config_file']);
     }
 
-    public function getDatabaseTableOrFileName()
-    {
+    public function getDatabaseTableOrFileName() {
         return $this->databaseTableOrFileName;
     }
 
-    public function getCommonName()
-    {
+    public function getCommonName() {
         return $this->databaseCommonName;
     }
 
-    public function getTable()
-    {
+    public function getTable() {
         return $this->localTable;
     }
 
-    public function modelGetRow($rowNum)
-    {
+    public function modelGetRow($rowNum) {
         return $this->localTable[$rowNum];
     }
-
-
 
     //////////////////////////////////////////
     // METHODS REQUIRED BY THE DATABASE INTERFACE
 
-    public function databaseRead()
-    {
-        include "../.env_database_password";
-        $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
+    public function databaseRead() {
+        $db = mysqli_connect($this->ini['databasehost'], $this->ini['databaseusername'], $this->ini['databasepassword'], $this->ini['databasename']);
         $sql = "SELECT * FROM $this->databaseTableOrFileName";
         $result = mysqli_query($db, $sql);
         mysqli_close($db);
@@ -66,14 +58,11 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
         }
     }
 
-
-    public function databaseDeleteItem($itemToDelete)
-    {
+    public function databaseDeleteItem($itemToDelete) {
         $rowIdKeyname = $itemToDelete->modelGetIdFieldName();
         $rowIdKeyval = $itemToDelete->modelGetField($rowIdKeyname);
 
-        include "../.env_database_password";
-        $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
+        $db = mysqli_connect($this->ini['databasehost'], $this->ini['databaseusername'], $this->ini['databasepassword'], $this->ini['databasename']);
         $sql = "DELETE FROM $this->databaseTableOrFileName WHERE $rowIdKeyname=$rowIdKeyval";
         $result = mysqli_query($db, $sql);
         mysqli_close($db);
@@ -82,12 +71,10 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
         }
     }
 
-    public function databaseAddItem($itemToAdd)
-    {
+    public function databaseAddItem($itemToAdd) {
         $tableArray = $itemToAdd->getAsAssociativeArrayForDatabaseTable();
 
-        include '../.env_database_password';
-        $db = mysqli_connect($databasehost, $databaseusername, $databasepassword, $databasename);
+        $db = mysqli_connect($this->ini['databasehost'], $this->ini['databaseusername'], $this->ini['databasepassword'], $this->ini['databasename']);
         $sql = "INSERT INTO $this->databaseTableOrFileName (";
         $first = true;
         foreach ($tableArray as $key => $value) {
@@ -108,12 +95,10 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
         }
     }
 
-
     //////////////////////////////////////////
     // METHODS REQUIRED BY THE CSV INTERFACE
 
-    public function csvRead($skipFirstLine)
-    {
+    public function csvRead($skipFirstLine) {
         $this->localTable = array();
 
         if (($handle = fopen($this->databaseTableOrFileName, "r")) !== FALSE) {
@@ -142,15 +127,13 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
         }
     }
 
-
 //////////////////////////////////
 // METHODS REQUIRED BY THE VIEW INTERFACE
 // reference relating to "table" - laying out / wrapping, etc
 // http://stackoverflow.com/questions/6253963/table-with-table-layout-fixed-and-how-to-make-one-column-wider
 
     public
-    function viewAsHtmlTable()
-    {
+            function viewAsHtmlTable() {
         echo '<br>';
         echo '
 <!-- used to make table sort-able -->
@@ -205,19 +188,16 @@ th {
         echo '</tbody></table><br>';
     }
 
-
 //////////////////////////////////////////////
 // METHODS REQUIRED BY MatchUppableInterface
 
     public
-    function rowNumbers()
-    {
+            function rowNumbers() {
         return array_keys($this->localTable);
     }
 
     public
-    function columnsAll()
-    {
+            function columnsAll() {
         $aRow = reset($this->localTable);
         if (!$aRow) {
             return array();
@@ -226,8 +206,7 @@ th {
     }
 
     public
-    function modelGetColumnsToDisplay()
-    {
+            function modelGetColumnsToDisplay() {
         $aRow = reset($this->localTable);
         if (!$aRow) {
             return array();
@@ -236,12 +215,9 @@ th {
     }
 
     public
-    function getDataElement($rowId, $colId)
-    {
+            function getDataElement($rowId, $colId) {
         $myRow = $this->localTable[$rowId];
         return $myRow->modelGetField($colId);
     }
 
-
 }
-

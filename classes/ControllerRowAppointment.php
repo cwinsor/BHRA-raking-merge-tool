@@ -12,7 +12,7 @@ class ControllerRowAppointment extends ControllerRow
     public function modelGetColumnsAll()
     {
         return array(
-            'id_appt',
+            'id',
             'ApptDate',
             'ApptStart',
             'ApptEnd',
@@ -45,7 +45,7 @@ class ControllerRowAppointment extends ControllerRow
 
     public function modelGetIdFieldName()
     {
-        return 'id_appt';
+        return 'id';
     }
 
     //////////////////////////////////////////////////
@@ -61,7 +61,7 @@ class ControllerRowAppointment extends ControllerRow
             echo "<br>";
         }
 
-        $this->fields['id_appt'] = -1;
+        $this->fields['id'] = -1;
         $this->fields['ApptDate'] = ClassDateTime::dateFromSupersaasFormat($this->getFromArrayOrReturnX($rowAssociativeArray, 0));
         $this->fields['ApptStart'] = ClassDateTime::timeFromSupersaasFormat($this->getFromArrayOrReturnX($rowAssociativeArray, 0));
         $this->fields['ApptEnd'] = ClassDateTime::timeFromSupersaasFormat($this->getFromArrayOrReturnX($rowAssociativeArray, 1));
@@ -90,7 +90,7 @@ class ControllerRowAppointment extends ControllerRow
     public
     function populateFromDatabaseTableAssociativeArray($rowAssociativeArray)
     {
-        $this->fields['id_appt'] = $rowAssociativeArray['id_appt'];
+        $this->fields['id'] = $rowAssociativeArray['id'];
         $this->fields['ApptDate'] = $rowAssociativeArray['ApptDate'];
         $this->fields['ApptStart'] = $rowAssociativeArray['ApptStart'];
         $this->fields['ApptEnd'] = $rowAssociativeArray['ApptEnd'];
