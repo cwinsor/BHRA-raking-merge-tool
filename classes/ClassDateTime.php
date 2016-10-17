@@ -3,38 +3,33 @@
 /**
  * Date/Time
  */
-class ClassDateTime
-{
-
-
-    /***********************************************************************/
+class ClassDateTime {
+    /*     * ******************************************************************** */
     /* "standard format" is the format used internally for all date/times  */
     /* i.e.                                                                */
     /* 2015-12-30 13:30                                                    */
-    /***********************************************************************/
+    /*     * ******************************************************************** */
 
 
-    /***********************************************************************/
+    /*     * ******************************************************************** */
     /* enumerations                                                        */
-    /***********************************************************************/
+    /*     * ******************************************************************** */
 
-    public static function allDays()
-    {
+    public static function allDays() {
         return array(
-            "2015-11-7",
-            "2015-11-8",
-            "2015-11-14",
-            "2015-11-15"
+            "2016-11-5",
+            "2016-11-6",
+            "2016-11-11",
+            "2016-11-12",
+            "2016-11-13"
         );
     }
 
-    public static function allTimes()
-    {
+    public static function allTimes() {
         return array_merge(ClassDateTime::allTimesAmOrPm("AM"), ClassDateTime::allTimesAmOrPm("PM"));
     }
 
-    public static function allTimesAmOrPm($amOrPm)
-    {
+    public static function allTimesAmOrPm($amOrPm) {
         if ($amOrPm == "AM") {
             return array(
                 "8:00",
@@ -61,26 +56,22 @@ class ClassDateTime
                 "17:00",
                 "17:30");
 
-            exit ("programming error 33224455");
+            exit("programming error 33224455");
         }
     }
 
-    public static function allAmPm()
-    {
+    public static function allAmPm() {
         return array(
             "AM",
             "PM");
     }
 
-
-    /***********************************************************************/
+    /*     * ******************************************************************** */
     /* Methods to convert proprietary formats to standard format           */
     /* These are used when reading in .csv files                           */
-    /***********************************************************************/
+    /*     * ******************************************************************** */
 
-
-    public static function dateFromVolunteerspotFormat($inDate)
-    {
+    public static function dateFromVolunteerspotFormat($inDate) {
         /**
          * return standard format date given VolunteerSpot format date
          * input:
@@ -105,8 +96,7 @@ class ClassDateTime
      * output:
      *  13:30
      */
-    public static function timeFromVolunteerspotFormat($inTime)
-    {
+    public static function timeFromVolunteerspotFormat($inTime) {
 
         list($hr_min, $am_pm) = explode(" ", $inTime);
         list($hour, $minute) = explode(":", $hr_min);
@@ -114,7 +104,6 @@ class ClassDateTime
             $hour += 12;
         }
         return ($hour . ":" . $minute);
-
     }
 
     /**
@@ -124,8 +113,7 @@ class ClassDateTime
      * output:
      *  2015-11-7   <- no leading zero
      */
-    public static function dateFromSupersaasFormat($in)
-    {
+    public static function dateFromSupersaasFormat($in) {
         if ($in == "X") {
             echo "<br>error 3322554466 when attempting to get date<br>";
             exit;
@@ -149,8 +137,7 @@ class ClassDateTime
      *  13:30
      */
     public
-    static function timeFromSupersaasFormat($in)
-    {
+    static function timeFromSupersaasFormat($in) {
         list($date, $time) = explode(" ", $in);
 
         // regular expression match...
@@ -163,16 +150,13 @@ class ClassDateTime
         return ($hour . ":" . $minute);
     }
 
-
-
-    /*************************************************************************/
+    /*     * ********************************************************************** */
     /* Methods to convert internal format into nonstandard "pretty" formats  */
     /* These methods are used only for printing, not storing                 */
-    /*************************************************************************/
+    /*     * ********************************************************************** */
 
     // given standard format date/time - return a pretty format date
-    public static function prettyDate($in)
-    {
+    public static function prettyDate($in) {
         list($year, $month, $day) = explode("-", $in);
 
         $myDateTime = new DateTime;
@@ -182,8 +166,7 @@ class ClassDateTime
     }
 
     // given standard format date/time - return a pretty format time
-    public static function prettyTime($in)
-    {
+    public static function prettyTime($in) {
         list($hour24, $minute) = explode(":", $in);
 
         if ($hour24 > 12) {
@@ -191,6 +174,5 @@ class ClassDateTime
         }
         return $hour24 . ":" . $minute;
     }
+
 }
-    
-   
