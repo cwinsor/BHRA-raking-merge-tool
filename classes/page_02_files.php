@@ -98,6 +98,16 @@ if (isset($_POST['submit'])) {
                     <legend>Rakers (VolunteerSpot)</legend>
                     <?php
                     $path = $ini['upload_path_volunteerspot_rakers'];
+
+                    // ZONA
+                    echo '<br>--zona---<br>';
+                    echo $path;
+                    echo '<br>--zona---<br>';
+                    echo $_SERVER["DOCUMENT_ROOT"];
+                    echo '<br>--zona---<br>';
+                    echo $GLOBALS['meatpacker_config_file'];
+                    echo '<br>--zona---<br>';
+
                     $d = dir($path);
                     while (false !== ($entry = $d->read())) {
                         if ($entry != "." && $entry != "..") {
