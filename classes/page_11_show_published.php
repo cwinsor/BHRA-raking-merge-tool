@@ -1,17 +1,8 @@
 <?php
-require "aaaStandardIncludes.php";
+$GLOBALS['meatpacker_config_file'] = $_SERVER["DOCUMENT_ROOT"] . "/../meatpacker_config.ini";
 $ini = parse_ini_file($GLOBALS['meatpacker_config_file']);
+
+$url = $ini['publish_url'] . $ini['publish_schedule_filename'];
+header('Location:' . $url);
+die();
 ?>
-
-<!DOCTYPE HTML PUBLIC  "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-
-    <?php
-    ob_start();
-    $url = $ini['publish_url'] . $ini['publish_schedule_filename'];
-    header('Location: ' . $url);
-    ob_end_flush();
-    die();
-    ?>
-
-</html>
