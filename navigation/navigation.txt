@@ -1,0 +1,13 @@
+files:../classes/page_02_files.php
+.:../classes/index.php
+raker avail:../classes/page_04_match_uppable_volunteerspot_rakers_csv_to_volunteerspot_rakers_db.php
+superv avail:../classes/page_05_match_uppable_volunteerspot_supervisors_csv_to_volunteerspot_supervisors_db.php
+customer appt:../classes/page_06_match_uppable_supersaas_csv_to_appointments_db.php
+.:../classes/index.php
+roster(rowers):../classes/page_07_match_uppable_roster_csv_to_roster_kids_db.php
+roster(parents):../classes/page_08_match_uppable_roster_csv_to_roster_parents_db.php
+.:../classes/index.php
+make_schedule:../classes/page_10_publish.php
+view_schedule:../classes/page_11_show_published.php
+.:../classes/index.php
+check_1:../classes/page_20_check_parent_customers.php
