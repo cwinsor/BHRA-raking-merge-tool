@@ -1,5 +1,4 @@
 <?php
-
 // sanitize user input
 // from w3schools
 function test_input($data)
@@ -34,6 +33,3 @@ function pickupGetIfSetWithVal($attribute, $valueIfSet, &$rtn)
 {
     $rtn = isset($_GET[$attribute]) ? $valueIfSet : "";
 }
-
-?>
-

@@ -1,9 +1,7 @@
-
 <?php
 require "aaaIncludeFiles.php";
 $ini = parse_ini_file($GLOBALS['meatpacker_config_file']);
 ?>
-
 <?php
 session_start(); // Starting Session
 $error = ''; // Variable To Store Error Message
@@ -20,8 +18,6 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta

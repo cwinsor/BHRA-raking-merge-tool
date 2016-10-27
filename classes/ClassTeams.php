@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -37,8 +36,4 @@ class ClassTeams
         if ($in == "T10") return "TEAM_10";
         if ($in == "T11") return "TEAM_11";
     }
-
-
 }
-    
-   
