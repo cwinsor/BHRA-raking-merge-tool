@@ -1,7 +1,5 @@
 <?php
 
-require "aaaLoginCheck.php";
-
 $GLOBALS['debug'] = 0;
 date_default_timezone_set('America/New_York');
 
