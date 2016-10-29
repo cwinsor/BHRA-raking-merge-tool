@@ -106,6 +106,9 @@ class ControllerTable implements InterfaceTableDatabase, InterfaceTableCsv, Inte
             // while (($data = fgetcsv($handle, ",", "//")) !== FALSE) {
             while (($row = fgetcsv($handle)) !== FALSE) {
 
+                // if customer entered a " it needs to be removed
+                $row = str_replace("\"", "", $row);
+
                 if ($GLOBALS['debug']) {
                     echo "<br>input line is:<br>";
                     var_dump($row);
